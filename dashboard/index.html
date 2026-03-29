@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Paradigm Shift Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07090f;--bg2:#0d1117;--bg3:#0a0f1e;
+  --border:#1e293b;--border2:#334155;
+  --text:#cbd5e1;--text2:#94a3b8;--text3:#64748b;--text4:#475569;--text5:#334155;
+  --c-ai:#00d4ff;--c-qc:#a78bfa;--c-sp:#fb923c;--c-dc:#34d399;
+  --green:#22c55e;--blue:#3b82f6;--red:#ef4444;--yellow:#f59e0b;
+}
+body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono','Noto Sans KR',monospace;
+  min-height:100vh;padding:20px 24px;}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(#0f172a14 1px,transparent 1px),
+    linear-gradient(90deg,#0f172a14 1px,transparent 1px);
+  background-size:36px 36px;}
+
+.wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;}
+
+/* Header */
+.header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;}
+.badge{font-size:9px;letter-spacing:.18em;color:var(--green);border:1px solid #22c55e44;
+  padding:2px 10px;border-radius:3px;display:inline-block;margin-bottom:6px;}
+h1{font-size:20px;font-weight:900;color:#f1f5f9;letter-spacing:-.5px;margin:2px 0;}
+.subtitle{font-size:10px;color:var(--text4);margin-top:3px;}
+.updated{font-size:9px;color:var(--text5);text-align:right;line-height:1.8;}
+
+/* Theme Grid */
+.theme-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;}
+.theme-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;
+  padding:12px 13px;cursor:pointer;transition:all .2s;text-align:left;}
+.theme-card.active{box-shadow:0 0 18px var(--active-color,#00d4ff)1a;}
+.theme-card:hover{border-color:var(--active-color,#334155);}
+.theme-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+.theme-icon{font-size:20px;}
+.theme-name{font-size:11px;font-weight:700;margin-bottom:3px;}
+.theme-label{font-size:8px;color:var(--text4);margin-bottom:4px;}
+.theme-inst{font-size:8px;font-weight:600;margin-bottom:6px;}
+
+/* Gauge */
+.gauge-wrap{position:relative;width:38px;height:38px;}
+.gauge-wrap svg{width:38px;height:38px;}
+
+/* Spark */
+.spark svg{display:block;}
+
+/* Main Grid */
+.main-grid{display:grid;grid-template-columns:280px 1fr;gap:14px;}
+
+/* Panel */
+.panel{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.panel-title{font-size:9px;color:var(--text4);letter-spacing:.1em;margin-bottom:10px;}
+.panel-left{display:flex;flex-direction:column;gap:12px;}
+
+/* Score */
+.score-panel{border-color:var(--active-color,#334155)44;}
+.score-num{font-size:44px;font-weight:900;line-height:1;}
+.score-bar-wrap{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin:6px 0 3px;}
+.score-bar{height:100%;border-radius:2px;transition:width 1s ease;}
+.score-labels{display:flex;justify-content:space-between;font-size:8px;color:var(--text5);}
+.score-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center;}
+.action-box{border-radius:8px;padding:10px 12px;margin-bottom:8px;}
+.action-label{font-size:9px;letter-spacing:.1em;margin-bottom:3px;}
+.action-text{font-size:12px;font-weight:700;color:#f1f5f9;line-height:1.4;}
+.weight-note{font-size:8px;color:var(--text4);border-top:1px solid var(--border);padding-top:5px;margin-top:5px;}
+
+/* Tabs */
+.tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
+.tab{padding:5px 12px;border-radius:6px;font-size:10px;cursor:pointer;border:1px solid var(--border);
+  background:transparent;color:var(--text4);font-family:inherit;transition:all .15s;}
+.tab.active{background:#1e293b;border-color:var(--border2);color:#e2e8f0;font-weight:700;}
+
+/* Signal bars */
+.sig-row{margin-bottom:10px;}
+.sig-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;}
+.sig-label{font-size:10px;color:var(--text2);}
+.sig-score{font-size:10px;font-weight:700;font-family:monospace;}
+.sig-bar-wrap{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:2px;}
+.sig-bar{height:100%;border-radius:2px;transition:width .8s ease;}
+.sig-note{font-size:8px;color:var(--text5);}
+
+/* Institution box */
+.inst-box{background:#0a0f1e;border:1px solid var(--active-color,#334155)22;border-radius:8px;
+  padding:10px 12px;margin-bottom:10px;}
+.inst-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;}
+.inst-pill{display:flex;align-items:center;gap:4px;font-size:8px;color:var(--text3);}
+.inst-pill-dot{width:6px;height:6px;border-radius:50%;}
+
+/* Stock cards */
+.stock-grid{display:flex;flex-direction:column;gap:8px;}
+.stock-card{background:var(--bg3);border-radius:8px;padding:10px 12px;}
+.stock-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+.stock-ticker{font-size:13px;font-weight:700;color:#f1f5f9;font-family:monospace;}
+.stock-name{font-size:10px;color:var(--text3);margin-left:8px;}
+.market-badge{font-size:7px;padding:1px 5px;border-radius:3px;margin-left:5px;}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px;}
+.metric-box{background:var(--bg2);border-radius:5px;padding:5px 7px;}
+.metric-label{font-size:8px;color:var(--text4);margin-bottom:1px;}
+.metric-value{font-size:10px;font-weight:700;font-family:monospace;}
+
+/* Institution holders */
+.holder-row{margin-bottom:7px;}
+.holder-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;}
+.holder-name{font-size:10px;}
+.holder-name.major{color:#f1f5f9;font-weight:700;}
+.major-badge{font-size:7px;padding:1px 4px;border-radius:3px;margin-left:4px;}
+.holder-pct{font-size:9px;font-weight:700;font-family:monospace;}
+.holder-bar-wrap{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:1px;}
+.holder-bar{height:100%;border-radius:2px;}
+.holder-meta{font-size:8px;color:var(--text5);}
+
+/* Cycle SVG */
+.cycle-wrap svg{width:100%;height:auto;}
+
+/* EPS chart */
+.eps-chart{display:flex;align-items:flex-end;gap:4px;height:48px;margin-bottom:4px;}
+.eps-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;}
+.eps-bar{width:100%;border-radius:2px 2px 0 0;}
+.eps-bar.neg{border-radius:0 0 2px 2px;}
+.eps-divider{width:1px;height:4px;background:var(--border2);}
+.eps-label{font-size:7px;color:var(--text5);text-align:center;margin-top:3px;}
+
+/* Spinner */
+.spinner{display:flex;align-items:center;justify-content:center;padding:40px;
+  font-size:11px;color:var(--text4);}
+
+/* Footnote */
+.footnote{margin-top:16px;font-size:8px;color:var(--text5);text-align:center;line-height:2;}
+
+/* Responsive */
+@media(max-width:768px){
+  .theme-grid{grid-template-columns:repeat(2,1fr);}
+  .main-grid{grid-template-columns:1fr;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="badge">PARADIGM SHIFT TRACKER v4.0</div>
+      <h1>패러다임 시프트 감지 시스템</h1>
+      <div class="subtitle">BlackRock · Vanguard · Blackstone 기관 자금 흐름 + 번스타인 사이클 + AI 공급망 분석</div>
+    </div>
+    <div class="updated" id="updated">데이터 로딩 중…</div>
+  </div>
+
+  <!-- Theme Cards -->
+  <div class="theme-grid" id="themeGrid"></div>
+
+  <!-- Main -->
+  <div class="main-grid" id="mainGrid">
+    <div class="spinner">데이터 불러오는 중…</div>
+  </div>
+
+  <div class="footnote">
+    ⚠ 투자 참고용 · 투자 권유 아님 · 데이터: Yahoo Finance (무료) · Finnhub · GitHub Actions 자동 수집
+  </div>
+</div>
+
+<script>
+// ── 설정 ─────────────────────────────────────────────────────────
+// signals.json을 GitHub Raw에서 가져옵니다.
+// 본인 GitHub 저장소 주소로 교체하세요:
+const SIGNALS_URL = "./data/signals.json";
+// Vercel 배포 시 자동으로 같은 경로에서 읽습니다.
+// GitHub Pages 사용 시: "https://raw.githubusercontent.com/[USER]/[REPO]/main/data/signals.json"
+
+const THEME_COLORS = {
+  ai_infra: "#00d4ff",
+  quantum:  "#a78bfa",
+  space:    "#fb923c",
+  ai_dc:    "#34d399",
+};
+
+const INSTITUTIONS_MAJOR = ["BlackRock","Vanguard","State Street","Fidelity","Blackstone","Morgan Stanley","Goldman","JPMorgan","T. Rowe","Capital Group","Norges"];
+
+let appData = null;
+let selTheme = "ai_dc";
+let selTab   = "signals";
+
+// ── Fetch ─────────────────────────────────────────────────────────
+async function loadData() {
+  try {
+    const r = await fetch(SIGNALS_URL + "?t=" + Date.now());
+    appData = await r.json();
+    render();
+  } catch(e) {
+    // signals.json 없으면 샘플 데이터 사용
+    appData = getSampleData();
+    render();
+  }
+}
+
+// ── Render ────────────────────────────────────────────────────────
+function render() {
+  if (!appData) return;
+
+  // Updated
+  const updEl = document.getElementById("updated");
+  if (appData.updated_at) {
+    const d = new Date(appData.updated_at);
+    updEl.innerHTML = `마지막 업데이트<br>${d.toLocaleString("ko-KR",{timeZone:"Asia/Seoul"})} KST<br><span style="color:#22c55e">● 자동 수집 (GitHub Actions)</span>`;
+  } else {
+    updEl.textContent = "샘플 데이터";
+  }
+
+  renderThemeCards();
+  renderMain();
+}
+
+function getTheme(id) {
+  return appData.themes.find(t => t.id === id);
+}
+
+// ── Gauge SVG ─────────────────────────────────────────────────────
+function gaugeHTML(score, color, size=38) {
+  const r = size/2 - 5, c = 2 * Math.PI * r;
+  const fill = (score / 100) * c;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+    <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="#1e293b" stroke-width="4"/>
+    <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${color}" stroke-width="4"
+      stroke-dasharray="${fill} ${c}" stroke-linecap="round"
+      transform="rotate(-90 ${size/2} ${size/2})"
+      style="filter:drop-shadow(0 0 4px ${color}88)"/>
+    <text x="${size/2}" y="${size/2+1}" text-anchor="middle" dominant-baseline="middle"
+      fill="${color}" font-size="11" font-weight="800" font-family="monospace">${score}</text>
+  </svg>`;
+}
+
+// ── Sparkline ─────────────────────────────────────────────────────
+function sparkHTML(data, color, w=80, h=26) {
+  const min = Math.min(...data), max = Math.max(...data), rng = max - min || 1;
+  const pts = data.map((v,i) => `${(i/(data.length-1))*w},${h-((v-min)/rng)*(h-2)+1}`).join(" ");
+  const lpt = pts.split(" ").at(-1).split(",");
+  return `<svg width="${w}" height="${h}">
+    <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.8"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+    <circle cx="${lpt[0]}" cy="${lpt[1]}" r="2.5" fill="${color}"/>
+  </svg>`;
+}
+
+// ── Cycle Wheel ───────────────────────────────────────────────────
+const CYCLE_NODES = [
+  {stage:0, label:"성장",            angle:90},
+  {stage:1, label:"추락",            angle:58},
+  {stage:2, label:"부정적\n서프라이즈",angle:26},
+  {stage:3, label:"추정치\n하향",    angle:-6},
+  {stage:4, label:"소외",           angle:-38},
+  {stage:5, label:"무시",           angle:-70},
+  {stage:6, label:"역발상\n투자",   angle:-102},
+  {stage:7, label:"긍정적\n서프라이즈",angle:-134},
+  {stage:8, label:"서프라이즈\n모델",angle:174},
+  {stage:9, label:"추정치\n상향",   angle:142},
+  {stage:10,label:"이익\n모멘텀",   angle:110},
+];
+function polar(a, r, cx=160, cy=155) {
+  const rad = a * Math.PI / 180;
+  return {x: cx + r * Math.cos(rad), y: cy - r * Math.sin(rad)};
+}
+function cycleWheelSVG(themes) {
+  const cx=160, cy=155, r=100;
+  let nodes = CYCLE_NODES.map(n => {
+    const inner = polar(n.angle, r, cx, cy);
+    const outer = polar(n.angle, r+30, cx, cy);
+    const anchor = outer.x < cx-5 ? "end" : outer.x > cx+5 ? "start" : "middle";
+    const lines = n.label.split("\n");
+    const tspans = lines.map((l,li) => `<tspan x="${outer.x}" dy="${li===0?0:8}">${l}</tspan>`).join("");
+    return `<circle cx="${inner.x}" cy="${inner.y}" r="3.5" fill="#0d1117" stroke="#334155" stroke-width="1.2"/>
+      <text x="${outer.x}" y="${outer.y}" text-anchor="${anchor}" dominant-baseline="middle"
+        fill="#3d5166" font-size="7" font-family="'Noto Sans KR',sans-serif">${tspans}</text>`;
+  }).join("");
+
+  let dots = themes.map((t, i) => {
+    const node = CYCLE_NODES.find(n => n.stage === t.signal.bernstein_stage);
+    if (!node) return "";
+    const {x, y} = polar(node.angle, r, cx, cy);
+    const ox = (i%2===0?1:-1)*(Math.floor(i/2)*10);
+    const color = THEME_COLORS[t.id] || "#94a3b8";
+    return `<circle cx="${x+ox}" cy="${y}" r="13" fill="${color}18" stroke="${color}" stroke-width="1.8"
+        style="filter:drop-shadow(0 0 5px ${color}55)"/>
+      <text x="${x+ox}" y="${y}" text-anchor="middle" dominant-baseline="middle"
+        fill="${color}" font-size="10" font-family="monospace" font-weight="700">${t.icon}</text>`;
+  }).join("");
+
+  return `<svg viewBox="0 0 320 310" style="width:100%;height:auto">
+    <defs><radialGradient id="wg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#07090f" stop-opacity="0"/>
+    </radialGradient></defs>
+    <circle cx="${cx}" cy="${cy}" r="${r+60}" fill="url(#wg)"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1e293b" stroke-width="1.2"/>
+    <circle cx="${cx}" cy="${cy}" r="${r+18}" fill="none" stroke="#0f1a2a" stroke-width="0.5" stroke-dasharray="2 5"/>
+    ${nodes}${dots}
+    <text x="${cx}" y="${cy}" text-anchor="middle" fill="#1e293b" font-size="8"
+      font-family="'Noto Sans KR',sans-serif">번스타인 사이클</text>
+  </svg>`;
+}
+
+// ── Theme Cards ───────────────────────────────────────────────────
+function renderThemeCards() {
+  const grid = document.getElementById("themeGrid");
+  const HIST = {
+    ai_infra:[42,55,61,68,75,80,84],
+    quantum: [18,22,28,35,42,55,61],
+    space:   [30,38,44,52,60,67,73],
+    ai_dc:   [50,60,68,74,80,85,88],
+  };
+  grid.innerHTML = appData.themes.map(t => {
+    const color = THEME_COLORS[t.id] || "#94a3b8";
+    const sig = t.signal;
+    const hist = HIST[t.id] || [50,55,60,65,70,75,80];
+    const isActive = t.id === selTheme;
+    return `<div class="theme-card ${isActive?"active":""}" 
+        style="--active-color:${color};${isActive?`background:${color}0d;border-color:${color}`:""}"
+        onclick="selectTheme('${t.id}')">
+      <div class="theme-top">
+        <span class="theme-icon" style="color:${color}">${t.icon}</span>
+        ${gaugeHTML(sig.composite || 0, color, 38)}
+      </div>
+      <div class="theme-name" style="color:${isActive?color:"#94a3b8"}">${t.name}</div>
+      <div class="theme-label">${sig.bernstein_label || "—"}</div>
+      <div class="theme-inst" style="color:${color}">기관: ${sig.earnings_score >= 75 ? "강한 순매수" : sig.earnings_score >= 60 ? "순매수" : "혼재"}</div>
+      ${sparkHTML(hist, color)}
+    </div>`;
+  }).join("");
+}
+
+// ── Main ──────────────────────────────────────────────────────────
+function renderMain() {
+  const theme = getTheme(selTheme);
+  if (!theme) return;
+  const color = THEME_COLORS[theme.id] || "#94a3b8";
+  const sig = theme.signal;
+  const score = sig.composite || 0;
+
+  const signalBadge = score >= 80
+    ? {label:"🟢 GROWTH 매수 구간", color:"#22c55e"}
+    : score >= 60
+    ? {label:"🔵 Value→Growth 전환", color:"#3b82f6"}
+    : score >= 40
+    ? {label:"🟡 관망", color:"#f59e0b"}
+    : {label:"🔴 진입 불가", color:"#ef4444"};
+
+  const left = `
+    <div class="panel-left">
+      <div class="panel">
+        <div class="panel-title">BERNSTEIN CYCLE MAP</div>
+        ${cycleWheelSVG(appData.themes)}
+        <div style="margin-top:8px;padding:7px 10px;background:${color}0d;
+          border:1px solid ${color}44;border-radius:6px;font-size:9px;color:${color};line-height:1.5">
+          ${theme.icon} ${sig.bernstein_label || "—"}
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">핵심 지표 요약</div>
+        ${[
+          {l:"EPS 추정치 수정",   v: sig.avg_eps_revision != null ? sig.avg_eps_revision+"%" : "—",
+            c: sig.avg_eps_revision > 0 ? "#22c55e" : sig.avg_eps_revision < 0 ? "#ef4444" : "#94a3b8"},
+          {l:"기관 지분율 평균",  v: sig.avg_inst_pct != null ? sig.avg_inst_pct+"%" : "—", c: color},
+          {l:"3M 모멘텀 평균",   v: sig.avg_mom_3m != null ? sig.avg_mom_3m+"%" : "—",
+            c: sig.avg_mom_3m > 0 ? "#22c55e" : "#ef4444"},
+          {l:"EPS 서프라이즈 평균",v: sig.avg_eps_surprise != null ? sig.avg_eps_surprise+"%" : "—",
+            c: sig.avg_eps_surprise > 0 ? "#22c55e" : "#ef4444"},
+        ].map(({l,v,c}) => `
+          <div style="display:flex;justify-content:space-between;align-items:center;
+            padding:6px 0;border-bottom:1px solid var(--border)">
+            <span style="font-size:10px;color:var(--text2)">${l}</span>
+            <span style="font-size:11px;font-weight:700;color:${c};font-family:monospace">${v}</span>
+          </div>`).join("")}
+      </div>
+    </div>`;
+
+  const tabs = `
+    <div class="tabs">
+      ${[
+        {id:"signals",   label:"5-Factor 신호"},
+        {id:"institutions",label:"기관 자금 흐름"},
+        {id:"stocks",    label:"종목 데이터"},
+      ].map(t => `<button class="tab ${selTab===t.id?"active":""}" onclick="selectTab('${t.id}')">${t.label}</button>`).join("")}
+    </div>`;
+
+  const scorePanel = `
+    <div class="panel score-panel" style="border-color:${color}33;box-shadow:0 0 24px ${color}0a">
+      <div class="score-grid">
+        <div>
+          <div class="panel-title">COMPOSITE SCORE — 기관자금 25%</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:7px">
+            <span class="score-num" style="color:${color}">${score}</span>
+            <span style="font-size:13px;color:var(--text5)">/100</span>
+          </div>
+          <div class="score-bar-wrap">
+            <div class="score-bar" style="width:${score}%;background:linear-gradient(90deg,${color}44,${color});box-shadow:0 0 8px ${color}55"></div>
+          </div>
+          <div class="score-labels"><span>무시</span><span>전환점</span><span>Growth</span><span>피크</span></div>
+        </div>
+        <div>
+          <div class="action-box" style="background:${color}0d;border:1px solid ${signalBadge.color}44">
+            <div class="action-label" style="color:${signalBadge.color}">▶ 투자 액션</div>
+            <div class="action-text">${signalBadge.label}</div>
+            <div class="weight-note">TAM 25 · 기관자금 25 · 정책 20 · 실적 20 · 공매도 10</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  let tabContent = "";
+  if (selTab === "signals") {
+    tabContent = renderSignalsTab(theme, color, sig);
+  } else if (selTab === "institutions") {
+    tabContent = renderInstitutionsTab(theme, color);
+  } else if (selTab === "stocks") {
+    tabContent = renderStocksTab(theme, color);
+  }
+
+  document.getElementById("mainGrid").innerHTML = `
+    ${left}
+    <div style="display:flex;flex-direction:column;gap:12px">
+      ${scorePanel}
+      ${tabs}
+      ${tabContent}
+    </div>`;
+}
+
+function renderSignalsTab(theme, color, sig) {
+  const SIGS = [
+    {key:"earnings",      label:"핵심 기업 실적 (×0.20)",    score:sig.earnings_score},
+    {key:"institutional", label:"기관 자금 흐름 (×0.25)",    score:sig.institutional_score, highlight:true},
+    {key:"momentum",      label:"가격 모멘텀 (×0.10)",       score:sig.momentum_score},
+    {key:"revision",      label:"EPS 추정치 수정방향 (×0.20)",score:sig.revision_score},
+  ];
+  const rows = SIGS.map(s => {
+    const sc = s.score || 50;
+    const noteColor = sc >= 75 ? "#22c55e" : sc >= 55 ? "#94a3b8" : "#ef4444";
+    if (s.highlight) return `
+      <div style="background:var(--bg3);border:1px solid ${color}22;border-radius:8px;padding:10px 12px;margin-bottom:10px">
+        <div class="sig-header">
+          <span class="sig-label" style="color:#f1f5f9;font-weight:700">${s.label} — BlackRock·Vanguard·Blackstone</span>
+          <span class="sig-score" style="color:${color}">${sc}</span>
+        </div>
+        <div class="sig-bar-wrap"><div class="sig-bar" style="width:${sc}%;background:linear-gradient(90deg,${color}44,${color});box-shadow:0 0 6px ${color}88"></div></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:5px">
+          ${[["BlackRock","#f59e0b","$10T"],["Vanguard","#60a5fa","$8T"],["State Street","#34d399","$4T"],
+              ["Blackstone","#a78bfa","$1T"],["Fidelity","#fb923c","$4.5T"]]
+            .map(([n,c,aum]) => `<span class="inst-pill"><span class="inst-pill-dot" style="background:${c}"></span>${n} <span style="color:var(--text5)">${aum}</span></span>`).join("")}
+        </div>
+      </div>`;
+    return `<div class="sig-row">
+      <div class="sig-header">
+        <span class="sig-label">${s.label}</span>
+        <span class="sig-score" style="color:${color}">${sc}</span>
+      </div>
+      <div class="sig-bar-wrap"><div class="sig-bar" style="width:${sc}%;background:linear-gradient(90deg,${color}44,${color})"></div></div>
+    </div>`;
+  }).join("");
+  return `<div class="panel">
+    <div class="panel-title">5-FACTOR SIGNAL — VC 제외 · 기관 자금 흐름으로 대체</div>
+    ${rows}
+    <div style="margin-top:8px;padding:6px 10px;background:var(--bg3);border-radius:6px;font-size:8px;color:var(--text5)">
+      가중치 공식: TAM×0.25 + 기관자금×0.25 + 정책×0.20 + 실적×0.20 + 공매도역×0.10
+    </div>
+  </div>`;
+}
+
+function renderInstitutionsTab(theme, color) {
+  const cards = theme.stocks.map(s => {
+    const holders = s.institutions || [];
+    const instPct = s.financials?.inst_pct;
+    const maxPct = Math.max(...holders.map(h => h.pct_held || 0), 1);
+    const rows = holders.map(h => {
+      const isMajor = INSTITUTIONS_MAJOR.some(k => h.name?.includes(k));
+      const barW = Math.min((h.pct_held / maxPct) * 100, 100);
+      return `<div class="holder-row">
+        <div class="holder-header">
+          <span class="holder-name ${isMajor?"major":""}">
+            ${h.name?.length > 26 ? h.name.slice(0,24)+"…" : h.name || "—"}
+            ${isMajor ? `<span class="major-badge" style="background:${color}22;color:${color};border:1px solid ${color}44">MAJOR</span>` : ""}
+          </span>
+          <span class="holder-pct" style="color:${color}">${h.pct_held?.toFixed(2) || "—"}%</span>
+        </div>
+        <div class="holder-bar-wrap">
+          <div class="holder-bar" style="width:${barW}%;background:${isMajor?`linear-gradient(90deg,${color}44,${color})`:"#1e3a5f"}"></div>
+        </div>
+        <div class="holder-meta">${h.date || ""}</div>
+      </div>`;
+    }).join("") || `<div style="font-size:9px;color:var(--text5);padding:8px 0">기관 데이터 없음 (API 응답 대기)</div>`;
+
+    return `<div style="background:var(--bg3);border-radius:8px;padding:10px 12px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div>
+          <span style="font-size:12px;font-weight:700;color:#f1f5f9;font-family:monospace">${s.ticker}</span>
+          <span style="font-size:9px;color:var(--text3);margin-left:6px">${s.name}</span>
+        </div>
+        ${instPct != null ? `<div style="text-align:right">
+          <div style="font-size:11px;font-weight:700;color:${color};font-family:monospace">${instPct}%</div>
+          <div style="font-size:8px;color:var(--text4)">기관 지분 합계</div>
+        </div>` : ""}
+      </div>
+      ${rows}
+    </div>`;
+  }).join("");
+
+  return `<div class="panel">
+    <div class="panel-title">기관 자금 흐름 — Yahoo Finance 13F 공시 기반</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">${cards}</div>
+    <div style="margin-top:10px;padding:8px 12px;background:var(--bg3);border-radius:7px;
+      font-size:9px;color:var(--text4);line-height:1.8">
+      <b style="color:#f1f5f9">데이터 소스</b><br>
+      • Yahoo Finance: 분기별 기관 보유 비율 + 상위 기관 목록 (무료·키 불필요)<br>
+      • 분기 13F 공시 기준 — BlackRock·Vanguard 포지션 변화가 핵심 확인 지표
+    </div>
+  </div>`;
+}
+
+function renderStocksTab(theme, color) {
+  const cards = theme.stocks.map(s => {
+    const f = s.financials || {}, p = s.price || {};
+    const revC = f.eps_revision_dir === "상향" ? "#22c55e" : f.eps_revision_dir === "하향" ? "#ef4444" : "#94a3b8";
+    const change1dC = (p.change_1d || 0) >= 0 ? "#22c55e" : "#ef4444";
+    const mom3mC   = (p.mom_3m || 0) >= 0 ? "#22c55e" : "#ef4444";
+    const mktBadge = s.market === "US"
+      ? `background:#1e3a5f;color:#60a5fa;border:1px solid #3b82f644`
+      : `background:#0d2010;color:#4ade80;border:1px solid #22c55e44`;
+
+    const metrics = [
+      {l:"PER",     v: f.per || "—"},
+      {l:"선행PER",  v: f.forward_per || "—"},
+      {l:"EPS",     v: f.eps ? "$"+f.eps : "—"},
+      {l:"EPS수정",  v: f.eps_revision_dir || "—", c: revC},
+      {l:"매출성장", v: f.revenue_growth != null ? f.revenue_growth+"%" : "—"},
+      {l:"영업이익률",v: f.operating_margins != null ? f.operating_margins+"%" : "—"},
+      {l:"목표주가", v: f.target_price ? "$"+f.target_price : "—"},
+      {l:"기관지분",  v: f.inst_pct != null ? f.inst_pct+"%" : "—", c: color},
+    ];
+
+    // EPS 서프라이즈 차트
+    const eps = s.earnings || [];
+    let epsChart = "";
+    if (eps.length) {
+      const maxV = Math.max(...eps.map(e => Math.abs(e.surprise_pct || 0)), 3);
+      const bars = eps.slice(0,6).reverse().map(e => {
+        const pctV = e.surprise_pct || 0, h = Math.max(Math.abs(pctV)/maxV*42, 3);
+        const pos = pctV >= 0;
+        return `<div class="eps-bar-wrap">
+          ${pos ? `<div class="eps-bar" style="height:${h}px;background:${color};opacity:.7"></div>` : ""}
+          <div class="eps-divider"></div>
+          ${!pos ? `<div class="eps-bar neg" style="height:${h}px;background:#ef4444;opacity:.7"></div>` : ""}
+        </div>`;
+      }).join("");
+      epsChart = `<div class="eps-chart">${bars}</div>
+        <div class="eps-label">EPS 서프라이즈 추이 (최근 6분기)</div>`;
+    }
+
+    return `<div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <span class="stock-ticker">${s.ticker}</span>
+          <span class="stock-name">${s.name}</span>
+          <span class="market-badge" style="${mktBadge}">${s.market}</span>
+        </div>
+        ${p.price ? `<div style="text-align:right">
+          <div style="font-size:13px;font-weight:700;color:#f1f5f9;font-family:monospace">${p.price?.toFixed(2)}</div>
+          <div style="font-size:9px;color:${change1dC}">${(p.change_1d||0)>=0?"+":""}${p.change_1d||"—"}%
+            <span style="color:${mom3mC};margin-left:6px">3M ${(p.mom_3m||0)>=0?"+":""}${p.mom_3m||"—"}%</span>
+          </div>
+        </div>` : ""}
+      </div>
+      <div class="metric-grid">
+        ${metrics.map(({l,v,c}) => `<div class="metric-box">
+          <div class="metric-label">${l}</div>
+          <div class="metric-value" style="color:${c||color}">${v}</div>
+        </div>`).join("")}
+      </div>
+      ${epsChart}
+    </div>`;
+  }).join("");
+
+  return `<div class="panel">
+    <div class="panel-title">LIVE STOCK DATA — Yahoo Finance + Finnhub</div>
+    <div class="stock-grid">${cards}</div>
+  </div>`;
+}
+
+// ── Interactions ──────────────────────────────────────────────────
+function selectTheme(id) {
+  selTheme = id;
+  selTab = "signals";
+  renderThemeCards();
+  renderMain();
+}
+function selectTab(id) {
+  selTab = id;
+  renderMain();
+}
+
+// ── Sample Data (signals.json 없을 때) ────────────────────────────
+function getSampleData() {
+  return {
+    updated_at: null,
+    themes: [
+      {id:"ai_infra",name:"AI / LLM 인프라",icon:"⬡",
+        signal:{composite:84,bernstein_stage:9,bernstein_label:"이익추정치 상향 수정",
+          earnings_score:86,institutional_score:90,momentum_score:82,revision_score:88,
+          avg_eps_revision:8.4,avg_inst_pct:72.1,avg_mom_3m:34.2,avg_eps_surprise:6.1},
+        stocks:[
+          {ticker:"NVDA",name:"엔비디아",market:"US",
+            financials:{per:38.2,forward_per:28.1,eps:2.92,revenue_growth:122.4,
+              operating_margins:61.1,target_price:165,inst_pct:73.2,
+              eps_revision_dir:"상향",eps_revision_pct:12.3},
+            price:{price:136.53,change_1d:2.14,mom_3m:42.1},
+            institutions:[{name:"BlackRock",pct_held:7.21,date:"2024-12"},{name:"Vanguard",pct_held:8.14,date:"2024-12"},
+              {name:"State Street",pct_held:4.02,date:"2024-12"},{name:"Fidelity",pct_held:2.31,date:"2024-12"}],
+            earnings:[{period:"2024-Q3",surprise_pct:5.8},{period:"2024-Q2",surprise_pct:9.2},{period:"2024-Q1",surprise_pct:7.4}]},
+        ]},
+      {id:"quantum",name:"양자컴퓨팅",icon:"◈",
+        signal:{composite:61,bernstein_stage:7,bernstein_label:"긍정적 어닝 서프라이즈",
+          earnings_score:48,institutional_score:52,momentum_score:55,revision_score:58,
+          avg_eps_revision:1.2,avg_inst_pct:45.3,avg_mom_3m:18.4,avg_eps_surprise:1.8},
+        stocks:[]},
+      {id:"space",name:"Space Tech / 위성",icon:"◎",
+        signal:{composite:73,bernstein_stage:8,bernstein_label:"긍정적 어닝 서프라이즈 모델",
+          earnings_score:67,institutional_score:60,momentum_score:70,revision_score:72,
+          avg_eps_revision:4.1,avg_inst_pct:58.2,avg_mom_3m:28.1,avg_eps_surprise:3.2},
+        stocks:[]},
+      {id:"ai_dc",name:"AI Datacenter / 전력",icon:"▣",
+        signal:{composite:88,bernstein_stage:9,bernstein_label:"이익추정치 상향 수정",
+          earnings_score:94,institutional_score:91,momentum_score:85,revision_score:92,
+          avg_eps_revision:14.2,avg_inst_pct:78.4,avg_mom_3m:38.4,avg_eps_surprise:8.3},
+        stocks:[
+          {ticker:"EQIX",name:"Equinix",market:"US",
+            financials:{per:82.1,forward_per:61.2,eps:12.41,revenue_growth:8.2,
+              operating_margins:18.4,target_price:1050,inst_pct:88.1,
+              eps_revision_dir:"상향",eps_revision_pct:6.2},
+            price:{price:921.34,change_1d:1.82,mom_3m:22.4},
+            institutions:[{name:"BlackRock",pct_held:9.42,date:"2024-12"},{name:"Vanguard",pct_held:10.12,date:"2024-12"},
+              {name:"State Street",pct_held:4.82,date:"2024-12"}],
+            earnings:[{period:"2024-Q3",surprise_pct:4.2},{period:"2024-Q2",surprise_pct:6.1}]},
+          {ticker:"000660",name:"SK하이닉스",market:"KR",
+            financials:{per:14.2,forward_per:9.8,eps:8420,revenue_growth:94.1,
+              operating_margins:28.4,target_price:280000,inst_pct:52.1,
+              eps_revision_dir:"상향",eps_revision_pct:22.7},
+            price:{price:198000,change_1d:1.23,mom_3m:28.4},
+            institutions:[{name:"BlackRock",pct_held:4.21,date:"2024-12"},{name:"Norges Bank",pct_held:1.82,date:"2024-12"}],
+            earnings:[]},
+        ]},
+    ]
+  };
+}
+
+// ── Init ──────────────────────────────────────────────────────────
+loadData();
+// 5분마다 자동 갱신
+setInterval(loadData, 5 * 60 * 1000);
+</script>
+</body>
+</html>
