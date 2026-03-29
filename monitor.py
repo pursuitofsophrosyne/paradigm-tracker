@@ -314,7 +314,7 @@ def format_alert(theme_id, theme_name, icon, prev_sig, curr_sig, changed_stocks)
     stage_changed = prev_stage != curr_stage
 
     lines = [
-        f"{'🚨' if stage_changed else '📊'} <b>패러다임 시프트 트래커</b>",
+        f"{'🚨' if stage_changed else '📊'} <b>Inflection Point Tracker</b>",
         f"━━━━━━━━━━━━━━━━━━━",
         f"{icon} <b>{theme_name}</b>",
         "",
@@ -498,7 +498,7 @@ def main():
 
 def build_weekly_summary(data):
     lines = [
-        "📋 <b>주간 패러다임 트래커 요약</b>",
+        "📋 <b>Inflection Point Tracker — Weekly Summary</b>",
         f"━━━━━━━━━━━━━━━━━━━",
         f"📅 {datetime.datetime.now().strftime('%Y년 %m월 %d일')} 기준\n",
     ]
