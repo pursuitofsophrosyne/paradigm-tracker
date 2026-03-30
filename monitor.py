@@ -1,136 +1,218 @@
 """
-Paradigm Shift Tracker — 모니터링 스크립트
-- Yahoo Finance에서 PER·EPS·기관지분 데이터 수집
-- Finnhub에서 EPS 서프라이즈 히스토리 수집
-- 번스타인 사이클 신호 변화 감지
-- 변화 감지 시 Telegram 알림 발송
-- data/signals.json 업데이트 (Vercel 웹 대시보드용)
+Inflection Point Tracker — Monitor v5.1
+- 4개 테마 × 10종목 (미국 5 + 한국 5) = 40종목 전체 수집
+- Yahoo Finance 서버 측 수집 (CORS 없음, 안정적)
+- RSI(14) 직접 계산 (종가 데이터 기반)
+- PER · 선행PER · EPS · 목표주가 · 기관지분 수집
+- Finnhub EPS 서프라이즈 (선택적)
+- DART OpenAPI 한국 재무데이터 (선택적)
+- 번스타인 사이클 신호 변화 감지 → Telegram 알림
+- data/signals.json 저장 → Vercel 대시보드 자동 반영
 """
 
-import os, json, time, datetime, requests
+import os, json, time, datetime, math, requests, shutil
 from pathlib import Path
 
-# ── 환경 변수 (GitHub Secrets에서 주입) ──────────────────────────
+# ── 환경변수 ──────────────────────────────────────────────
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID   = os.environ.get("TELEGRAM_CHAT_ID", "")
 FINNHUB_KEY        = os.environ.get("FINNHUB_KEY", "")
-EARNINGSFEED_KEY   = os.environ.get("EARNINGSFEED_KEY", "")
+DART_KEY           = os.environ.get("DART_KEY", "")
 
 DATA_FILE = Path("data/signals.json")
 PREV_FILE = Path("data/signals_prev.json")
+HEADERS   = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"}
 
-# ── 추적 종목 ────────────────────────────────────────────────────
+# ── 전체 종목 정의 ─────────────────────────────────────────
 THEMES = [
-    {
-        "id": "ai_infra",
-        "name": "AI / LLM 인프라",
-        "icon": "⬡",
-        "stocks": [
-            {"ticker": "NVDA", "name": "엔비디아",  "market": "US"},
-            {"ticker": "AMD",  "name": "AMD",       "market": "US"},
-            {"ticker": "ANET", "name": "Arista",    "market": "US"},
-        ],
-    },
-    {
-        "id": "quantum",
-        "name": "양자컴퓨팅",
-        "icon": "◈",
-        "stocks": [
-            {"ticker": "IONQ", "name": "IonQ",    "market": "US"},
-            {"ticker": "RGTI", "name": "Rigetti", "market": "US"},
-            {"ticker": "IBM",  "name": "IBM",     "market": "US"},
-        ],
-    },
-    {
-        "id": "space",
-        "name": "Space Tech / 위성",
-        "icon": "◎",
-        "stocks": [
-            {"ticker": "RKLB", "name": "Rocket Lab",        "market": "US"},
-            {"ticker": "ASTS", "name": "AST SpaceMobile",   "market": "US"},
-            {"ticker": "LUNR", "name": "Intuitive Machines", "market": "US"},
-        ],
-    },
-    {
-        "id": "ai_dc",
-        "name": "AI Datacenter / 전력",
-        "icon": "▣",
-        "stocks": [
-            {"ticker": "EQIX",   "name": "Equinix",    "market": "US"},
-            {"ticker": "VST",    "name": "Vistra",     "market": "US"},
-            {"ticker": "005930", "name": "삼성전자",   "market": "KR"},
-            {"ticker": "000660", "name": "SK하이닉스", "market": "KR"},
-        ],
-    },
+  {
+    "id": "ai_infra", "name": "AI / LLM 인프라", "icon": "⬡",
+    "comp_base": 84, "bernstein_stage": 9,
+    "stocks": [
+      {"ticker":"NVDA",   "name":"엔비디아",      "market":"US", "type":"미국 대형",   "sig":"GROWTH"},
+      {"ticker":"AMD",    "name":"AMD",            "market":"US", "type":"미국 대형",   "sig":"GROWTH"},
+      {"ticker":"AVGO",   "name":"Broadcom",       "market":"US", "type":"미국 대형",   "sig":"GROWTH"},
+      {"ticker":"TSM",    "name":"TSMC",           "market":"US", "type":"미국 대형",   "sig":"GROWTH"},
+      {"ticker":"MRVL",   "name":"Marvell Tech",   "market":"US", "type":"미국 중소형", "sig":"GROWTH"},
+      {"ticker":"005930", "name":"삼성전자",        "market":"KR", "type":"한국 상장",   "sig":"WATCH"},
+      {"ticker":"000660", "name":"SK하이닉스",      "market":"KR", "type":"한국 상장",   "sig":"GROWTH"},
+      {"ticker":"042700", "name":"한미반도체",      "market":"KR", "type":"한국 상장",   "sig":"GROWTH"},
+      {"ticker":"058470", "name":"리노공업",        "market":"KR", "type":"한국 상장",   "sig":"GROWTH"},
+      {"ticker":"007660", "name":"이수페타시스",    "market":"KR", "type":"한국 상장",   "sig":"GROWTH"},
+    ],
+  },
+  {
+    "id": "ai_dc", "name": "AI Datacenter / 전력", "icon": "▣",
+    "comp_base": 88, "bernstein_stage": 9,
+    "stocks": [
+      {"ticker":"EQIX",   "name":"Equinix",        "market":"US", "type":"미국 대형",   "sig":"GROWTH"},
+      {"ticker":"VST",    "name":"Vistra",          "market":"US", "type":"미국 대형",   "sig":"GROWTH"},
+      {"ticker":"GEV",    "name":"GE Vernova",      "market":"US", "type":"미국 대형",   "sig":"GROWTH"},
+      {"ticker":"DLR",    "name":"Digital Realty",  "market":"US", "type":"미국 대형",   "sig":"GROWTH"},
+      {"ticker":"NRG",    "name":"NRG Energy",      "market":"US", "type":"미국 대형",   "sig":"WATCH"},
+      {"ticker":"000660", "name":"SK하이닉스",      "market":"KR", "type":"한국 상장",   "sig":"GROWTH"},
+      {"ticker":"005930", "name":"삼성전자",        "market":"KR", "type":"한국 상장",   "sig":"WATCH"},
+      {"ticker":"010120", "name":"LS일렉트릭",      "market":"KR", "type":"한국 상장",   "sig":"GROWTH"},
+      {"ticker":"298040", "name":"효성중공업",      "market":"KR", "type":"한국 상장",   "sig":"GROWTH"},
+      {"ticker":"034020", "name":"두산에너빌리티",  "market":"KR", "type":"한국 상장",   "sig":"WATCH"},
+    ],
+  },
+  {
+    "id": "space", "name": "Space Tech / 위성", "icon": "◎",
+    "comp_base": 73, "bernstein_stage": 8,
+    "stocks": [
+      {"ticker":"RKLB",   "name":"Rocket Lab",          "market":"US", "type":"미국 중소형", "sig":"GROWTH"},
+      {"ticker":"ASTS",   "name":"AST SpaceMobile",     "market":"US", "type":"미국 중소형", "sig":"GROWTH"},
+      {"ticker":"LUNR",   "name":"Intuitive Machines",  "market":"US", "type":"미국 중소형", "sig":"WATCH"},
+      {"ticker":"BWXT",   "name":"BWX Technologies",    "market":"US", "type":"미국 중소형", "sig":"WATCH"},
+      {"ticker":"KTOS",   "name":"Kratos Defense",      "market":"US", "type":"미국 중소형", "sig":"WATCH"},
+      {"ticker":"012450", "name":"한화에어로스페이스",  "market":"KR", "type":"한국 상장",   "sig":"GROWTH"},
+      {"ticker":"099440", "name":"쎄트렉아이",          "market":"KR", "type":"한국 상장",   "sig":"GROWTH"},
+      {"ticker":"227950", "name":"컨텍",               "market":"KR", "type":"한국 상장",   "sig":"WATCH"},
+      {"ticker":"211270", "name":"AP위성",              "market":"KR", "type":"한국 상장",   "sig":"WATCH"},
+      {"ticker":"189300", "name":"인텔리안테크",        "market":"KR", "type":"한국 상장",   "sig":"GROWTH"},
+    ],
+  },
+  {
+    "id": "quantum", "name": "양자컴퓨팅", "icon": "◈",
+    "comp_base": 61, "bernstein_stage": 7,
+    "stocks": [
+      {"ticker":"IONQ",   "name":"IonQ",             "market":"US", "type":"미국 중소형", "sig":"VALUE"},
+      {"ticker":"RGTI",   "name":"Rigetti",           "market":"US", "type":"미국 중소형", "sig":"VALUE"},
+      {"ticker":"IBM",    "name":"IBM",               "market":"US", "type":"미국 대형",   "sig":"WATCH"},
+      {"ticker":"QBTS",   "name":"D-Wave Quantum",    "market":"US", "type":"미국 중소형", "sig":"VALUE"},
+      {"ticker":"QUBT",   "name":"Quantum Computing", "market":"US", "type":"미국 중소형", "sig":"VALUE"},
+      {"ticker":"017670", "name":"SK텔레콤",          "market":"KR", "type":"한국 상장",   "sig":"WATCH"},
+      {"ticker":"030200", "name":"KT",                "market":"KR", "type":"한국 상장",   "sig":"WATCH"},
+      {"ticker":"032640", "name":"LG유플러스",        "market":"KR", "type":"한국 상장",   "sig":"WATCH"},
+      {"ticker":"054920", "name":"아이에이치큐",      "market":"KR", "type":"한국 상장",   "sig":"VALUE"},
+      {"ticker":"035600", "name":"KG이니시스",        "market":"KR", "type":"한국 상장",   "sig":"WATCH"},
+    ],
+  },
 ]
 
-# ── 데이터 수집 ──────────────────────────────────────────────────
+# ── RSI 계산 ──────────────────────────────────────────────
+def calc_rsi(closes, period=14):
+    """종가 리스트에서 RSI(14) 계산"""
+    if len(closes) < period + 1:
+        return None
+    deltas = [closes[i] - closes[i-1] for i in range(1, len(closes))]
+    gains  = [max(d, 0) for d in deltas]
+    losses = [abs(min(d, 0)) for d in deltas]
 
-def yahoo_summary(ticker, market):
-    """Yahoo Finance에서 PER·EPS·기관지분 수집"""
-    y_ticker = ticker + ".KS" if market == "KR" else ticker
-    modules = "defaultKeyStatistics,financialData,earningsTrend,institutionOwnershipSummary"
-    url = f"https://query1.finance.yahoo.com/v10/finance/quoteSummary/{y_ticker}?modules={modules}"
-    headers = {"User-Agent": "Mozilla/5.0"}
+    avg_gain = sum(gains[:period]) / period
+    avg_loss = sum(losses[:period]) / period
+
+    for i in range(period, len(deltas)):
+        avg_gain = (avg_gain * (period - 1) + gains[i]) / period
+        avg_loss = (avg_loss * (period - 1) + losses[i]) / period
+
+    if avg_loss == 0:
+        return 100.0
+    rs = avg_gain / avg_loss
+    return round(100 - (100 / (1 + rs)), 1)
+
+# ── Yahoo Finance 수집 ────────────────────────────────────
+def yahoo_price_and_rsi(ticker, market):
+    """주가·등락률·3개월 모멘텀·RSI(14) 수집"""
+    yt = ticker + ".KS" if market == "KR" else ticker
+    url = f"https://query1.finance.yahoo.com/v8/finance/chart/{yt}?interval=1d&range=6mo"
     try:
-        r = requests.get(url, headers=headers, timeout=10)
+        r = requests.get(url, headers=HEADERS, timeout=12)
+        data = r.json()
+        result = data.get("chart", {}).get("result", [])
+        if not result:
+            return {}
+        d    = result[0]
+        meta = d.get("meta", {})
+        closes_raw = d.get("indicators", {}).get("quote", [{}])[0].get("close", [])
+        closes = [c for c in closes_raw if c is not None]
+
+        price   = meta.get("regularMarketPrice")
+        prev_c  = meta.get("chartPreviousClose")
+        change1d = round((price - prev_c) / prev_c * 100, 2) if price and prev_c else None
+        mom3m    = round((closes[-1] - closes[-63]) / closes[-63] * 100, 1) if len(closes) >= 63 else (
+                   round((closes[-1] - closes[0])  / closes[0]   * 100, 1) if len(closes) > 5 else None)
+        rsi = calc_rsi(closes)
+
+        return {
+            "price":     round(price, 2) if price else None,
+            "change_1d": change1d,
+            "mom_3m":    mom3m,
+            "rsi":       rsi,
+        }
+    except Exception as e:
+        print(f"    [price] {ticker}: {e}")
+        return {}
+
+def yahoo_fundamentals(ticker, market):
+    """PER·선행PER·EPS·목표주가·기관지분·매출성장·영업이익률 수집"""
+    yt = ticker + ".KS" if market == "KR" else ticker
+    modules = "defaultKeyStatistics,financialData,earningsTrend,institutionOwnershipSummary"
+    url = f"https://query1.finance.yahoo.com/v10/finance/quoteSummary/{yt}?modules={modules}"
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=12)
         s = r.json().get("quoteSummary", {}).get("result", [{}])[0]
-        ks = s.get("defaultKeyStatistics", {})
-        fd = s.get("financialData", {})
-        et = s.get("earningsTrend", {}).get("trend", [{}])
+        ks   = s.get("defaultKeyStatistics", {})
+        fd   = s.get("financialData", {})
+        et   = s.get("earningsTrend", {}).get("trend", [{}])
         inst = s.get("institutionOwnershipSummary", {})
 
-        eps_now  = et[0].get("epsTrend", {}).get("current", {}).get("raw") if et else None
-        eps_30d  = et[0].get("epsTrend", {}).get("30daysAgo", {}).get("raw") if et else None
-        eps_90d  = et[0].get("epsTrend", {}).get("90daysAgo", {}).get("raw") if et else None
-
-        rev_dir = None
+        # EPS 추정치 수정 방향
+        eps_now = et[0].get("epsTrend", {}).get("current", {}).get("raw") if et else None
+        eps_30d = et[0].get("epsTrend", {}).get("30daysAgo", {}).get("raw") if et else None
         rev_pct = None
-        if eps_now and eps_30d and eps_30d != 0:
+        rev_dir = None
+        if eps_now is not None and eps_30d and eps_30d != 0:
             rev_pct = round((eps_now - eps_30d) / abs(eps_30d) * 100, 2)
             rev_dir = "상향" if rev_pct > 1 else "하향" if rev_pct < -1 else "유지"
 
+        def rv(d, k, mult=1, rnd=2):
+            v = d.get(k, {})
+            raw = v.get("raw") if isinstance(v, dict) else v
+            return round(raw * mult, rnd) if raw is not None else None
+
         return {
-            "per":               round(ks.get("trailingPE", {}).get("raw", 0), 1),
-            "forward_per":       round(ks.get("forwardPE", {}).get("raw", 0), 1),
-            "eps":               round(ks.get("trailingEps", {}).get("raw", 0), 2),
-            "market_cap":        ks.get("marketCap", {}).get("raw"),
-            "revenue_growth":    round((fd.get("revenueGrowth", {}).get("raw") or 0) * 100, 1),
-            "operating_margins": round((fd.get("operatingMargins", {}).get("raw") or 0) * 100, 1),
-            "target_price":      round(fd.get("targetMeanPrice", {}).get("raw") or 0, 1),
-            "inst_pct":          round((inst.get("ownershipPercent", {}).get("raw") or 0) * 100, 2),
-            "eps_revision_dir":  rev_dir,
-            "eps_revision_pct":  rev_pct,
-            "eps_now":           eps_now,
-            "eps_30d":           eps_30d,
-            "eps_90d":           eps_90d,
+            "per":           rv(ks, "trailingPE", rnd=1),
+            "forward_per":   rv(ks, "forwardPE",  rnd=1),
+            "eps":           rv(ks, "trailingEps", rnd=2),
+            "market_cap":    rv(ks, "marketCap",   rnd=0),
+            "target_price":  rv(fd, "targetMeanPrice", rnd=1),
+            "revenue_growth": rv(fd, "revenueGrowth", mult=100, rnd=1),
+            "op_margin":     rv(fd, "operatingMargins", mult=100, rnd=1),
+            "inst_pct":      round((inst.get("ownershipPercent", {}).get("raw") or 0) * 100, 1),
+            "eps_revision_pct": rev_pct,
+            "eps_revision_dir": rev_dir,
+            "eps_now":       eps_now,
+            "eps_30d":       eps_30d,
         }
     except Exception as e:
-        print(f"  Yahoo 오류 {ticker}: {e}")
+        print(f"    [fundamentals] {ticker}: {e}")
         return {}
 
-def yahoo_price(ticker, market):
-    """현재 주가·등락률·3개월 모멘텀"""
-    y_ticker = ticker + ".KS" if market == "KR" else ticker
-    url = f"https://query1.finance.yahoo.com/v8/finance/chart/{y_ticker}?interval=1d&range=3mo"
-    headers = {"User-Agent": "Mozilla/5.0"}
+def yahoo_institutions(ticker, market):
+    """상위 기관 보유자 목록"""
+    yt = ticker + ".KS" if market == "KR" else ticker
+    url = f"https://query1.finance.yahoo.com/v10/finance/quoteSummary/{yt}?modules=institutionOwnership"
     try:
-        r = requests.get(url, headers=headers, timeout=10)
-        d = r.json().get("chart", {}).get("result", [{}])[0]
-        meta = d.get("meta", {})
-        closes = d.get("indicators", {}).get("quote", [{}])[0].get("close", [])
-        closes = [c for c in closes if c]
-        mom3m = round((closes[-1] - closes[0]) / closes[0] * 100, 1) if len(closes) > 5 else None
-        price = meta.get("regularMarketPrice")
-        prev  = meta.get("chartPreviousClose")
-        change1d = round((price - prev) / prev * 100, 2) if price and prev else None
-        return {"price": price, "change_1d": change1d, "mom_3m": mom3m}
-    except Exception as e:
-        print(f"  Price 오류 {ticker}: {e}")
-        return {}
+        r = requests.get(url, headers=HEADERS, timeout=12)
+        holders = (r.json().get("quoteSummary", {})
+                           .get("result", [{}])[0]
+                           .get("institutionOwnership", {})
+                           .get("ownershipList", []))
+        return [
+            {
+                "name":     h.get("organization"),
+                "pct_held": round((h.get("pctHeld", {}).get("raw") or 0) * 100, 3),
+                "date":     h.get("reportDate", {}).get("fmt"),
+            }
+            for h in holders[:8]
+        ]
+    except:
+        return []
 
+# ── Finnhub EPS 서프라이즈 ────────────────────────────────
 def finnhub_earnings(ticker):
-    """Finnhub EPS 서프라이즈 히스토리"""
     if not FINNHUB_KEY:
         return []
     try:
@@ -150,368 +232,288 @@ def finnhub_earnings(ticker):
     except:
         return []
 
-def top_institutions(ticker, market):
-    """Yahoo Finance 상위 기관 보유자"""
-    y_ticker = ticker + ".KS" if market == "KR" else ticker
-    url = f"https://query1.finance.yahoo.com/v10/finance/quoteSummary/{y_ticker}?modules=institutionOwnership"
-    headers = {"User-Agent": "Mozilla/5.0"}
+# ── DART 한국 재무 (선택적) ──────────────────────────────
+def dart_financials(corp_code):
+    """DART OpenAPI에서 한국 재무 데이터 수집"""
+    if not DART_KEY or not corp_code:
+        return {}
     try:
-        r = requests.get(url, headers=headers, timeout=10)
-        holders = r.json().get("quoteSummary", {}).get("result", [{}])[0]\
-                          .get("institutionOwnership", {}).get("ownershipList", [])
-        return [
-            {
-                "name":     h.get("organization"),
-                "pct_held": round((h.get("pctHeld", {}).get("raw") or 0) * 100, 3),
-                "value":    h.get("value", {}).get("raw"),
-                "date":     h.get("reportDate", {}).get("fmt"),
-            }
-            for h in holders[:8]
-        ]
+        year = datetime.datetime.now().year - 1  # 직전 회계연도
+        url = (f"https://opendart.fss.or.kr/api/fnlttSinglAcntAll.json"
+               f"?crtfc_key={DART_KEY}&corp_code={corp_code}"
+               f"&bsns_year={year}&reprt_code=11011&fs_div=CFS")
+        r = requests.get(url, timeout=12)
+        items = r.json().get("list", [])
+        result = {}
+        for item in items:
+            acnt = item.get("account_nm", "")
+            if "매출" in acnt and "합계" in acnt:
+                result["revenue"] = item.get("thstrm_amount")
+            if "영업이익" in acnt:
+                result["op_income"] = item.get("thstrm_amount")
+        return result
     except:
-        return []
+        return {}
 
-# ── 신호 점수 계산 ────────────────────────────────────────────────
+# DART 종목코드 매핑 (필요 시 확장)
+DART_CODES = {
+    "005930": "00126380",  # 삼성전자
+    "000660": "00164742",  # SK하이닉스
+    "012450": "00164588",  # 한화에어로스페이스
+}
 
-def compute_signal_score(stock_data_list):
+# ── 신호 점수 계산 ────────────────────────────────────────
+def compute_composite(theme, stock_data_list):
     """
-    테마 내 종목들의 평균 지표로 번스타인 사이클 신호 점수 산출
-    반환: {tam, institutional, policy, earnings, short_int, composite, stage}
+    번스타인 사이클 복합 점수 계산
+    기본값은 theme의 comp_base 사용 (검증된 수동 값)
+    실데이터가 충분하면 자동 보정
     """
-    revisions, inst_pcts, moms, eps_surprises = [], [], [], []
+    revisions, inst_pcts, moms, surprises = [], [], [], []
 
     for s in stock_data_list:
-        fin = s.get("financials", {})
-        price = s.get("price", {})
-        earnings = s.get("earnings", [])
+        fin  = s.get("financials", {})
+        px   = s.get("price", {})
+        earn = s.get("earnings", [])
 
         if fin.get("eps_revision_pct") is not None:
             revisions.append(fin["eps_revision_pct"])
         if fin.get("inst_pct"):
             inst_pcts.append(fin["inst_pct"])
-        if price.get("mom_3m") is not None:
-            moms.append(price["mom_3m"])
-        if earnings:
-            recent = [e["surprise_pct"] for e in earnings[:3] if e.get("surprise_pct")]
-            eps_surprises.extend(recent)
+        if px.get("mom_3m") is not None:
+            moms.append(px["mom_3m"])
+        if earn:
+            surprises.extend([e["surprise_pct"] for e in earn[:3] if e.get("surprise_pct")])
 
-    def safe_avg(lst): return round(sum(lst)/len(lst), 2) if lst else None
+    def safe_avg(lst):
+        return round(sum(lst) / len(lst), 2) if lst else None
 
-    avg_rev     = safe_avg(revisions)
-    avg_inst    = safe_avg(inst_pcts)
-    avg_mom     = safe_avg(moms)
-    avg_eps_sur = safe_avg(eps_surprises)
+    avg_rev  = safe_avg(revisions)
+    avg_inst = safe_avg(inst_pcts)
+    avg_mom  = safe_avg(moms)
+    avg_surp = safe_avg(surprises)
 
-    # 점수화 (0~100)
-    def rev_score(v):
-        if v is None: return 50
-        if v > 10: return 90
-        if v > 5:  return 80
-        if v > 1:  return 65
-        if v > -1: return 50
-        if v > -5: return 35
-        return 20
+    # 자동 점수 (데이터 있을 때만 사용)
+    has_data = sum([v is not None for v in [avg_rev, avg_inst, avg_mom, avg_surp]])
+    if has_data >= 2:
+        def rev_s(v):
+            if v is None: return 50
+            if v > 10: return 90
+            if v > 5:  return 80
+            if v > 1:  return 65
+            if v > -1: return 50
+            if v > -5: return 35
+            return 20
+        def inst_s(v):
+            if v is None: return 60
+            if v > 80: return 90
+            if v > 60: return 75
+            if v > 40: return 60
+            return 45
+        def mom_s(v):
+            if v is None: return 50
+            if v > 30: return 85
+            if v > 10: return 70
+            if v > 0:  return 55
+            if v > -10: return 40
+            return 25
+        def surp_s(v):
+            if v is None: return 50
+            if v > 10: return 90
+            if v > 5:  return 75
+            if v > 0:  return 60
+            if v > -5: return 40
+            return 25
 
-    def inst_score(v):
-        if v is None: return 50
-        if v > 80: return 92
-        if v > 70: return 82
-        if v > 60: return 70
-        if v > 50: return 58
-        return 45
-
-    def mom_score(v):
-        if v is None: return 50
-        if v > 30: return 88
-        if v > 15: return 75
-        if v > 5:  return 62
-        if v > -5: return 50
-        if v > -15:return 35
-        return 20
-
-    def eps_sur_score(v):
-        if v is None: return 50
-        if v > 10: return 90
-        if v > 5:  return 78
-        if v > 1:  return 62
-        if v > -1: return 50
-        if v > -5: return 35
-        return 20
-
-    s_earnings = eps_sur_score(avg_eps_sur)
-    s_inst     = inst_score(avg_inst)
-    s_mom      = mom_score(avg_mom)
-    s_rev      = rev_score(avg_rev)
-
-    # Composite: TAM(25) + 기관(25) + 정책(20) + 실적(20) + 공매도역(10)
-    # TAM·정책은 정적 값 유지, 나머지는 실데이터
-    composite = round(
-        50 * 0.25 +          # TAM — 정적 (별도 업데이트 필요)
-        s_inst * 0.25 +
-        55 * 0.20 +          # 정책 — 정적
-        s_earnings * 0.20 +
-        s_mom * 0.10
-    )
-
-    # 번스타인 단계 추론
-    if s_rev >= 75 and s_inst >= 75:
-        stage, stage_label = 9, "이익추정치 상향 수정"
-    elif s_rev >= 60 and s_inst >= 60:
-        stage, stage_label = 8, "긍정적 어닝 서프라이즈 모델"
-    elif s_rev >= 50 and avg_eps_sur and avg_eps_sur > 0:
-        stage, stage_label = 7, "긍정적 어닝 서프라이즈"
-    elif s_rev >= 40:
-        stage, stage_label = 6, "역발상 투자"
-    elif s_rev >= 30:
-        stage, stage_label = 5, "무시"
-    elif s_rev >= 20:
-        stage, stage_label = 4, "소외"
+        auto = round(
+            rev_s(avg_rev)  * 0.25 +
+            inst_s(avg_inst)* 0.25 +
+            mom_s(avg_mom)  * 0.20 +
+            surp_s(avg_surp)* 0.20 +
+            60              * 0.10
+        )
+        # 기준값과 자동값의 가중평균 (기준값 신뢰도 70%)
+        composite = round(theme["comp_base"] * 0.7 + auto * 0.3)
     else:
-        stage, stage_label = 3, "이익추정치 하향 수정"
+        composite = theme["comp_base"]
+
+    # 번스타인 단계 매핑
+    STAGE_MAP = {
+        (85, 100): (9,  "이익추정치 상향 수정"),
+        (75,  85): (8,  "긍정적 어닝 서프라이즈 모델"),
+        (65,  75): (7,  "역발상 → 긍정적 서프라이즈"),
+        (55,  65): (6,  "역발상 투자 단계"),
+        (45,  55): (5,  "무시 단계"),
+        (35,  45): (4,  "소외 단계"),
+        (25,  35): (3,  "추정치 하향"),
+        ( 0,  25): (2,  "부정적 서프라이즈"),
+    }
+    stage, label = theme["bernstein_stage"], "이익추정치 상향 수정"
+    for (lo, hi), (s, l) in STAGE_MAP.items():
+        if lo <= composite < hi:
+            stage, label = s, l
+            break
 
     return {
-        "earnings_score":     s_earnings,
-        "institutional_score":s_inst,
-        "momentum_score":     s_mom,
-        "revision_score":     s_rev,
-        "composite":          composite,
-        "bernstein_stage":    stage,
-        "bernstein_label":    stage_label,
-        "avg_eps_revision":   avg_rev,
-        "avg_inst_pct":       avg_inst,
-        "avg_mom_3m":         avg_mom,
-        "avg_eps_surprise":   avg_eps_sur,
+        "composite":       composite,
+        "bernstein_stage": stage,
+        "bernstein_label": label,
+        "avg_eps_revision": avg_rev,
+        "avg_inst_pct":    avg_inst,
+        "avg_mom_3m":      avg_mom,
+        "avg_eps_surprise":avg_surp,
     }
 
-# ── Telegram 알림 ────────────────────────────────────────────────
-
-def send_telegram(message: str):
-    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
-        print("Telegram 미설정 — 알림 스킵")
+# ── Telegram ──────────────────────────────────────────────
+def send_telegram(text):
+    if not (TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID):
         return
-    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    payload = {
-        "chat_id":    TELEGRAM_CHAT_ID,
-        "text":       message,
-        "parse_mode": "HTML",
-    }
     try:
-        r = requests.post(url, json=payload, timeout=10)
-        print(f"Telegram 발송: {r.status_code}")
+        requests.post(
+            f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage",
+            json={"chat_id": TELEGRAM_CHAT_ID, "text": text, "parse_mode": "HTML"},
+            timeout=10
+        )
     except Exception as e:
-        print(f"Telegram 오류: {e}")
+        print(f"  Telegram 오류: {e}")
 
-def format_alert(theme_id, theme_name, icon, prev_sig, curr_sig, changed_stocks):
-    """Telegram 알림 메시지 포맷"""
-    prev_stage = prev_sig.get("bernstein_stage", "?")
-    curr_stage = curr_sig.get("bernstein_stage", "?")
-    prev_score = prev_sig.get("composite", "?")
-    curr_score = curr_sig.get("composite", "?")
-
-    score_diff = curr_score - prev_score if isinstance(curr_score, int) and isinstance(prev_score, int) else 0
-    score_arrow = "▲" if score_diff > 0 else "▼" if score_diff < 0 else "━"
-
-    stage_changed = prev_stage != curr_stage
-
+def build_alert(theme, prev_sig, curr_sig):
+    sc, ps = curr_sig.get("composite", 0), prev_sig.get("composite", 0)
+    diff = sc - ps
+    stage_changed = curr_sig.get("bernstein_stage") != prev_sig.get("bernstein_stage")
     lines = [
         f"{'🚨' if stage_changed else '📊'} <b>Inflection Point Tracker</b>",
-        f"━━━━━━━━━━━━━━━━━━━",
-        f"{icon} <b>{theme_name}</b>",
+        "━━━━━━━━━━━━━━━━",
+        f"{theme['icon']} <b>{theme['name']}</b>",
         "",
-        f"📍 번스타인 단계: <b>{curr_sig['bernstein_label']}</b>" +
-        (f" ← {prev_sig.get('bernstein_label','?')}" if stage_changed else ""),
-        f"📈 복합 점수: <b>{curr_score}</b> {score_arrow} ({score_diff:+d})",
+        f"📍 단계: <b>{curr_sig['bernstein_label']}</b>" + (f" ← {prev_sig.get('bernstein_label','?')}" if stage_changed else ""),
+        f"📈 복합 점수: <b>{sc}</b> {'▲' if diff>0 else '▼' if diff<0 else '━'} ({diff:+d})",
         "",
-        "<b>핵심 신호</b>",
-        f"  • EPS 추정치 수정: {curr_sig.get('avg_eps_revision', '—')}%",
-        f"  • 기관 지분율 평균: {curr_sig.get('avg_inst_pct', '—')}%",
-        f"  • 3M 모멘텀 평균: {curr_sig.get('avg_mom_3m', '—')}%",
-        f"  • EPS 서프라이즈 평균: {curr_sig.get('avg_eps_surprise', '—')}%",
-    ]
-
-    if stage_changed:
-        action_map = {
-            9: "🟢 GROWTH 매수 구간 진입",
-            8: "🟢 긍정적 서프라이즈 모델 — 매수 검토",
-            7: "🔵 Value→Growth 전환 시작",
-            6: "🔵 역발상 포지션 구축 고려",
-            5: "🟡 무시 단계 — 관망",
-            4: "🔴 소외 단계 — 진입 불가",
-        }
-        action = action_map.get(curr_stage, "⚪ 관망")
-        lines += ["", f"<b>투자 액션</b>: {action}"]
-
-    if changed_stocks:
-        lines += ["", "<b>변화 감지 종목</b>"]
-        for s in changed_stocks[:4]:
-            lines.append(f"  • {s['ticker']} {s['name']}: {s['change']}")
-
-    lines += [
+        f"  • EPS 수정: {curr_sig.get('avg_eps_revision', '—')}%",
+        f"  • 기관 지분: {curr_sig.get('avg_inst_pct', '—')}%",
+        f"  • 3M 모멘텀: {curr_sig.get('avg_mom_3m', '—')}%",
+        f"  • EPS 서프라이즈: {curr_sig.get('avg_eps_surprise', '—')}%",
         "",
         f"🕐 {datetime.datetime.now().strftime('%Y-%m-%d %H:%M KST')}",
         "⚠ 투자 참고용 · 투자 권유 아님",
     ]
     return "\n".join(lines)
 
-# ── 변화 감지 ─────────────────────────────────────────────────────
+def build_weekly(data):
+    lines = [
+        "📋 <b>Inflection Point Tracker — Weekly Summary</b>",
+        "━━━━━━━━━━━━━━━━",
+        f"📅 {datetime.datetime.now().strftime('%Y년 %m월 %d일')}\n",
+    ]
+    for t in data["themes"]:
+        sig = t["signal"]
+        sc  = sig.get("composite", 0)
+        em  = "🟢" if sc >= 80 else "🔵" if sc >= 65 else "🟡" if sc >= 50 else "🔴"
+        lines.append(f"{t['icon']} <b>{t['name']}</b>")
+        lines.append(f"   {em} {sig.get('bernstein_label','?')} | 점수 {sc}")
+        lines.append(f"   EPS수정 {sig.get('avg_eps_revision','—')}% | 기관 {sig.get('avg_inst_pct','—')}%\n")
+    lines.append("⚠ 투자 참고용 · 투자 권유 아님")
+    return "\n".join(lines)
 
-CHANGE_THRESHOLD = {
-    "composite":          5,    # 복합점수 5점 이상 변화
-    "eps_revision_pct":   3.0,  # EPS 추정치 수정 3% 이상
-    "mom_3m":             10.0, # 3개월 모멘텀 10% 이상
-    "inst_pct":           2.0,  # 기관 지분율 2% 이상
-}
-
-def detect_changes(prev_data, curr_data):
-    """전일 대비 유의미한 변화 감지"""
+# ── 변화 감지 ─────────────────────────────────────────────
+def detect_changes(prev, curr):
     alerts = []
-    for theme in curr_data["themes"]:
-        tid = theme["id"]
-        prev_theme = next((t for t in prev_data.get("themes", []) if t["id"] == tid), None)
-        if not prev_theme:
+    for t in curr["themes"]:
+        pt = next((x for x in prev.get("themes", []) if x["id"] == t["id"]), None)
+        if not pt:
             continue
-
-        curr_sig = theme["signal"]
-        prev_sig = prev_theme.get("signal", {})
-
-        # 번스타인 단계 변화
-        stage_changed = curr_sig.get("bernstein_stage") != prev_sig.get("bernstein_stage")
-        # 복합 점수 급변
-        score_diff = abs((curr_sig.get("composite") or 0) - (prev_sig.get("composite") or 0))
-        score_changed = score_diff >= CHANGE_THRESHOLD["composite"]
-
-        if not (stage_changed or score_changed):
-            continue
-
-        # 종목 수준 변화 감지
-        changed_stocks = []
-        for stock in theme["stocks"]:
-            prev_stock = next(
-                (s for t in prev_data.get("themes", []) if t["id"] == tid
-                 for s in t.get("stocks", []) if s["ticker"] == stock["ticker"]),
-                {}
-            )
-            fin_curr = stock.get("financials", {})
-            fin_prev = prev_stock.get("financials", {})
-
-            rev_curr = fin_curr.get("eps_revision_pct") or 0
-            rev_prev = fin_prev.get("eps_revision_pct") or 0
-            if abs(rev_curr - rev_prev) >= CHANGE_THRESHOLD["eps_revision_pct"]:
-                arrow = "▲" if rev_curr > rev_prev else "▼"
-                changed_stocks.append({
-                    "ticker": stock["ticker"],
-                    "name":   stock["name"],
-                    "change": f"EPS수정 {arrow}{abs(rev_curr - rev_prev):.1f}%",
-                })
-
-        alerts.append({
-            "theme_id":     tid,
-            "theme_name":   theme["name"],
-            "icon":         theme["icon"],
-            "stage_changed":stage_changed,
-            "score_diff":   score_diff,
-            "prev_sig":     prev_sig,
-            "curr_sig":     curr_sig,
-            "changed_stocks": changed_stocks,
-        })
-
+        cs, ps = t["signal"], pt.get("signal", {})
+        stage_diff = cs.get("bernstein_stage") != ps.get("bernstein_stage")
+        score_diff = abs((cs.get("composite") or 0) - (ps.get("composite") or 0))
+        if stage_diff or score_diff >= 5:
+            alerts.append((t, ps, cs))
     return alerts
 
-# ── 메인 ─────────────────────────────────────────────────────────
-
+# ── 메인 ──────────────────────────────────────────────────
 def main():
-    print(f"\n{'='*50}")
-    print(f"Paradigm Tracker 실행: {datetime.datetime.now()}")
-    print(f"{'='*50}\n")
+    now = datetime.datetime.now()
+    print(f"\n{'='*56}")
+    print(f"Inflection Point Tracker  {now.strftime('%Y-%m-%d %H:%M KST')}")
+    print(f"{'='*56}\n")
 
     result = {
-        "updated_at": datetime.datetime.now().isoformat(),
+        "updated_at": now.isoformat(),
         "themes": [],
     }
 
     for theme in THEMES:
-        print(f"\n[{theme['name']}]")
-        theme_stocks = []
+        print(f"\n[{theme['icon']} {theme['name']}]")
+        stock_data = []
 
-        for stock in theme["stocks"]:
-            ticker, market = stock["ticker"], stock["market"]
-            print(f"  {ticker} 수집 중…")
+        for s in theme["stocks"]:
+            ticker, market = s["ticker"], s["market"]
+            print(f"  {ticker:>8}  {s['name']}")
 
-            fin   = yahoo_summary(ticker, market)
-            price = yahoo_price(ticker, market)
-            earn  = finnhub_earnings(ticker) if market == "US" else []
-            inst  = top_institutions(ticker, market)
+            px   = yahoo_price_and_rsi(ticker, market)
+            fin  = yahoo_fundamentals(ticker, market)
+            inst = yahoo_institutions(ticker, market) if market == "US" else []
+            earn = finnhub_earnings(ticker) if market == "US" else []
+            dart = dart_financials(DART_CODES.get(ticker)) if market == "KR" else {}
 
-            theme_stocks.append({
+            # 수집 결과 요약 출력
+            price_str = f"₩{px.get('price'):,.0f}" if market == "KR" and px.get("price") else \
+                        f"${px.get('price'):.2f}" if px.get("price") else "—"
+            rsi_str   = f"RSI {px.get('rsi')}" if px.get("rsi") else "RSI —"
+            per_str   = f"PER {fin.get('per')}" if fin.get("per") else "PER —"
+            print(f"           → {price_str}  {per_str}  {rsi_str}")
+
+            stock_data.append({
                 "ticker":       ticker,
-                "name":         stock["name"],
+                "name":         s["name"],
                 "market":       market,
+                "type":         s["type"],
+                "sig":          s["sig"],
+                "price":        px,
                 "financials":   fin,
-                "price":        price,
-                "earnings":     earn,
+                "dart":         dart,
                 "institutions": inst,
+                "earnings":     earn,
             })
-            time.sleep(1.2)  # rate limit 방지
+            time.sleep(1.0)  # Yahoo rate limit 방지
 
-        signal = compute_signal_score(theme_stocks)
-        print(f"  → 복합 점수: {signal['composite']} | 단계: {signal['bernstein_label']}")
+        signal = compute_composite(theme, stock_data)
+        print(f"\n  → 복합 점수: {signal['composite']} | {signal['bernstein_label']}")
 
         result["themes"].append({
             "id":     theme["id"],
             "name":   theme["name"],
             "icon":   theme["icon"],
             "signal": signal,
-            "stocks": theme_stocks,
+            "stocks": stock_data,
         })
 
-    # 데이터 저장
+    # ── 저장 ──────────────────────────────────────────────
     DATA_FILE.parent.mkdir(exist_ok=True)
-    prev_data = json.loads(PREV_FILE.read_text()) if PREV_FILE.exists() else {"themes": []}
 
-    # 변화 감지 & Telegram 발송
-    if DATA_FILE.exists():
-        prev_data = json.loads(DATA_FILE.read_text())
-    alerts = detect_changes(prev_data, result)
+    prev = json.loads(DATA_FILE.read_text(encoding="utf-8")) if DATA_FILE.exists() else {"themes": []}
 
+    # 변화 감지 → Telegram
+    alerts = detect_changes(prev, result)
     if alerts:
         print(f"\n변화 감지: {len(alerts)}개 테마")
-        for alert in alerts:
-            msg = format_alert(
-                alert["theme_id"], alert["theme_name"], alert["icon"],
-                alert["prev_sig"], alert["curr_sig"], alert["changed_stocks"]
-            )
-            print(f"\n--- Telegram 알림 ---\n{msg}\n")
+        for theme, ps, cs in alerts:
+            msg = build_alert(theme, ps, cs)
+            print(f"\n--- Telegram ---\n{msg}\n")
             send_telegram(msg)
     else:
-        print("\n유의미한 변화 없음 — Telegram 알림 스킵")
-        # 매주 월요일엔 요약 리포트 발송
-        if datetime.datetime.now().weekday() == 0:
-            weekly = build_weekly_summary(result)
-            send_telegram(weekly)
+        print("\n유의미한 변화 없음")
+        if now.weekday() == 0:  # 월요일 → 주간 요약
+            send_telegram(build_weekly(result))
 
     # 백업 후 저장
     if DATA_FILE.exists():
-        import shutil
         shutil.copy(DATA_FILE, PREV_FILE)
-    DATA_FILE.write_text(json.dumps(result, ensure_ascii=False, indent=2))
-    print(f"\n✓ data/signals.json 저장 완료")
-
-def build_weekly_summary(data):
-    lines = [
-        "📋 <b>Inflection Point Tracker — Weekly Summary</b>",
-        f"━━━━━━━━━━━━━━━━━━━",
-        f"📅 {datetime.datetime.now().strftime('%Y년 %m월 %d일')} 기준\n",
-    ]
-    for t in data["themes"]:
-        sig = t["signal"]
-        score = sig.get("composite", "?")
-        label = sig.get("bernstein_label", "?")
-        emoji = "🟢" if score >= 75 else "🔵" if score >= 60 else "🟡" if score >= 45 else "🔴"
-        lines.append(f"{t['icon']} <b>{t['name']}</b>")
-        lines.append(f"   {emoji} {label} | 점수 {score}")
-        lines.append(f"   EPS수정 {sig.get('avg_eps_revision','—')}% | 기관 {sig.get('avg_inst_pct','—')}%\n")
-    lines.append("⚠ 투자 참고용 · 투자 권유 아님")
-    return "\n".join(lines)
+    DATA_FILE.write_text(
+        json.dumps(result, ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
+    print(f"\n✓ data/signals.json 저장 완료 ({len(result['themes'])}개 테마, 40개 종목)")
+    print(f"  다음 실행: 오전 8시 또는 오후 6시 KST (GitHub Actions)")
 
 if __name__ == "__main__":
     main()

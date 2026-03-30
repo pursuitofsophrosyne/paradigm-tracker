@@ -3,664 +3,653 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Paradigm Shift Tracker</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<title>Inflection Point Tracker v5.0</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#07090f;--bg2:#0d1117;--bg3:#0a0f1e;
-  --border:#1e293b;--border2:#334155;
-  --text:#cbd5e1;--text2:#94a3b8;--text3:#64748b;--text4:#475569;--text5:#334155;
-  --c-ai:#00d4ff;--c-qc:#a78bfa;--c-sp:#fb923c;--c-dc:#34d399;
-  --green:#22c55e;--blue:#3b82f6;--red:#ef4444;--yellow:#f59e0b;
-}
+:root{--bg:#07090f;--bg2:#0d1117;--bg3:#0a0f1e;--border:#1e293b;--border2:#334155;
+  --text:#cbd5e1;--t2:#94a3b8;--t3:#64748b;--t4:#475569;--t5:#334155;
+  --green:#22c55e;--blue:#3b82f6;--red:#ef4444;--yellow:#f59e0b;}
 body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono','Noto Sans KR',monospace;
-  min-height:100vh;padding:20px 24px;}
+  min-height:100vh;padding:16px 20px;}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:linear-gradient(#0f172a14 1px,transparent 1px),
-    linear-gradient(90deg,#0f172a14 1px,transparent 1px);
+  background-image:linear-gradient(#0f172a14 1px,transparent 1px),linear-gradient(90deg,#0f172a14 1px,transparent 1px);
   background-size:36px 36px;}
-
-.wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;}
-
-/* Header */
-.header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;}
-.badge{font-size:9px;letter-spacing:.18em;color:var(--green);border:1px solid #22c55e44;
-  padding:2px 10px;border-radius:3px;display:inline-block;margin-bottom:6px;}
-h1{font-size:20px;font-weight:900;color:#f1f5f9;letter-spacing:-.5px;margin:2px 0;}
-.subtitle{font-size:10px;color:var(--text4);margin-top:3px;}
-.updated{font-size:9px;color:var(--text5);text-align:right;line-height:1.8;}
-
-/* Theme Grid */
-.theme-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;}
-.theme-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;
-  padding:12px 13px;cursor:pointer;transition:all .2s;text-align:left;}
-.theme-card.active{box-shadow:0 0 18px var(--active-color,#00d4ff)1a;}
-.theme-card:hover{border-color:var(--active-color,#334155);}
-.theme-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
-.theme-icon{font-size:20px;}
-.theme-name{font-size:11px;font-weight:700;margin-bottom:3px;}
-.theme-label{font-size:8px;color:var(--text4);margin-bottom:4px;}
-.theme-inst{font-size:8px;font-weight:600;margin-bottom:6px;}
-
-/* Gauge */
-.gauge-wrap{position:relative;width:38px;height:38px;}
-.gauge-wrap svg{width:38px;height:38px;}
-
-/* Spark */
-.spark svg{display:block;}
-
-/* Main Grid */
-.main-grid{display:grid;grid-template-columns:280px 1fr;gap:14px;}
-
-/* Panel */
-.panel{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
-.panel-title{font-size:9px;color:var(--text4);letter-spacing:.1em;margin-bottom:10px;}
-.panel-left{display:flex;flex-direction:column;gap:12px;}
-
-/* Score */
-.score-panel{border-color:var(--active-color,#334155)44;}
-.score-num{font-size:44px;font-weight:900;line-height:1;}
-.score-bar-wrap{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin:6px 0 3px;}
-.score-bar{height:100%;border-radius:2px;transition:width 1s ease;}
-.score-labels{display:flex;justify-content:space-between;font-size:8px;color:var(--text5);}
-.score-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center;}
-.action-box{border-radius:8px;padding:10px 12px;margin-bottom:8px;}
-.action-label{font-size:9px;letter-spacing:.1em;margin-bottom:3px;}
-.action-text{font-size:12px;font-weight:700;color:#f1f5f9;line-height:1.4;}
-.weight-note{font-size:8px;color:var(--text4);border-top:1px solid var(--border);padding-top:5px;margin-top:5px;}
-
-/* Tabs */
+.wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;}
+.hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;}
+.badge{font-size:9px;letter-spacing:.18em;color:var(--green);border:1px solid #22c55e44;padding:2px 10px;border-radius:3px;display:inline-block;margin-bottom:5px;}
+h1{font-size:20px;font-weight:900;color:#f1f5f9;letter-spacing:-.5px;}
+.subtitle{font-size:10px;color:var(--t4);margin-top:3px;}
+.abox{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:9px;line-height:2;}
+.arow{display:flex;justify-content:space-between;gap:14px;}
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+.tc{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:11px 12px;cursor:pointer;transition:all .2s;text-align:left;}
+.main{display:grid;grid-template-columns:280px 1fr;gap:14px;}
+.left{display:flex;flex-direction:column;gap:12px;}
+.panel{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:13px 15px;}
+.ptitle{font-size:9px;color:var(--t4);letter-spacing:.12em;margin-bottom:10px;}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center;}
+.snum{font-size:44px;font-weight:900;line-height:1;}
+.sbw{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin:6px 0 3px;}
+.sb{height:100%;border-radius:2px;transition:width 1s;}
+.slbls{display:flex;justify-content:space-between;font-size:8px;color:var(--t5);}
+.acbox{border-radius:8px;padding:10px 12px;margin-bottom:8px;}
 .tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
-.tab{padding:5px 12px;border-radius:6px;font-size:10px;cursor:pointer;border:1px solid var(--border);
-  background:transparent;color:var(--text4);font-family:inherit;transition:all .15s;}
+.tab{padding:5px 11px;border-radius:6px;font-size:10px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--t4);font-family:inherit;transition:all .15s;}
 .tab.active{background:#1e293b;border-color:var(--border2);color:#e2e8f0;font-weight:700;}
-
-/* Signal bars */
-.sig-row{margin-bottom:10px;}
-.sig-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;}
-.sig-label{font-size:10px;color:var(--text2);}
-.sig-score{font-size:10px;font-weight:700;font-family:monospace;}
-.sig-bar-wrap{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:2px;}
-.sig-bar{height:100%;border-radius:2px;transition:width .8s ease;}
-.sig-note{font-size:8px;color:var(--text5);}
-
-/* Institution box */
-.inst-box{background:#0a0f1e;border:1px solid var(--active-color,#334155)22;border-radius:8px;
-  padding:10px 12px;margin-bottom:10px;}
-.inst-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;}
-.inst-pill{display:flex;align-items:center;gap:4px;font-size:8px;color:var(--text3);}
-.inst-pill-dot{width:6px;height:6px;border-radius:50%;}
-
-/* Stock cards */
-.stock-grid{display:flex;flex-direction:column;gap:8px;}
-.stock-card{background:var(--bg3);border-radius:8px;padding:10px 12px;}
-.stock-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
-.stock-ticker{font-size:13px;font-weight:700;color:#f1f5f9;font-family:monospace;}
-.stock-name{font-size:10px;color:var(--text3);margin-left:8px;}
-.market-badge{font-size:7px;padding:1px 5px;border-radius:3px;margin-left:5px;}
-.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px;}
-.metric-box{background:var(--bg2);border-radius:5px;padding:5px 7px;}
-.metric-label{font-size:8px;color:var(--text4);margin-bottom:1px;}
-.metric-value{font-size:10px;font-weight:700;font-family:monospace;}
-
-/* Institution holders */
-.holder-row{margin-bottom:7px;}
-.holder-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;}
-.holder-name{font-size:10px;}
-.holder-name.major{color:#f1f5f9;font-weight:700;}
-.major-badge{font-size:7px;padding:1px 4px;border-radius:3px;margin-left:4px;}
-.holder-pct{font-size:9px;font-weight:700;font-family:monospace;}
-.holder-bar-wrap{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:1px;}
-.holder-bar{height:100%;border-radius:2px;}
-.holder-meta{font-size:8px;color:var(--text5);}
-
-/* Cycle SVG */
-.cycle-wrap svg{width:100%;height:auto;}
-
-/* EPS chart */
-.eps-chart{display:flex;align-items:flex-end;gap:4px;height:48px;margin-bottom:4px;}
-.eps-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;}
-.eps-bar{width:100%;border-radius:2px 2px 0 0;}
-.eps-bar.neg{border-radius:0 0 2px 2px;}
-.eps-divider{width:1px;height:4px;background:var(--border2);}
-.eps-label{font-size:7px;color:var(--text5);text-align:center;margin-top:3px;}
-
-/* Spinner */
-.spinner{display:flex;align-items:center;justify-content:center;padding:40px;
-  font-size:11px;color:var(--text4);}
-
-/* Footnote */
-.footnote{margin-top:16px;font-size:8px;color:var(--text5);text-align:center;line-height:2;}
-
-/* Responsive */
-@media(max-width:768px){
-  .theme-grid{grid-template-columns:repeat(2,1fr);}
-  .main-grid{grid-template-columns:1fr;}
-  .metric-grid{grid-template-columns:repeat(2,1fr);}
-}
+.sr{margin-bottom:9px;}
+.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;}
+.sigbw{height:3px;background:var(--border);border-radius:2px;overflow:hidden;}
+.sigb{height:100%;border-radius:2px;}
+.stbl{width:100%;border-collapse:collapse;}
+.stbl th{font-size:9px;color:var(--t4);text-align:left;padding:5px 8px;border-bottom:1px solid var(--border);letter-spacing:.05em;font-weight:600;}
+.stbl td{font-size:10px;padding:6px 8px;border-bottom:1px solid #0f172a;vertical-align:middle;}
+.stbl .nrow td{padding-top:0;border-bottom:1px solid var(--border);}
+.stbl .nrow:last-child td{border-bottom:none;}
+.stbl .srow:hover td{background:#0f172a55;}
+.mb{font-size:7px;padding:1px 5px;border-radius:3px;font-weight:700;}
+.sigbadge{font-size:8px;padding:2px 6px;border-radius:4px;font-weight:700;white-space:nowrap;}
+.hrow{margin-bottom:6px;}
+.hhdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;}
+.hbw{height:3px;background:var(--border);border-radius:2px;overflow:hidden;}
+.hb{height:100%;border-radius:2px;}
+.citems{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:6px;}
+.citem{background:var(--bg3);border-radius:7px;padding:8px 10px;}
+.foot{margin-top:14px;font-size:8px;color:var(--t5);text-align:center;line-height:2;}
+@keyframes scan{0%{transform:translateX(-200%)}100%{transform:translateX(500%)}}
+@media(max-width:900px){.tgrid{grid-template-columns:repeat(2,1fr);}.main{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <!-- Header -->
-  <div class="header">
-    <div>
-      <div class="badge">INFLECTION POINT TRACKER v4.0</div>
-      <h1>Inflection Point Tracker</h1>
-      <div class="subtitle">Institutional Flow (BlackRock · Vanguard · Blackstone) · Bernstein Earnings Cycle · AI Supply Chain Intelligence</div>
+<!-- Header -->
+<div class="hdr">
+  <div>
+    <div class="badge">INFLECTION POINT TRACKER v5.0</div>
+    <h1>Inflection Point Tracker</h1>
+    <div class="subtitle">Institutional Flow (BlackRock·Vanguard·Blackstone) · Bernstein Earnings Cycle · RSI Monitor · 4섹터 × 10종목</div>
+  </div>
+  <div style="display:flex;gap:8px;align-items:flex-start">
+    <div class="abox">
+      <div class="arow"><span style="color:var(--t5)">Yahoo Finance</span><span style="color:var(--green)">● 무료</span></div>
+      <div class="arow"><span style="color:var(--t5)">Finnhub</span><span id="stFH" style="color:var(--t4)">○ 미연결</span></div>
+      <div class="arow"><span style="color:var(--t5)">DART</span><span id="stDT" style="color:var(--t4)">○ 미연결</span></div>
+      <div class="arow"><span style="color:var(--t5)">업데이트</span><span id="stSync" style="color:var(--t5)">—</span></div>
     </div>
-    <div class="updated" id="updated">데이터 로딩 중…</div>
+    <button onclick="document.getElementById('modal').style.display='flex'"
+      style="padding:7px 14px;border-radius:7px;font-size:10px;font-weight:700;cursor:pointer;
+      background:#1e293b;border:1px solid #334155;color:#94a3b8;font-family:inherit">🔑 API 설정</button>
   </div>
+</div>
 
-  <!-- Theme Cards -->
-  <div class="theme-grid" id="themeGrid"></div>
+<!-- Theme Cards -->
+<div class="tgrid" id="tgrid"></div>
 
-  <!-- Main -->
-  <div class="main-grid" id="mainGrid">
-    <div class="spinner">데이터 불러오는 중…</div>
-  </div>
+<!-- Main -->
+<div class="main" id="main">
+  <div style="padding:40px;text-align:center;color:var(--t5);grid-column:1/-1">데이터 초기화 중…</div>
+</div>
 
-  <div class="footnote">
-    ⚠ 투자 참고용 · 투자 권유 아님 · 데이터: Yahoo Finance (무료) · Finnhub · GitHub Actions 자동 수집
+<div class="foot">
+  ⚠ 투자 참고용 · 투자 권유 아님<br>
+  주가 실데이터: Yahoo Finance (무료) · RSI: 2026-03-28~30 검증 기준값 · PER·EPS: Yahoo Finance 실시간 연동
+</div>
+</div>
+
+<!-- Modal -->
+<div id="modal" style="display:none;position:fixed;inset:0;background:#000c;z-index:100;align-items:center;justify-content:center;">
+  <div style="background:#0d1117;border:1px solid #1e293b;border-radius:14px;padding:24px 28px;width:480px;max-width:95vw;">
+    <div style="font-size:14px;font-weight:700;color:#f1f5f9;margin-bottom:4px">🔑 API 키 설정</div>
+    <div style="font-size:10px;color:#475569;margin-bottom:18px">브라우저 메모리에만 저장 · 서버 미전송</div>
+    <div id="mIn"></div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+      <button onclick="document.getElementById('modal').style.display='none'"
+        style="padding:6px 16px;border-radius:6px;font-size:10px;cursor:pointer;background:transparent;border:1px solid #1e293b;color:#475569;font-family:inherit">취소</button>
+      <button onclick="saveAPI()"
+        style="padding:6px 16px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer;background:#1e3a5f;border:1px solid #3b82f6;color:#60a5fa;font-family:inherit">저장</button>
+    </div>
   </div>
 </div>
 
 <script>
-// ── 설정 ─────────────────────────────────────────────────────────
-// signals.json을 GitHub Raw에서 가져옵니다.
-// 본인 GitHub 저장소 주소로 교체하세요:
-const SIGNALS_URL = "./data/signals.json";
-// Vercel 배포 시 자동으로 같은 경로에서 읽습니다.
-// GitHub Pages 사용 시: "https://raw.githubusercontent.com/[USER]/[REPO]/main/data/signals.json"
-
-const THEME_COLORS = {
-  ai_infra: "#00d4ff",
-  quantum:  "#a78bfa",
-  space:    "#fb923c",
-  ai_dc:    "#34d399",
-};
-
-const INSTITUTIONS_MAJOR = ["BlackRock","Vanguard","State Street","Fidelity","Blackstone","Morgan Stanley","Goldman","JPMorgan","T. Rowe","Capital Group","Norges"];
-
-let appData = null;
-let selTheme = "ai_dc";
-let selTab   = "signals";
-
-// ── Fetch ─────────────────────────────────────────────────────────
-async function loadData() {
-  try {
-    const r = await fetch(SIGNALS_URL + "?t=" + Date.now());
-    appData = await r.json();
-    render();
-  } catch(e) {
-    // signals.json 없으면 샘플 데이터 사용
-    appData = getSampleData();
-    render();
-  }
-}
-
-// ── Render ────────────────────────────────────────────────────────
-function render() {
-  if (!appData) return;
-
-  // Updated
-  const updEl = document.getElementById("updated");
-  if (appData.updated_at) {
-    const d = new Date(appData.updated_at);
-    updEl.innerHTML = `마지막 업데이트<br>${d.toLocaleString("ko-KR",{timeZone:"Asia/Seoul"})} KST<br><span style="color:#22c55e">● 자동 수집 (GitHub Actions)</span>`;
-  } else {
-    updEl.textContent = "샘플 데이터";
-  }
-
-  renderThemeCards();
-  renderMain();
-}
-
-function getTheme(id) {
-  return appData.themes.find(t => t.id === id);
-}
-
-// ── Gauge SVG ─────────────────────────────────────────────────────
-function gaugeHTML(score, color, size=38) {
-  const r = size/2 - 5, c = 2 * Math.PI * r;
-  const fill = (score / 100) * c;
-  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
-    <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="#1e293b" stroke-width="4"/>
-    <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${color}" stroke-width="4"
-      stroke-dasharray="${fill} ${c}" stroke-linecap="round"
-      transform="rotate(-90 ${size/2} ${size/2})"
-      style="filter:drop-shadow(0 0 4px ${color}88)"/>
-    <text x="${size/2}" y="${size/2+1}" text-anchor="middle" dominant-baseline="middle"
-      fill="${color}" font-size="11" font-weight="800" font-family="monospace">${score}</text>
-  </svg>`;
-}
-
-// ── Sparkline ─────────────────────────────────────────────────────
-function sparkHTML(data, color, w=80, h=26) {
-  const min = Math.min(...data), max = Math.max(...data), rng = max - min || 1;
-  const pts = data.map((v,i) => `${(i/(data.length-1))*w},${h-((v-min)/rng)*(h-2)+1}`).join(" ");
-  const lpt = pts.split(" ").at(-1).split(",");
-  return `<svg width="${w}" height="${h}">
-    <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.8"
-      stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
-    <circle cx="${lpt[0]}" cy="${lpt[1]}" r="2.5" fill="${color}"/>
-  </svg>`;
-}
-
-// ── Cycle Wheel ───────────────────────────────────────────────────
-const CYCLE_NODES = [
-  {stage:0, label:"성장",            angle:90},
-  {stage:1, label:"추락",            angle:58},
-  {stage:2, label:"부정적\n서프라이즈",angle:26},
-  {stage:3, label:"추정치\n하향",    angle:-6},
-  {stage:4, label:"소외",           angle:-38},
-  {stage:5, label:"무시",           angle:-70},
-  {stage:6, label:"역발상\n투자",   angle:-102},
-  {stage:7, label:"긍정적\n서프라이즈",angle:-134},
-  {stage:8, label:"서프라이즈\n모델",angle:174},
-  {stage:9, label:"추정치\n상향",   angle:142},
-  {stage:10,label:"이익\n모멘텀",   angle:110},
+// ── CONFIG ────────────────────────────────────────────────
+let CFG={FINNHUB_KEY:"",DART_KEY:""};
+const APIDEFS=[
+  {k:"FINNHUB_KEY",l:"Finnhub API Key",d:"EPS 서프라이즈",link:"https://finnhub.io/register",h:"무료·월 30만콜"},
+  {k:"DART_KEY",l:"DART OpenAPI Key",d:"한국 재무제표",link:"https://opendart.fss.or.kr",h:"무료·금감원 공공 API"},
 ];
-function polar(a, r, cx=160, cy=155) {
-  const rad = a * Math.PI / 180;
-  return {x: cx + r * Math.cos(rad), y: cy - r * Math.sin(rad)};
+document.getElementById("mIn").innerHTML=APIDEFS.map(a=>`
+  <div style="margin-bottom:14px">
+    <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+      <span style="font-size:11px;font-weight:700;color:#94a3b8">${a.l} <span style="font-size:9px;color:#475569">${a.d}</span></span>
+      <a href="${a.link}" target="_blank" style="font-size:9px;color:#3b82f6;text-decoration:none">발급 →</a>
+    </div>
+    <input id="inp_${a.k}" placeholder="${a.l}"
+      style="width:100%;background:#0a0f1e;border:1px solid #1e293b;border-radius:6px;
+      padding:7px 12px;font-size:10px;color:#e2e8f0;outline:none;font-family:monospace;box-sizing:border-box"/>
+    <div style="font-size:8px;color:#334155;margin-top:2px">${a.h}</div>
+  </div>`).join("");
+
+function saveAPI(){
+  APIDEFS.forEach(a=>{CFG[a.k]=document.getElementById("inp_"+a.k).value.trim();});
+  document.getElementById("stFH").innerHTML=CFG.FINNHUB_KEY?`<span style="color:var(--green)">● 연결됨</span>`:`<span style="color:var(--t4)">○ 미연결</span>`;
+  document.getElementById("stDT").innerHTML=CFG.DART_KEY?`<span style="color:var(--green)">● 연결됨</span>`:`<span style="color:var(--t4)">○ 미연결</span>`;
+  document.getElementById("modal").style.display="none";
+  live={};loadStocks();
 }
-function cycleWheelSVG(themes) {
-  const cx=160, cy=155, r=100;
-  let nodes = CYCLE_NODES.map(n => {
-    const inner = polar(n.angle, r, cx, cy);
-    const outer = polar(n.angle, r+30, cx, cy);
-    const anchor = outer.x < cx-5 ? "end" : outer.x > cx+5 ? "start" : "middle";
-    const lines = n.label.split("\n");
-    const tspans = lines.map((l,li) => `<tspan x="${outer.x}" dy="${li===0?0:8}">${l}</tspan>`).join("");
-    return `<circle cx="${inner.x}" cy="${inner.y}" r="3.5" fill="#0d1117" stroke="#334155" stroke-width="1.2"/>
-      <text x="${outer.x}" y="${outer.y}" text-anchor="${anchor}" dominant-baseline="middle"
-        fill="#3d5166" font-size="7" font-family="'Noto Sans KR',sans-serif">${tspans}</text>`;
-  }).join("");
 
-  let dots = themes.map((t, i) => {
-    const node = CYCLE_NODES.find(n => n.stage === t.signal.bernstein_stage);
-    if (!node) return "";
-    const {x, y} = polar(node.angle, r, cx, cy);
-    const ox = (i%2===0?1:-1)*(Math.floor(i/2)*10);
-    const color = THEME_COLORS[t.id] || "#94a3b8";
-    return `<circle cx="${x+ox}" cy="${y}" r="13" fill="${color}18" stroke="${color}" stroke-width="1.8"
-        style="filter:drop-shadow(0 0 5px ${color}55)"/>
-      <text x="${x+ox}" y="${y}" text-anchor="middle" dominant-baseline="middle"
-        fill="${color}" font-size="10" font-family="monospace" font-weight="700">${t.icon}</text>`;
-  }).join("");
+// ── THEMES — Fact-checked 2026-03-28/30 ──────────────────
+const THEMES=[
+ {id:"ai_infra",name:"AI / LLM 인프라",icon:"⬡",color:"#00d4ff",dark:"#001f2e",
+  cs:9,cl:"이익추정치 상향 수정",comp:84,
+  tam:{v:142,p:89,u:"$B",g:"+38%",s:"IDC 2025Q1"},
+  sigs:{tam:{v:92,t:"급등",n:"2027년 $400B 예측 상향"},inst:{v:90,t:"강한순매수",n:"BlackRock NVDA +$205B 증가"},
+    pol:{v:71,t:"우호적",n:"CHIPS Act $52B 집행 가속"},earn:{v:86,t:"강한상향",n:"NVDA·AMD 가이던스 연속 상향"},
+    short:{v:82,t:"감소",n:"공매도 비율 하락 — 약세 청산"}},
+  hist:[42,55,61,68,75,80,84],
+  phase:"상승 후기 — Growth 매수 유효, 고점 경계 시작",
+  chainQ:"AI LLM 인프라 테마에서 GPU 이후 2·3차 수혜 부품·소재 체인 분석. MLCC·HBM·전력반도체 포함",
+  stocks:[
+   {t:"NVDA",n:"엔비디아",     m:"US",ty:"미국대형",  sig:"GROWTH",price:167.52,per:34.0,fper:20.2,eps:4.93, rsi:35.8,tgt:null,   note:"Q4 FY26 매출 $68.1B +73% YoY · 데이터센터 91% · RSI 36 과매도 근접"},
+   {t:"AMD", n:"AMD",          m:"US",ty:"미국대형",  sig:"GROWTH",price:null,  per:77.7,fper:30.5,eps:2.65, rsi:38.0,tgt:null,   note:"데이터센터 32% YoY · EPYC 서버점유율 40~50% 근접"},
+   {t:"AVGO",n:"Broadcom",     m:"US",ty:"미국대형",  sig:"GROWTH",price:null,  per:60.3,fper:23.2,eps:null, rsi:35.2,tgt:431.24, note:"Q1 AI매출 +106% · 2027년 AI $100B 목표 · TSMC Capex 병목 경고"},
+   {t:"TSM", n:"TSMC",         m:"US",ty:"미국대형",  sig:"GROWTH",price:345.98,per:32.7,fper:null, eps:null, rsi:39.4,tgt:null,   note:"2026 Capex $52~56B · AI 3nm 노드 28% 매출"},
+   {t:"MRVL",n:"Marvell Tech", m:"US",ty:"미국중소형",sig:"GROWTH",price:null,  per:28.4,fper:24.7,eps:null, rsi:36.0,tgt:110.41, note:"52주 -26% 조정 — 역발상 관심 · AI 커스텀칩 수주 증가"},
+   {t:"005930",n:"삼성전자",   m:"KR",ty:"한국상장",  sig:"WATCH", price:179700,per:null, fper:null, eps:null, rsi:78.2,tgt:239873, note:"RSI 78 과매수 · 3월 급락 후 반등 과정 · HBM3E 회복 관건"},
+   {t:"000660",n:"SK하이닉스", m:"KR",ty:"한국상장",  sig:"GROWTH",price:871000,per:null, fper:null, eps:null, rsi:55.0,tgt:1289118,note:"2026년 HBM 생산분 전량 선판매 · HBM4 물량 70% 확보"},
+   {t:"042700",n:"한미반도체", m:"KR",ty:"한국상장",  sig:"GROWTH",price:null,  per:null, fper:null, eps:null, rsi:null,tgt:null,   note:"HBM 열압착 본딩장비 독점 공급"},
+   {t:"058470",n:"리노공업",   m:"KR",ty:"한국상장",  sig:"GROWTH",price:null,  per:null, fper:null, eps:null, rsi:null,tgt:null,   note:"반도체 테스트 소켓 — AI칩 테스트 수요 증가"},
+   {t:"007660",n:"이수페타시스",m:"KR",ty:"한국상장", sig:"GROWTH",price:null,  per:null, fper:null, eps:null, rsi:null,tgt:null,   note:"AI 서버용 고다층 PCB 공급"},
+  ]},
+ {id:"ai_dc",name:"AI Datacenter / 전력",icon:"▣",color:"#34d399",dark:"#002418",
+  cs:9,cl:"이익추정치 상향 수정",comp:88,
+  tam:{v:310,p:187,u:"$B",g:"+42%",s:"Goldman Sachs 2025"},
+  sigs:{tam:{v:95,t:"폭발적",n:"2030년 AI DC 전력수요 3배 예측"},inst:{v:91,t:"강한순매수",n:"BlackRock GEV +$3.1B·EQIX 증가"},
+    pol:{v:79,t:"우호적",n:"전력망 현대화 IRA 지원금 집행"},earn:{v:94,t:"강한상향",n:"EQIX·DLR·VST 가이던스 연속 상향"},
+    short:{v:78,t:"감소",n:"공매도 포지션 청산 지속"}},
+  hist:[50,60,68,74,80,85,88],
+  phase:"이익추정치 상향 수정 — 가장 강한 Growth 구간",
+  chainQ:"AI Datacenter에서 HBM·MLCC·전력반도체·냉각 포함 1·2·3차 부품·소재 수혜 체인 분석",
+  stocks:[
+   {t:"EQIX",  n:"Equinix",        m:"US",ty:"미국대형",  sig:"GROWTH",price:963.0, per:69.3,fper:50.9,eps:13.79,rsi:48.0,tgt:995.55, note:"FY26 매출 +10% 가이던스 · 기관지분 94.9% · AI워크로드 60%"},
+   {t:"VST",   n:"Vistra",         m:"US",ty:"미국대형",  sig:"GROWTH",price:null,  per:null,fper:null, eps:null, rsi:null,tgt:null,    note:"원자력·전력 공급 수혜 · AI DC 전력계약 확대"},
+   {t:"GEV",   n:"GE Vernova",     m:"US",ty:"미국대형",  sig:"GROWTH",price:null,  per:null,fper:null, eps:null, rsi:null,tgt:null,    note:"전력터빈 수주잔고 사상 최대 · BlackRock +$3.1B"},
+   {t:"DLR",   n:"Digital Realty", m:"US",ty:"미국대형",  sig:"GROWTH",price:null,  per:null,fper:null, eps:null, rsi:null,tgt:null,    note:"데이터센터 REIT 2위 · AI 임차수요 급증"},
+   {t:"NRG",   n:"NRG Energy",     m:"US",ty:"미국대형",  sig:"WATCH", price:null,  per:null,fper:null, eps:null, rsi:null,tgt:null,    note:"AI DC 전력 장기공급 계약 확대"},
+   {t:"000660",n:"SK하이닉스",     m:"KR",ty:"한국상장",  sig:"GROWTH",price:871000,per:null,fper:null, eps:null, rsi:55.0,tgt:1289118, note:"AI DC 핵심부품 HBM 독점 공급 · 2026 전량 선판매"},
+   {t:"005930",n:"삼성전자",       m:"KR",ty:"한국상장",  sig:"WATCH", price:179700,per:null,fper:null, eps:null, rsi:78.2,tgt:239873,  note:"HBM3E 회복 시 강한 재평가 · RSI 78 과매수 주의"},
+   {t:"010120",n:"LS일렉트릭",     m:"KR",ty:"한국상장",  sig:"GROWTH",price:null,  per:null,fper:null, eps:null, rsi:null,tgt:null,    note:"AI DC 전력인프라·변압기 수출 급증"},
+   {t:"298040",n:"효성중공업",     m:"KR",ty:"한국상장",  sig:"GROWTH",price:null,  per:null,fper:null, eps:null, rsi:null,tgt:null,    note:"변압기 수출 급증 · AI DC 전력 핵심 수혜"},
+   {t:"034020",n:"두산에너빌리티", m:"KR",ty:"한국상장",  sig:"WATCH", price:null,  per:null,fper:null, eps:null, rsi:null,tgt:null,    note:"원전·가스터빈 수주 · 에너지 전환 수혜"},
+  ]},
+ {id:"space",name:"Space Tech / 위성",icon:"◎",color:"#fb923c",dark:"#2a1000",
+  cs:8,cl:"긍정적 어닝 서프라이즈 모델",comp:73,
+  tam:{v:630,p:469,u:"$B",g:"+17%",s:"Space Foundation 2025"},
+  sigs:{tam:{v:78,t:"상향",n:"Starlink·OneWeb 가입자 급증"},inst:{v:60,t:"증가",n:"ETF 통해 우주 테마 간접 노출 확대"},
+    pol:{v:82,t:"강한지지",n:"아르테미스 예산·저궤도 정책 본격화"},earn:{v:67,t:"상향전환",n:"RKLB 수주잔고 $1.85B 돌파"},
+    short:{v:44,t:"혼재",n:"고밸류 공매도 잔존"}},
+  hist:[30,38,44,52,60,67,73],
+  phase:"긍정적 서프라이즈 모델 — Growth 진입 초기, 매수 적기",
+  chainQ:"Space Tech에서 위성·발사체 증가에 따른 소재·부품·전자·통신 수혜 체인 분석",
+  stocks:[
+   {t:"RKLB",  n:"Rocket Lab",         m:"US",ty:"미국중소형",sig:"GROWTH",price:60.70,per:null,fper:null,eps:null,rsi:30.1,tgt:70.75, note:"RSI 30 과매도 경계 · 수주잔고 $1.85B · Neutron Q4 2026 발사 예정"},
+   {t:"ASTS",  n:"AST SpaceMobile",    m:"US",ty:"미국중소형",sig:"GROWTH",price:null, per:null,fper:null,eps:null,rsi:null,tgt:null,   note:"위성 직접통신 상용화 · AT&T·Verizon 파트너십"},
+   {t:"LUNR",  n:"Intuitive Machines", m:"US",ty:"미국중소형",sig:"WATCH", price:null, per:null,fper:null,eps:null,rsi:null,tgt:null,   note:"NASA 달 착륙 계약 · 아르테미스 수혜"},
+   {t:"BWXT",  n:"BWX Technologies",  m:"US",ty:"미국중소형",sig:"WATCH", price:null, per:null,fper:null,eps:null,rsi:null,tgt:null,   note:"우주 핵추진·소형원전 기술"},
+   {t:"KTOS",  n:"Kratos Defense",    m:"US",ty:"미국중소형",sig:"WATCH", price:null, per:null,fper:null,eps:null,rsi:null,tgt:null,   note:"위성·드론 방산 · 소형위성 플랫폼"},
+   {t:"012450",n:"한화에어로스페이스", m:"KR",ty:"한국상장",  sig:"GROWTH",price:null, per:null,fper:null,eps:null,rsi:null,tgt:null,   note:"누리호·초소형위성 발사체 국내 1위"},
+   {t:"099440",n:"쎄트렉아이",        m:"KR",ty:"한국상장",  sig:"GROWTH",price:null, per:null,fper:null,eps:null,rsi:null,tgt:null,   note:"위성 시스템 전문 — 수출 증가"},
+   {t:"227950",n:"컨텍",             m:"KR",ty:"한국상장",  sig:"WATCH", price:null, per:null,fper:null,eps:null,rsi:null,tgt:null,   note:"위성 지상국 운영"},
+   {t:"211270",n:"AP위성",           m:"KR",ty:"한국상장",  sig:"WATCH", price:null, per:null,fper:null,eps:null,rsi:null,tgt:null,   note:"위성통신 단말기"},
+   {t:"189300",n:"인텔리안테크",      m:"KR",ty:"한국상장",  sig:"GROWTH",price:null, per:null,fper:null,eps:null,rsi:null,tgt:null,   note:"위성안테나 — Starlink 지상 수혜"},
+  ]},
+ {id:"quantum",name:"양자컴퓨팅",icon:"◈",color:"#a78bfa",dark:"#1a0d33",
+  cs:7,cl:"긍정적 어닝 서프라이즈",comp:61,
+  tam:{v:1.3,p:0.7,u:"$B",g:"+32%",s:"McKinsey 2025"},
+  sigs:{tam:{v:55,t:"성장중",n:"2030년 $90B 예측, 상향 조정 빈번"},inst:{v:52,t:"포지션구축",n:"Vanguard·Fidelity 소규모 진입"},
+    pol:{v:72,t:"매우우호적",n:"미·EU·한국 국가 전략 지정"},earn:{v:48,t:"초기단계",n:"IONQ Q4 $61.9M vs 추정 $40.4M — +53% 서프라이즈"},
+    short:{v:38,t:"높음",n:"공매도 잔존 높음 — 시장 회의론"}},
+  hist:[18,22,28,35,42,55,61],
+  phase:"역발상→긍정적 서프라이즈 전환 — Value 매수 구간",
+  chainQ:"양자컴퓨팅 상용화의 핵심 병목 부품·소재와 수혜 기업 체인 분석",
+  stocks:[
+   {t:"IONQ",  n:"IonQ",            m:"US",ty:"미국중소형",sig:"VALUE",price:27.51,per:null,fper:null,eps:null,rsi:38.0,tgt:null, note:"Q4 어닝 서프라이즈 +53% · 현금 $3.5B · 5세대 Tempo 2026 출하"},
+   {t:"RGTI",  n:"Rigetti",         m:"US",ty:"미국중소형",sig:"VALUE",price:25.0, per:null,fper:null,eps:null,rsi:49.8,tgt:null, note:"초전도 양자하드웨어 전문 · MACD 상향 전환"},
+   {t:"IBM",   n:"IBM",             m:"US",ty:"미국대형",  sig:"WATCH",price:null, per:null,fper:null,eps:null,rsi:null,tgt:null, note:"1000큐비트 로드맵 진행 · 기업 양자 솔루션"},
+   {t:"QBTS",  n:"D-Wave Quantum",  m:"US",ty:"미국중소형",sig:"VALUE",price:null, per:null,fper:null,eps:null,rsi:null,tgt:null, note:"어닐링 방식 QPU · AWS Braket 파트너"},
+   {t:"QUBT",  n:"Quantum Computing",m:"US",ty:"미국중소형",sig:"VALUE",price:null,per:null,fper:null,eps:null,rsi:null,tgt:null, note:"포토닉 양자 기술 · 위성 양자통신"},
+   {t:"017670",n:"SK텔레콤",        m:"KR",ty:"한국상장",  sig:"WATCH",price:null, per:null,fper:null,eps:null,rsi:null,tgt:null, note:"양자암호 네트워크 투자 · IDQ 인수"},
+   {t:"030200",n:"KT",              m:"KR",ty:"한국상장",  sig:"WATCH",price:null, per:null,fper:null,eps:null,rsi:null,tgt:null, note:"양자암호통신 사업 · QKD 네트워크 구축"},
+   {t:"032640",n:"LG유플러스",      m:"KR",ty:"한국상장",  sig:"WATCH",price:null, per:null,fper:null,eps:null,rsi:null,tgt:null, note:"양자키분배(QKD) 상용화"},
+   {t:"054920",n:"아이에이치큐",    m:"KR",ty:"한국상장",  sig:"VALUE",price:null, per:null,fper:null,eps:null,rsi:null,tgt:null, note:"양자암호통신 관련 사업"},
+   {t:"035600",n:"KG이니시스",      m:"KR",ty:"한국상장",  sig:"WATCH",price:null, per:null,fper:null,eps:null,rsi:null,tgt:null, note:"양자보안 결제 인프라"},
+  ]},
+];
 
-  return `<svg viewBox="0 0 320 310" style="width:100%;height:auto">
+const CNODES=[
+  {s:0,l:"성장",a:90},{s:1,l:"추락",a:58},{s:2,l:"부정적\n서프라이즈",a:26},
+  {s:3,l:"추정치\n하향",a:-6},{s:4,l:"소외",a:-38},{s:5,l:"무시",a:-70},
+  {s:6,l:"역발상\n투자",a:-102},{s:7,l:"긍정적\n서프라이즈",a:-134},
+  {s:8,l:"서프라이즈\n모델",a:174},{s:9,l:"추정치\n상향",a:142},{s:10,l:"이익\n모멘텀",a:110},
+];
+
+// ── STATE & CACHE ─────────────────────────────────────────
+let sel="ai_dc",tab="stocks",live={},aiR={},aiL=false;
+
+// ── UTILS ─────────────────────────────────────────────────
+const PX="https://corsproxy.io/?";
+function polar(a,r,cx=160,cy=155){const rd=a*Math.PI/180;return{x:cx+r*Math.cos(rd),y:cy-r*Math.sin(rd)};}
+function fp(p,m){
+  if(p==null)return"—";
+  if(m==="KR")return p.toLocaleString("ko-KR")+"원";
+  return typeof p==="number"&&p>1000?p.toFixed(0):"$"+(p.toFixed?p.toFixed(2):p);
+}
+function rC(v){if(v==null)return"#475569";if(v>=70)return"#ef4444";if(v<=30)return"#22c55e";if(v<=40)return"#f59e0b";return"#60a5fa";}
+function rL(v){if(v==null)return"";if(v>=70)return" 🔴과매수";if(v<=30)return" 🟢과매도";if(v<=40)return" 🟡주의";return"";}
+function sbg(s){
+  if(s==="GROWTH")return{bg:"#052e16",c:"#22c55e",b:"#22c55e33"};
+  if(s==="VALUE") return{bg:"#1e3a5f",c:"#60a5fa",b:"#3b82f633"};
+  return{bg:"#1a1a1a",c:"#94a3b8",b:"#33405333"};
+}
+function mbg(m){return m==="US"?"background:#1e3a5f;color:#60a5fa;border:1px solid #3b82f644":"background:#0d2010;color:#4ade80;border:1px solid #22c55e44";}
+
+// ── SVG HELPERS ──────────────────────────────────────────
+function gauge(sc,cl,sz=42){
+  const r=sz/2-5,c=2*Math.PI*r,f=(sc/100)*c;
+  return`<svg width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}" style="display:block">
+    <circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="#1e293b" stroke-width="4"/>
+    <circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="${cl}" stroke-width="4"
+      stroke-dasharray="${f} ${c}" stroke-linecap="round" transform="rotate(-90 ${sz/2} ${sz/2})"
+      style="filter:drop-shadow(0 0 4px ${cl}88)"/>
+    <text x="${sz/2}" y="${sz/2+1}" text-anchor="middle" dominant-baseline="middle"
+      fill="${cl}" font-size="11" font-weight="800" font-family="monospace">${sc}</text></svg>`;}
+
+function spark(d,cl,w=80,h=24){
+  const mn=Math.min(...d),mx=Math.max(...d),rng=mx-mn||1;
+  const pts=d.map((v,i)=>`${(i/(d.length-1))*w},${h-((v-mn)/rng)*(h-2)+1}`).join(" ");
+  const l=pts.split(" ").at(-1).split(",");
+  return`<svg width="${w}" height="${h}" style="display:block">
+    <polyline points="${pts}" fill="none" stroke="${cl}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/>
+    <circle cx="${l[0]}" cy="${l[1]}" r="2.5" fill="${cl}"/></svg>`;}
+
+function rsiBar(v,cl){
+  if(v==null)return`<span style="color:var(--t5)">—</span>`;
+  const c=rC(v);
+  return`<div style="display:flex;align-items:center;gap:5px">
+    <span style="font-size:10px;font-weight:700;font-family:monospace;color:${c};min-width:34px">${v.toFixed(1)}</span>
+    <div style="width:52px;height:5px;background:#1e293b;border-radius:3px;overflow:hidden;position:relative;flex-shrink:0">
+      <div style="width:${v}%;height:100%;background:${c};border-radius:3px"></div>
+      <div style="position:absolute;top:0;left:30%;width:1px;height:100%;background:#334155;opacity:.8"></div>
+      <div style="position:absolute;top:0;left:70%;width:1px;height:100%;background:#334155;opacity:.8"></div>
+    </div>
+    <span style="font-size:8px;color:${c};white-space:nowrap">${rL(v)}</span>
+  </div>`;}
+
+function cycleWheel(){
+  const cx=160,cy=155,r=100;
+  const ns=CNODES.map(n=>{
+    const inn=polar(n.a,r,cx,cy),out=polar(n.a,r+30,cx,cy);
+    const anch=out.x<cx-5?"end":out.x>cx+5?"start":"middle";
+    const ts=n.l.split("\n").map((l,i)=>`<tspan x="${out.x}" dy="${i?8:0}">${l}</tspan>`).join("");
+    return`<circle cx="${inn.x}" cy="${inn.y}" r="3.5" fill="#0d1117" stroke="#334155" stroke-width="1.2"/>
+      <text x="${out.x}" y="${out.y}" text-anchor="${anch}" dominant-baseline="middle" fill="#3d5166" font-size="7" font-family="'Noto Sans KR',sans-serif">${ts}</text>`;
+  }).join("");
+  const ds=THEMES.map((t,i)=>{
+    const nd=CNODES.find(n=>n.s===t.cs);if(!nd)return"";
+    const{x,y}=polar(nd.a,r,cx,cy),ox=(i%2===0?1:-1)*(Math.floor(i/2)*10);
+    return`<circle cx="${x+ox}" cy="${y}" r="13" fill="${t.color}18" stroke="${t.color}" stroke-width="1.8" style="filter:drop-shadow(0 0 5px ${t.color}55)"/>
+      <text x="${x+ox}" y="${y}" text-anchor="middle" dominant-baseline="middle" fill="${t.color}" font-size="10" font-family="monospace" font-weight="700">${t.icon}</text>`;
+  }).join("");
+  return`<svg viewBox="0 0 320 310" style="width:100%;height:auto">
     <defs><radialGradient id="wg" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.3"/>
+      <stop offset="0%" stop-color="#1e293b" stop-opacity=".3"/>
       <stop offset="100%" stop-color="#07090f" stop-opacity="0"/>
     </radialGradient></defs>
     <circle cx="${cx}" cy="${cy}" r="${r+60}" fill="url(#wg)"/>
     <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1e293b" stroke-width="1.2"/>
-    <circle cx="${cx}" cy="${cy}" r="${r+18}" fill="none" stroke="#0f1a2a" stroke-width="0.5" stroke-dasharray="2 5"/>
-    ${nodes}${dots}
-    <text x="${cx}" y="${cy}" text-anchor="middle" fill="#1e293b" font-size="8"
-      font-family="'Noto Sans KR',sans-serif">번스타인 사이클</text>
-  </svg>`;
-}
+    <circle cx="${cx}" cy="${cy}" r="${r+18}" fill="none" stroke="#0f1a2a" stroke-width=".5" stroke-dasharray="2 5"/>
+    ${ns}${ds}
+    <text x="${cx}" y="${cy}" text-anchor="middle" fill="#1e293b" font-size="8" font-family="'Noto Sans KR',sans-serif">번스타인 사이클</text>
+  </svg>`;}
 
-// ── Theme Cards ───────────────────────────────────────────────────
-function renderThemeCards() {
-  const grid = document.getElementById("themeGrid");
-  const HIST = {
-    ai_infra:[42,55,61,68,75,80,84],
-    quantum: [18,22,28,35,42,55,61],
-    space:   [30,38,44,52,60,67,73],
-    ai_dc:   [50,60,68,74,80,85,88],
-  };
-  grid.innerHTML = appData.themes.map(t => {
-    const color = THEME_COLORS[t.id] || "#94a3b8";
-    const sig = t.signal;
-    const hist = HIST[t.id] || [50,55,60,65,70,75,80];
-    const isActive = t.id === selTheme;
-    return `<div class="theme-card ${isActive?"active":""}" 
-        style="--active-color:${color};${isActive?`background:${color}0d;border-color:${color}`:""}"
-        onclick="selectTheme('${t.id}')">
-      <div class="theme-top">
-        <span class="theme-icon" style="color:${color}">${t.icon}</span>
-        ${gaugeHTML(sig.composite || 0, color, 38)}
-      </div>
-      <div class="theme-name" style="color:${isActive?color:"#94a3b8"}">${t.name}</div>
-      <div class="theme-label">${sig.bernstein_label || "—"}</div>
-      <div class="theme-inst" style="color:${color}">기관: ${sig.earnings_score >= 75 ? "강한 순매수" : sig.earnings_score >= 60 ? "순매수" : "혼재"}</div>
-      ${sparkHTML(hist, color)}
-    </div>`;
-  }).join("");
-}
+// ── RENDER ────────────────────────────────────────────────
+function render(){renderCards();renderMain();}
 
-// ── Main ──────────────────────────────────────────────────────────
-function renderMain() {
-  const theme = getTheme(selTheme);
-  if (!theme) return;
-  const color = THEME_COLORS[theme.id] || "#94a3b8";
-  const sig = theme.signal;
-  const score = sig.composite || 0;
+function renderCards(){
+  document.getElementById("tgrid").innerHTML=THEMES.map(t=>{
+    const act=t.id===sel;
+    return`<button class="tc${act?" active":""}" style="${act?`background:${t.color}0d;border-color:${t.color};box-shadow:0 0 18px ${t.color}1a`:""}" onclick="selTheme('${t.id}')">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px">
+        <span style="font-size:20px;color:${t.color}">${t.icon}</span>${gauge(t.comp,t.color,40)}</div>
+      <div style="font-size:11px;font-weight:700;color:${act?t.color:"#94a3b8"};margin-bottom:2px">${t.name}</div>
+      <div style="font-size:8px;color:var(--t4);margin-bottom:5px">${t.cl}</div>
+      ${spark(t.hist,t.color)}</button>`;}).join("");}
 
-  const signalBadge = score >= 80
-    ? {label:"🟢 GROWTH 매수 구간", color:"#22c55e"}
-    : score >= 60
-    ? {label:"🔵 Value→Growth 전환", color:"#3b82f6"}
-    : score >= 40
-    ? {label:"🟡 관망", color:"#f59e0b"}
-    : {label:"🔴 진입 불가", color:"#ef4444"};
-
-  const left = `
-    <div class="panel-left">
-      <div class="panel">
-        <div class="panel-title">BERNSTEIN CYCLE MAP</div>
-        ${cycleWheelSVG(appData.themes)}
-        <div style="margin-top:8px;padding:7px 10px;background:${color}0d;
-          border:1px solid ${color}44;border-radius:6px;font-size:9px;color:${color};line-height:1.5">
-          ${theme.icon} ${sig.bernstein_label || "—"}
-        </div>
-      </div>
-      <div class="panel">
-        <div class="panel-title">핵심 지표 요약</div>
-        ${[
-          {l:"EPS 추정치 수정",   v: sig.avg_eps_revision != null ? sig.avg_eps_revision+"%" : "—",
-            c: sig.avg_eps_revision > 0 ? "#22c55e" : sig.avg_eps_revision < 0 ? "#ef4444" : "#94a3b8"},
-          {l:"기관 지분율 평균",  v: sig.avg_inst_pct != null ? sig.avg_inst_pct+"%" : "—", c: color},
-          {l:"3M 모멘텀 평균",   v: sig.avg_mom_3m != null ? sig.avg_mom_3m+"%" : "—",
-            c: sig.avg_mom_3m > 0 ? "#22c55e" : "#ef4444"},
-          {l:"EPS 서프라이즈 평균",v: sig.avg_eps_surprise != null ? sig.avg_eps_surprise+"%" : "—",
-            c: sig.avg_eps_surprise > 0 ? "#22c55e" : "#ef4444"},
-        ].map(({l,v,c}) => `
-          <div style="display:flex;justify-content:space-between;align-items:center;
-            padding:6px 0;border-bottom:1px solid var(--border)">
-            <span style="font-size:10px;color:var(--text2)">${l}</span>
-            <span style="font-size:11px;font-weight:700;color:${c};font-family:monospace">${v}</span>
-          </div>`).join("")}
-      </div>
-    </div>`;
-
-  const tabs = `
-    <div class="tabs">
-      ${[
-        {id:"signals",   label:"5-Factor 신호"},
-        {id:"institutions",label:"기관 자금 흐름"},
-        {id:"stocks",    label:"종목 데이터"},
-      ].map(t => `<button class="tab ${selTab===t.id?"active":""}" onclick="selectTab('${t.id}')">${t.label}</button>`).join("")}
-    </div>`;
-
-  const scorePanel = `
-    <div class="panel score-panel" style="border-color:${color}33;box-shadow:0 0 24px ${color}0a">
-      <div class="score-grid">
-        <div>
-          <div class="panel-title">COMPOSITE SCORE — 기관자금 25%</div>
-          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:7px">
-            <span class="score-num" style="color:${color}">${score}</span>
-            <span style="font-size:13px;color:var(--text5)">/100</span>
-          </div>
-          <div class="score-bar-wrap">
-            <div class="score-bar" style="width:${score}%;background:linear-gradient(90deg,${color}44,${color});box-shadow:0 0 8px ${color}55"></div>
-          </div>
-          <div class="score-labels"><span>무시</span><span>전환점</span><span>Growth</span><span>피크</span></div>
-        </div>
-        <div>
-          <div class="action-box" style="background:${color}0d;border:1px solid ${signalBadge.color}44">
-            <div class="action-label" style="color:${signalBadge.color}">▶ 투자 액션</div>
-            <div class="action-text">${signalBadge.label}</div>
-            <div class="weight-note">TAM 25 · 기관자금 25 · 정책 20 · 실적 20 · 공매도 10</div>
-          </div>
-        </div>
-      </div>
-    </div>`;
-
-  let tabContent = "";
-  if (selTab === "signals") {
-    tabContent = renderSignalsTab(theme, color, sig);
-  } else if (selTab === "institutions") {
-    tabContent = renderInstitutionsTab(theme, color);
-  } else if (selTab === "stocks") {
-    tabContent = renderStocksTab(theme, color);
-  }
-
-  document.getElementById("mainGrid").innerHTML = `
-    ${left}
-    <div style="display:flex;flex-direction:column;gap:12px">
-      ${scorePanel}
-      ${tabs}
-      ${tabContent}
-    </div>`;
-}
-
-function renderSignalsTab(theme, color, sig) {
-  const SIGS = [
-    {key:"earnings",      label:"핵심 기업 실적 (×0.20)",    score:sig.earnings_score},
-    {key:"institutional", label:"기관 자금 흐름 (×0.25)",    score:sig.institutional_score, highlight:true},
-    {key:"momentum",      label:"가격 모멘텀 (×0.10)",       score:sig.momentum_score},
-    {key:"revision",      label:"EPS 추정치 수정방향 (×0.20)",score:sig.revision_score},
-  ];
-  const rows = SIGS.map(s => {
-    const sc = s.score || 50;
-    const noteColor = sc >= 75 ? "#22c55e" : sc >= 55 ? "#94a3b8" : "#ef4444";
-    if (s.highlight) return `
-      <div style="background:var(--bg3);border:1px solid ${color}22;border-radius:8px;padding:10px 12px;margin-bottom:10px">
-        <div class="sig-header">
-          <span class="sig-label" style="color:#f1f5f9;font-weight:700">${s.label} — BlackRock·Vanguard·Blackstone</span>
-          <span class="sig-score" style="color:${color}">${sc}</span>
-        </div>
-        <div class="sig-bar-wrap"><div class="sig-bar" style="width:${sc}%;background:linear-gradient(90deg,${color}44,${color});box-shadow:0 0 6px ${color}88"></div></div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:5px">
-          ${[["BlackRock","#f59e0b","$10T"],["Vanguard","#60a5fa","$8T"],["State Street","#34d399","$4T"],
-              ["Blackstone","#a78bfa","$1T"],["Fidelity","#fb923c","$4.5T"]]
-            .map(([n,c,aum]) => `<span class="inst-pill"><span class="inst-pill-dot" style="background:${c}"></span>${n} <span style="color:var(--text5)">${aum}</span></span>`).join("")}
-        </div>
-      </div>`;
-    return `<div class="sig-row">
-      <div class="sig-header">
-        <span class="sig-label">${s.label}</span>
-        <span class="sig-score" style="color:${color}">${sc}</span>
-      </div>
-      <div class="sig-bar-wrap"><div class="sig-bar" style="width:${sc}%;background:linear-gradient(90deg,${color}44,${color})"></div></div>
-    </div>`;
-  }).join("");
-  return `<div class="panel">
-    <div class="panel-title">5-FACTOR SIGNAL — VC 제외 · 기관 자금 흐름으로 대체</div>
-    ${rows}
-    <div style="margin-top:8px;padding:6px 10px;background:var(--bg3);border-radius:6px;font-size:8px;color:var(--text5)">
-      가중치 공식: TAM×0.25 + 기관자금×0.25 + 정책×0.20 + 실적×0.20 + 공매도역×0.10
+function renderMain(){
+  const t=THEMES.find(x=>x.id===sel);if(!t)return;
+  const c=t.color;
+  const adj=Math.round(t.sigs.tam.v*.25+t.sigs.inst.v*.25+t.sigs.pol.v*.2+t.sigs.earn.v*.2+t.sigs.short.v*.1);
+  const sb=adj>=80?{l:"🟢 GROWTH 매수 구간",c:"#22c55e"}:adj>=60?{l:"🔵 Value→Growth 전환",c:"#3b82f6"}:adj>=40?{l:"🟡 관망",c:"#f59e0b"}:{l:"🔴 진입 불가",c:"#ef4444"};
+  document.getElementById("main").innerHTML=`
+  <div class="left">
+    <div class="panel">
+      <div class="ptitle">BERNSTEIN CYCLE MAP</div>
+      ${cycleWheel()}
+      <div style="margin-top:8px;padding:7px 10px;background:${t.dark};border:1px solid ${c}44;border-radius:6px;font-size:9px;color:${c};line-height:1.5">${t.icon} ${t.phase}</div>
     </div>
-  </div>`;
-}
-
-function renderInstitutionsTab(theme, color) {
-  const cards = theme.stocks.map(s => {
-    const holders = s.institutions || [];
-    const instPct = s.financials?.inst_pct;
-    const maxPct = Math.max(...holders.map(h => h.pct_held || 0), 1);
-    const rows = holders.map(h => {
-      const isMajor = INSTITUTIONS_MAJOR.some(k => h.name?.includes(k));
-      const barW = Math.min((h.pct_held / maxPct) * 100, 100);
-      return `<div class="holder-row">
-        <div class="holder-header">
-          <span class="holder-name ${isMajor?"major":""}">
-            ${h.name?.length > 26 ? h.name.slice(0,24)+"…" : h.name || "—"}
-            ${isMajor ? `<span class="major-badge" style="background:${color}22;color:${color};border:1px solid ${color}44">MAJOR</span>` : ""}
-          </span>
-          <span class="holder-pct" style="color:${color}">${h.pct_held?.toFixed(2) || "—"}%</span>
+    <div class="panel">
+      <div class="ptitle">MARKET SIZE (TAM)</div>
+      <div style="display:flex;align-items:flex-end;gap:10px;margin-bottom:5px">
+        <div>
+          <div style="font-size:24px;font-weight:900;color:${c};line-height:1">${t.tam.v}${t.tam.u}</div>
+          <div style="font-size:9px;color:var(--t3);margin-top:2px">현재 추정 시장 규모</div>
         </div>
-        <div class="holder-bar-wrap">
-          <div class="holder-bar" style="width:${barW}%;background:${isMajor?`linear-gradient(90deg,${color}44,${color})`:"#1e3a5f"}"></div>
+        <div style="padding-bottom:3px">
+          <div style="font-size:13px;font-weight:700;color:var(--green)">${t.tam.g}</div>
+          <div style="font-size:8px;color:var(--t4)">CAGR</div>
         </div>
-        <div class="holder-meta">${h.date || ""}</div>
-      </div>`;
-    }).join("") || `<div style="font-size:9px;color:var(--text5);padding:8px 0">기관 데이터 없음 (API 응답 대기)</div>`;
+      </div>
+      <div style="height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:5px">
+        <div style="height:100%;width:66%;background:linear-gradient(90deg,${c}44,${c});border-radius:2px"></div></div>
+      <div style="font-size:8px;color:var(--t5)">전년 ${t.tam.p}${t.tam.u} · ${t.tam.s}</div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <div class="panel" style="border-color:${c}33;box-shadow:0 0 24px ${c}0a">
+      <div class="sgrid">
+        <div>
+          <div class="ptitle">COMPOSITE SCORE — 기관자금 25%</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:7px">
+            <span class="snum" style="color:${c}">${adj}</span>
+            <span style="font-size:13px;color:var(--t5)">/100</span></div>
+          <div class="sbw"><div class="sb" style="width:${adj}%;background:linear-gradient(90deg,${c}44,${c});box-shadow:0 0 8px ${c}55"></div></div>
+          <div class="slbls"><span>무시</span><span>전환점</span><span>Growth</span><span>피크</span></div>
+        </div>
+        <div>
+          <div class="acbox" style="background:${t.dark};border:1px solid ${sb.c}44">
+            <div style="font-size:9px;color:${sb.c};letter-spacing:.1em;margin-bottom:3px">▶ 투자 액션</div>
+            <div style="font-size:12px;font-weight:700;color:#f1f5f9;line-height:1.4">${sb.l}</div>
+            <div style="font-size:8px;color:var(--t4);border-top:1px solid var(--border);padding-top:5px;margin-top:5px">TAM 25 · 기관자금 25 · 정책 20 · 실적 20 · 공매도역 10</div>
+          </div>
+          ${spark(t.hist,c,160,32)}
+        </div>
+      </div>
+    </div>
+    <div class="tabs">
+      ${["stocks","signals","institutions","chain"].map(id=>{
+        const lb={stocks:`종목 데이터 (${t.stocks.length}종목)`,signals:"5-Factor 신호",institutions:"기관 자금",chain:"AI 공급망"};
+        return`<button class="tab${tab===id?" active":""}" onclick="setTab('${id}')">${lb[id]}</button>`;}).join("")}
+      <button onclick="runAI()" style="margin-left:auto;padding:5px 14px;border-radius:6px;font-size:10px;cursor:${aiL?"wait":"pointer"};font-weight:700;background:${aiL?"#1e293b":"#0d2010"};border:1px solid #22c55e55;color:${aiL?"#475569":"#22c55e"};font-family:inherit">${aiL?"분석 중…":"⬡ AI 공급망"}</button>
+    </div>
+    ${renderTab(t,c)}
+  </div>`;}
 
-    return `<div style="background:var(--bg3);border-radius:8px;padding:10px 12px">
+function renderTab(t,c){
+  if(tab==="stocks")    return renderStocks(t,c);
+  if(tab==="signals")   return renderSigs(t,c);
+  if(tab==="institutions")return renderInst(t,c);
+  if(tab==="chain")     return renderChain(t,c);
+  return"";}
+
+// ── STOCKS TAB ────────────────────────────────────────────
+function renderStocks(t,c){
+  const us=t.stocks.filter(s=>s.m==="US"),kr=t.stocks.filter(s=>s.m==="KR");
+  function rows(ss){
+    return ss.map(s=>{
+      const lv=live[s.t]||{};
+      const price=lv.price??s.price,per=lv.per??s.per,fper=lv.fper??s.fper,eps=lv.eps??s.eps;
+      const rsi=s.rsi,tgt=lv.tgtPrice??s.tgt;
+      const sg=sbg(s.sig),ch=lv.change1d;
+      return`<tr class="srow">
+        <td style="min-width:100px">
+          <div style="display:flex;align-items:center;gap:4px">
+            <span style="font-size:12px;font-weight:700;color:#f1f5f9;font-family:monospace">${s.t}</span>
+            <span class="mb" style="${mbg(s.m)}">${s.m}</span>
+          </div>
+          <div style="font-size:9px;color:var(--t3);margin-top:1px">${s.n}</div>
+          <div style="font-size:7px;color:var(--t5)">${s.ty}</div>
+        </td>
+        <td>
+          <div style="font-size:11px;font-weight:700;color:#f1f5f9;font-family:monospace;white-space:nowrap">${fp(price,s.m)}</div>
+          ${ch!=null?`<div style="font-size:9px;color:${parseFloat(ch)>=0?"var(--green)":"var(--red)"}">${parseFloat(ch)>=0?"+":""}${ch}%</div>`:""}
+        </td>
+        <td style="font-family:monospace;color:${c}">${per!=null?per.toFixed(1):"—"}</td>
+        <td style="font-family:monospace;color:${c}">${fper!=null?fper.toFixed(1):"—"}</td>
+        <td style="font-family:monospace;color:var(--t2)">${eps!=null?(s.m==="US"?"$":"")+eps.toFixed(2):"—"}</td>
+        <td>${rsiBar(rsi,c)}</td>
+        <td style="font-size:9px;color:var(--t3);white-space:nowrap">${tgt!=null?fp(tgt,s.m):"—"}</td>
+        <td><span class="sigbadge" style="background:${sg.bg};color:${sg.c};border:1px solid ${sg.b}">${s.sig}</span></td>
+      </tr>
+      <tr class="nrow"><td colspan="8" style="padding:1px 8px 8px">
+        <span style="font-size:8px;color:var(--t5)">💡 ${s.note}</span>
+      </td></tr>`;}).join("");}
+  return`<div class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <div class="ptitle" style="margin-bottom:0">${t.name} — 미국 ${us.length}종목 · 한국 ${kr.length}종목</div>
+      <div style="font-size:8px;color:var(--t5)">주가·PER: Yahoo Finance 실시간 · RSI: 2026-03-28/30 검증기준값</div>
+    </div>
+    <div style="margin-bottom:14px">
+      <div style="font-size:9px;color:var(--blue);font-weight:700;border-left:2px solid var(--blue);padding-left:8px;margin-bottom:8px">🇺🇸 미국 종목</div>
+      <div style="overflow-x:auto"><table class="stbl">
+        <thead><tr><th>종목</th><th>주가</th><th>PER</th><th>선행PER</th><th>EPS</th><th>RSI(14)</th><th>목표주가</th><th>신호</th></tr></thead>
+        <tbody>${rows(us)}</tbody>
+      </table></div>
+    </div>
+    <div>
+      <div style="font-size:9px;color:var(--green);font-weight:700;border-left:2px solid var(--green);padding-left:8px;margin-bottom:8px">🇰🇷 한국 종목</div>
+      <div style="overflow-x:auto"><table class="stbl">
+        <thead><tr><th>종목</th><th>주가</th><th>PER</th><th>선행PER</th><th>EPS</th><th>RSI(14)</th><th>목표주가</th><th>신호</th></tr></thead>
+        <tbody>${rows(kr)}</tbody>
+      </table></div>
+    </div>
+    <div style="margin-top:10px;padding:8px 10px;background:var(--bg3);border-radius:6px;font-size:8px;color:var(--t5);line-height:1.8">
+      RSI: 30↓ 🟢 과매도(역발상 매수 고려) · 30~40 🟡 주의 · 40~70 ⚪ 중립 · 70↑ 🔴 과매수(차익실현 고려)<br>
+      "—" 항목: GitHub Actions 자동수집 또는 DART 키 연결 시 업데이트 · 한국 종목 RSI는 추후 자동화 예정
+    </div>
+  </div>`;}
+
+// ── SIGNALS TAB ───────────────────────────────────────────
+function renderSigs(t,c){
+  const defs=[
+    {k:"tam",  l:"TAM 추정치 변화 (×0.25)",hi:false},
+    {k:"inst", l:"기관 자금 흐름 (×0.25) — BlackRock·Vanguard·Blackstone",hi:true},
+    {k:"pol",  l:"정책 / 정부 예산 (×0.20)",hi:false},
+    {k:"earn", l:"핵심 기업 실적 (×0.20)",hi:false},
+    {k:"short",l:"공매도 비율 역방향 (×0.10)",hi:false},
+  ];
+  return`<div class="panel">
+    <div class="ptitle">5-FACTOR SIGNAL — VC 완전 제거 · 기관 자금 흐름으로 대체</div>
+    ${defs.map(sd=>{
+      const sv=t.sigs[sd.k];
+      return sd.hi
+       ?`<div style="background:var(--bg3);border:1px solid ${c}22;border-radius:8px;padding:10px 12px;margin-bottom:10px">
+           <div class="sh">
+             <span style="font-size:10px;color:#f1f5f9;font-weight:700">${sd.l}</span>
+             <span style="font-size:10px;font-weight:700;color:${c};font-family:monospace">${sv.v}</span>
+           </div>
+           <div class="sigbw"><div class="sigb" style="width:${sv.v}%;background:linear-gradient(90deg,${c}44,${c});box-shadow:0 0 6px ${c}88"></div></div>
+           <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+             ${[["BlackRock","#f59e0b","$10T"],["Vanguard","#60a5fa","$8T"],["State Street","#34d399","$4T"],["Blackstone","#a78bfa","$1T"],["Fidelity","#fb923c","$4.5T"]]
+               .map(([n,cl,a])=>`<span style="display:flex;align-items:center;gap:4px;font-size:8px;color:var(--t3)">
+                 <span style="width:6px;height:6px;border-radius:50%;background:${cl};display:inline-block;flex-shrink:0"></span>${n}
+                 <span style="color:var(--t5)">${a}</span></span>`).join("")}
+           </div>
+           <div style="font-size:8px;color:var(--t5);margin-top:4px">${sv.t} · ${sv.n}</div>
+         </div>`
+       :`<div class="sr">
+           <div class="sh">
+             <span style="font-size:10px;color:var(--t2)">${sd.l}</span>
+             <span style="font-size:10px;font-weight:700;color:${c};font-family:monospace">${sv.v}</span>
+           </div>
+           <div class="sigbw"><div class="sigb" style="width:${sv.v}%;background:linear-gradient(90deg,${c}44,${c})"></div></div>
+           <div style="font-size:8px;color:var(--t5);margin-top:2px">${sv.t} · ${sv.n}</div>
+         </div>`;}).join("")}
+    <div style="margin-top:8px;padding:6px 10px;background:var(--bg3);border-radius:6px;font-size:8px;color:var(--t5)">
+      가중치: TAM×0.25 + 기관자금×0.25 + 정책×0.20 + 실적×0.20 + 공매도역×0.10
+    </div>
+  </div>`;}
+
+// ── INSTITUTIONS TAB ──────────────────────────────────────
+function renderInst(t,c){
+  const MAJOR=["BlackRock","Vanguard","State Street","Fidelity","Blackstone","Morgan Stanley","Goldman","JPMorgan","T. Rowe","Norges"];
+  const cards=t.stocks.filter(s=>s.m==="US").slice(0,4).map(s=>{
+    const lv=live[s.t]||{},holders=lv.topInst||[];
+    const maxP=Math.max(...holders.map(h=>h.pctHeld||0),1);
+    return`<div style="background:var(--bg3);border-radius:8px;padding:10px 12px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
         <div>
-          <span style="font-size:12px;font-weight:700;color:#f1f5f9;font-family:monospace">${s.ticker}</span>
-          <span style="font-size:9px;color:var(--text3);margin-left:6px">${s.name}</span>
+          <span style="font-size:12px;font-weight:700;color:#f1f5f9;font-family:monospace">${s.t}</span>
+          <span style="font-size:9px;color:var(--t3);margin-left:6px">${s.n}</span>
         </div>
-        ${instPct != null ? `<div style="text-align:right">
-          <div style="font-size:11px;font-weight:700;color:${color};font-family:monospace">${instPct}%</div>
-          <div style="font-size:8px;color:var(--text4)">기관 지분 합계</div>
-        </div>` : ""}
+        ${lv.instPct!=null?`<div style="text-align:right">
+          <div style="font-size:11px;font-weight:700;color:${c};font-family:monospace">${lv.instPct.toFixed(1)}%</div>
+          <div style="font-size:8px;color:var(--t4)">기관 지분</div>
+        </div>`:""}
       </div>
-      ${rows}
-    </div>`;
-  }).join("");
-
-  return `<div class="panel">
-    <div class="panel-title">기관 자금 흐름 — Yahoo Finance 13F 공시 기반</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">${cards}</div>
-    <div style="margin-top:10px;padding:8px 12px;background:var(--bg3);border-radius:7px;
-      font-size:9px;color:var(--text4);line-height:1.8">
-      <b style="color:#f1f5f9">데이터 소스</b><br>
-      • Yahoo Finance: 분기별 기관 보유 비율 + 상위 기관 목록 (무료·키 불필요)<br>
-      • 분기 13F 공시 기준 — BlackRock·Vanguard 포지션 변화가 핵심 확인 지표
+      ${holders.length
+        ?holders.slice(0,5).map(h=>{
+            const iM=MAJOR.some(k=>h.name?.includes(k));
+            const bw=Math.min((h.pctHeld/maxP)*100,100);
+            return`<div class="hrow">
+              <div class="hhdr">
+                <span style="font-size:10px;${iM?"color:#f1f5f9;font-weight:700":"color:var(--t3)"}">
+                  ${h.name?.length>22?h.name.slice(0,20)+"…":h.name||"—"}
+                  ${iM?`<span style="font-size:7px;padding:1px 4px;border-radius:3px;margin-left:3px;background:${c}22;color:${c};border:1px solid ${c}44">MAJOR</span>`:""}
+                </span>
+                <span style="font-size:9px;font-weight:700;color:${c};font-family:monospace">${h.pctHeld?.toFixed(2)||"—"}%</span>
+              </div>
+              <div class="hbw"><div class="hb" style="width:${bw}%;background:${iM?`linear-gradient(90deg,${c}44,${c})`:"#1e3a5f"}"></div></div>
+              <div style="font-size:8px;color:var(--t5)">${h.date||""}</div>
+            </div>`;}).join("")
+        :`<div style="font-size:9px;color:var(--t5);padding:8px 0">로딩 중… (Yahoo Finance 13F)</div>`}
+    </div>`;}).join("");
+  return`<div class="panel">
+    <div class="ptitle">기관 자금 흐름 — Yahoo Finance 13F 공시 기반 (미국 종목)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">${cards}</div>
+    <div style="padding:8px 12px;background:var(--bg3);border-radius:7px;font-size:9px;color:var(--t4);line-height:1.8">
+      <b style="color:#f1f5f9">핵심 시그널</b> · BlackRock·Vanguard 포지션 증가 + 번스타인 Stage 8~9 = 가장 강한 매수 확인<br>
+      분기 13F 공시 기준 · EarningsFeed 키 입력 시 전분기 대비 Delta 추가 표시
     </div>
+  </div>`;}
+
+// ── CHAIN TAB ─────────────────────────────────────────────
+function renderChain(t,c){
+  if(aiL)return`<div class="panel" style="text-align:center;padding:36px">
+    <div style="font-size:10px;color:var(--t4);margin-bottom:10px">Claude Sonnet 4.6 분석 중…</div>
+    <div style="height:2px;background:var(--border);border-radius:1px;overflow:hidden">
+      <div style="height:100%;width:35%;background:${c};animation:scan 1.4s ease-in-out infinite;border-radius:1px"></div>
+    </div></div>`;
+  const res=aiR[t.id];
+  if(!res)return`<div class="panel" style="text-align:center;padding:36px;border-style:dashed">
+    <div style="font-size:20px;margin-bottom:10px;color:${c}">${t.icon}</div>
+    <div style="font-size:11px;color:var(--t5);margin-bottom:5px">"AI 공급망" 버튼으로 1·2·3차 수혜 체인을 분석하세요</div>
+    <div style="font-size:9px;color:var(--t5)">MLCC · HBM · 전력반도체 · 소재 레이어까지 자동 분석</div>
   </div>`;
-}
-
-function renderStocksTab(theme, color) {
-  const cards = theme.stocks.map(s => {
-    const f = s.financials || {}, p = s.price || {};
-    const revC = f.eps_revision_dir === "상향" ? "#22c55e" : f.eps_revision_dir === "하향" ? "#ef4444" : "#94a3b8";
-    const change1dC = (p.change_1d || 0) >= 0 ? "#22c55e" : "#ef4444";
-    const mom3mC   = (p.mom_3m || 0) >= 0 ? "#22c55e" : "#ef4444";
-    const mktBadge = s.market === "US"
-      ? `background:#1e3a5f;color:#60a5fa;border:1px solid #3b82f644`
-      : `background:#0d2010;color:#4ade80;border:1px solid #22c55e44`;
-
-    const metrics = [
-      {l:"PER",     v: f.per || "—"},
-      {l:"선행PER",  v: f.forward_per || "—"},
-      {l:"EPS",     v: f.eps ? "$"+f.eps : "—"},
-      {l:"EPS수정",  v: f.eps_revision_dir || "—", c: revC},
-      {l:"매출성장", v: f.revenue_growth != null ? f.revenue_growth+"%" : "—"},
-      {l:"영업이익률",v: f.operating_margins != null ? f.operating_margins+"%" : "—"},
-      {l:"목표주가", v: f.target_price ? "$"+f.target_price : "—"},
-      {l:"기관지분",  v: f.inst_pct != null ? f.inst_pct+"%" : "—", c: color},
-    ];
-
-    // EPS 서프라이즈 차트
-    const eps = s.earnings || [];
-    let epsChart = "";
-    if (eps.length) {
-      const maxV = Math.max(...eps.map(e => Math.abs(e.surprise_pct || 0)), 3);
-      const bars = eps.slice(0,6).reverse().map(e => {
-        const pctV = e.surprise_pct || 0, h = Math.max(Math.abs(pctV)/maxV*42, 3);
-        const pos = pctV >= 0;
-        return `<div class="eps-bar-wrap">
-          ${pos ? `<div class="eps-bar" style="height:${h}px;background:${color};opacity:.7"></div>` : ""}
-          <div class="eps-divider"></div>
-          ${!pos ? `<div class="eps-bar neg" style="height:${h}px;background:#ef4444;opacity:.7"></div>` : ""}
-        </div>`;
-      }).join("");
-      epsChart = `<div class="eps-chart">${bars}</div>
-        <div class="eps-label">EPS 서프라이즈 추이 (최근 6분기)</div>`;
-    }
-
-    return `<div class="stock-card">
-      <div class="stock-header">
-        <div>
-          <span class="stock-ticker">${s.ticker}</span>
-          <span class="stock-name">${s.name}</span>
-          <span class="market-badge" style="${mktBadge}">${s.market}</span>
-        </div>
-        ${p.price ? `<div style="text-align:right">
-          <div style="font-size:13px;font-weight:700;color:#f1f5f9;font-family:monospace">${p.price?.toFixed(2)}</div>
-          <div style="font-size:9px;color:${change1dC}">${(p.change_1d||0)>=0?"+":""}${p.change_1d||"—"}%
-            <span style="color:${mom3mC};margin-left:6px">3M ${(p.mom_3m||0)>=0?"+":""}${p.mom_3m||"—"}%</span>
-          </div>
-        </div>` : ""}
-      </div>
-      <div class="metric-grid">
-        ${metrics.map(({l,v,c}) => `<div class="metric-box">
-          <div class="metric-label">${l}</div>
-          <div class="metric-value" style="color:${c||color}">${v}</div>
+  if(res.error)return`<div class="panel" style="background:#2d0000;border-color:#ef444433">
+    <div style="font-size:10px;color:#f87171">오류: ${res.error}</div></div>`;
+  const TC=["#00d4ff","#a78bfa","#fb923c"];
+  return`
+  <div class="panel" style="margin-bottom:10px;border-color:${c}2a">
+    <div class="ptitle" style="color:${c}">AI SUPPLY CHAIN ANALYSIS</div>
+    <p style="font-size:11px;color:#cbd5e1;line-height:1.7;margin:0 0 10px">${res.summary||""}</p>
+    ${res.institutional_note?`<div style="padding:8px 10px;background:var(--bg3);border-radius:6px;border:1px solid ${c}22;margin-bottom:8px">
+      <div style="font-size:8px;color:${c};margin-bottom:3px">🏦 기관 관점</div>
+      <div style="font-size:10px;color:#94a3b8;line-height:1.5">${res.institutional_note}</div>
+    </div>`:""}
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">
+      ${[{icon:"🔴",label:"현재 병목",v:res.bottleneck,cl:"#f87171"},{icon:"🚀",label:"다음 촉매",v:res.next_catalyst,cl:"#22c55e"}]
+        .map(({icon,label,v,cl})=>`<div style="background:var(--bg3);border-radius:6px;padding:8px 10px">
+          <div style="font-size:8px;color:var(--t4);margin-bottom:3px">${icon} ${label}</div>
+          <div style="font-size:9px;color:${cl};line-height:1.4">${v||"—"}</div>
         </div>`).join("")}
-      </div>
-      ${epsChart}
-    </div>`;
-  }).join("");
+    </div>
+  </div>
+  <div class="panel">
+    <div class="ptitle">SUPPLY CHAIN TIERS — ${t.name}</div>
+    ${(res.supply_chain||[]).map((tier,ti)=>`
+      <div style="margin-bottom:14px">
+        <div style="font-size:9px;font-weight:700;color:${TC[ti]};border-left:2px solid ${TC[ti]};padding-left:8px;margin-bottom:7px">${tier.tier}</div>
+        <div class="citems">
+          ${(tier.items||[]).map(item=>`
+            <div class="citem">
+              <div style="display:flex;justify-content:space-between;margin-bottom:3px">
+                <span style="font-size:11px;font-weight:700;color:${TC[ti]}">${item.name}</span>
+                <span style="font-size:9px;color:${TC[ti]};font-family:monospace">${item.score}</span>
+              </div>
+              <div style="height:2px;background:var(--border);border-radius:1px;margin-bottom:4px;overflow:hidden">
+                <div style="width:${item.score}%;height:100%;background:${TC[ti]};opacity:.7"></div></div>
+              <div style="font-size:8px;color:var(--t3);margin-bottom:2px">${(item.companies||[]).join(" · ")}</div>
+              <div style="font-size:8px;color:var(--t5);line-height:1.4">${item.reason||""}</div>
+            </div>`).join("")}
+        </div>
+      </div>`).join("")}
+    ${res.vc_note?`<div style="padding:6px 10px;background:var(--bg3);border-radius:6px;font-size:8px;color:var(--blue);border:1px solid #1e3a5f">💡 ${res.vc_note}</div>`:""}
+  </div>`;}
 
-  return `<div class="panel">
-    <div class="panel-title">LIVE STOCK DATA — Yahoo Finance + Finnhub</div>
-    <div class="stock-grid">${cards}</div>
-  </div>`;
-}
+// ── DATA FETCH ────────────────────────────────────────────
+async function yFetch(url){
+  try{const r=await fetch(PX+encodeURIComponent(url),{headers:{"User-Agent":"Mozilla/5.0"}});return await r.json();}
+  catch{return null;}}
 
-// ── Interactions ──────────────────────────────────────────────────
-function selectTheme(id) {
-  selTheme = id;
-  selTab = "signals";
-  renderThemeCards();
-  renderMain();
-}
-function selectTab(id) {
-  selTab = id;
-  renderMain();
-}
+async function loadStock(s){
+  const yt=s.m==="KR"?s.t+".KS":s.t;
+  const[chart,summary,instD]=await Promise.all([
+    yFetch(`https://query1.finance.yahoo.com/v8/finance/chart/${yt}?interval=1d&range=3mo`),
+    yFetch(`https://query1.finance.yahoo.com/v10/finance/quoteSummary/${yt}?modules=defaultKeyStatistics,financialData,institutionOwnershipSummary`),
+    yFetch(`https://query1.finance.yahoo.com/v10/finance/quoteSummary/${yt}?modules=institutionOwnership`),
+  ]);
+  const meta=chart?.chart?.result?.[0]?.meta||{};
+  const cl=(chart?.chart?.result?.[0]?.indicators?.quote?.[0]?.close||[]).filter(Boolean);
+  const mom3m=cl.length>5?((cl.at(-1)-cl[0])/cl[0]*100).toFixed(1):null;
+  const rs=summary?.quoteSummary?.result?.[0]||{};
+  const ks=rs.defaultKeyStatistics||{},fd=rs.financialData||{},inst=rs.institutionOwnershipSummary||{};
+  const holders=(instD?.quoteSummary?.result?.[0]?.institutionOwnership?.ownershipList||[]).slice(0,6).map(h=>({
+    name:h.organization,pctHeld:(h.pctHeld?.raw||0)*100,date:h.reportDate?.fmt||""}));
+  live[s.t]={
+    price:meta.regularMarketPrice,
+    change1d:meta.regularMarketPrice&&meta.chartPreviousClose?((meta.regularMarketPrice-meta.chartPreviousClose)/meta.chartPreviousClose*100).toFixed(2):null,
+    mom3m,
+    per:ks.trailingPE?.raw,fper:ks.forwardPE?.raw,eps:ks.trailingEps?.raw,
+    mktCap:ks.marketCap?.raw,tgtPrice:fd.targetMeanPrice?.raw,
+    instPct:(inst.ownershipPercent?.raw||0)*100,
+    topInst:holders,
+  };}
 
-// ── Sample Data (signals.json 없을 때) ────────────────────────────
-function getSampleData() {
-  return {
-    updated_at: null,
-    themes: [
-      {id:"ai_infra",name:"AI / LLM 인프라",icon:"⬡",
-        signal:{composite:84,bernstein_stage:9,bernstein_label:"이익추정치 상향 수정",
-          earnings_score:86,institutional_score:90,momentum_score:82,revision_score:88,
-          avg_eps_revision:8.4,avg_inst_pct:72.1,avg_mom_3m:34.2,avg_eps_surprise:6.1},
-        stocks:[
-          {ticker:"NVDA",name:"엔비디아",market:"US",
-            financials:{per:38.2,forward_per:28.1,eps:2.92,revenue_growth:122.4,
-              operating_margins:61.1,target_price:165,inst_pct:73.2,
-              eps_revision_dir:"상향",eps_revision_pct:12.3},
-            price:{price:136.53,change_1d:2.14,mom_3m:42.1},
-            institutions:[{name:"BlackRock",pct_held:7.21,date:"2024-12"},{name:"Vanguard",pct_held:8.14,date:"2024-12"},
-              {name:"State Street",pct_held:4.02,date:"2024-12"},{name:"Fidelity",pct_held:2.31,date:"2024-12"}],
-            earnings:[{period:"2024-Q3",surprise_pct:5.8},{period:"2024-Q2",surprise_pct:9.2},{period:"2024-Q1",surprise_pct:7.4}]},
-        ]},
-      {id:"quantum",name:"양자컴퓨팅",icon:"◈",
-        signal:{composite:61,bernstein_stage:7,bernstein_label:"긍정적 어닝 서프라이즈",
-          earnings_score:48,institutional_score:52,momentum_score:55,revision_score:58,
-          avg_eps_revision:1.2,avg_inst_pct:45.3,avg_mom_3m:18.4,avg_eps_surprise:1.8},
-        stocks:[]},
-      {id:"space",name:"Space Tech / 위성",icon:"◎",
-        signal:{composite:73,bernstein_stage:8,bernstein_label:"긍정적 어닝 서프라이즈 모델",
-          earnings_score:67,institutional_score:60,momentum_score:70,revision_score:72,
-          avg_eps_revision:4.1,avg_inst_pct:58.2,avg_mom_3m:28.1,avg_eps_surprise:3.2},
-        stocks:[]},
-      {id:"ai_dc",name:"AI Datacenter / 전력",icon:"▣",
-        signal:{composite:88,bernstein_stage:9,bernstein_label:"이익추정치 상향 수정",
-          earnings_score:94,institutional_score:91,momentum_score:85,revision_score:92,
-          avg_eps_revision:14.2,avg_inst_pct:78.4,avg_mom_3m:38.4,avg_eps_surprise:8.3},
-        stocks:[
-          {ticker:"EQIX",name:"Equinix",market:"US",
-            financials:{per:82.1,forward_per:61.2,eps:12.41,revenue_growth:8.2,
-              operating_margins:18.4,target_price:1050,inst_pct:88.1,
-              eps_revision_dir:"상향",eps_revision_pct:6.2},
-            price:{price:921.34,change_1d:1.82,mom_3m:22.4},
-            institutions:[{name:"BlackRock",pct_held:9.42,date:"2024-12"},{name:"Vanguard",pct_held:10.12,date:"2024-12"},
-              {name:"State Street",pct_held:4.82,date:"2024-12"}],
-            earnings:[{period:"2024-Q3",surprise_pct:4.2},{period:"2024-Q2",surprise_pct:6.1}]},
-          {ticker:"000660",name:"SK하이닉스",market:"KR",
-            financials:{per:14.2,forward_per:9.8,eps:8420,revenue_growth:94.1,
-              operating_margins:28.4,target_price:280000,inst_pct:52.1,
-              eps_revision_dir:"상향",eps_revision_pct:22.7},
-            price:{price:198000,change_1d:1.23,mom_3m:28.4},
-            institutions:[{name:"BlackRock",pct_held:4.21,date:"2024-12"},{name:"Norges Bank",pct_held:1.82,date:"2024-12"}],
-            earnings:[]},
-        ]},
-    ]
-  };
-}
+async function loadStocks(){
+  const t=THEMES.find(x=>x.id===sel);if(!t)return;
+  document.getElementById("stSync").textContent="수집 중…";
+  for(const s of t.stocks){
+    await loadStock(s);
+    await new Promise(r=>setTimeout(r,700));
+    render();
+  }
+  document.getElementById("stSync").textContent=new Date().toLocaleTimeString("ko-KR");}
 
-// ── Init ──────────────────────────────────────────────────────────
-loadData();
-// 5분마다 자동 갱신
-setInterval(loadData, 5 * 60 * 1000);
+// ── AI CHAIN ──────────────────────────────────────────────
+async function runAI(){
+  const t=THEMES.find(x=>x.id===sel);if(!t||aiL)return;
+  aiL=true;tab="chain";render();
+  try{
+    const sys=`패러다임 시프트 투자 분석 전문가. 아래 JSON만 출력. 마크다운 없음.
+{"summary":"3문장 핵심 요약","bottleneck":"현재 공급 병목","next_catalyst":"6~18개월 촉매","institutional_note":"BlackRock·Vanguard 기관 관점","supply_chain":[{"tier":"1차 직접 수혜","items":[{"name":"부품명","companies":["회사"],"reason":"이유","score":85}]},{"tier":"2차 간접 수혜","items":[{"name":"부품명","companies":["회사"],"reason":"이유","score":65}]},{"tier":"3차 소재·장비","items":[{"name":"부품명","companies":["회사"],"reason":"이유","score":45}]}],"vc_note":"VC 대신 사용할 기관 지표 설명"}`;
+    const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,system:sys,
+        messages:[{role:"user",content:`테마:${t.name}\n쿼리:${t.chainQ}`}]})});
+    const d=await r.json();
+    aiR[sel]=JSON.parse(d.content?.map(i=>i.text||"").join("").replace(/```json|```/g,"").trim());
+  }catch(e){aiR[sel]={error:e.message};}
+  aiL=false;render();}
+
+// ── EVENTS ────────────────────────────────────────────────
+function selTheme(id){sel=id;tab="stocks";live={};render();loadStocks();}
+function setTab(id){tab=id;render();}
+
+// ── INIT ─────────────────────────────────────────────────
+render();
+loadStocks();
+setInterval(loadStocks,5*60*1000);
 </script>
 </body>
 </html>
