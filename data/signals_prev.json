@@ -1,48 +1,48 @@
 {
-  "updated_at": "2026-03-30T12:05:09.442909",
+  "updated_at": "2026-03-31T00:04:40.876451",
   "themes": [
     {
       "id": "ai_infra",
       "name": "AI / LLM 인프라",
       "icon": "⬡",
       "signal": {
-        "earnings_score": 62,
-        "institutional_score": 50,
-        "momentum_score": 35,
-        "revision_score": 50,
-        "composite": 52,
-        "bernstein_stage": 7,
-        "bernstein_label": "긍정적 어닝 서프라이즈",
+        "composite": 77,
+        "bernstein_stage": 8,
+        "bernstein_label": "긍정적 어닝 서프라이즈 모델",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": -9.1,
-        "avg_eps_surprise": 4.54
+        "avg_mom_3m": 22.95,
+        "avg_eps_surprise": 2.97
       },
       "stocks": [
         {
           "ticker": "NVDA",
           "name": "엔비디아",
           "market": "US",
-          "financials": {
-            "per": 0,
-            "forward_per": 0,
-            "eps": 0,
-            "market_cap": null,
-            "revenue_growth": 0,
-            "operating_margins": 0,
-            "target_price": 0,
-            "inst_pct": 0,
-            "eps_revision_dir": null,
-            "eps_revision_pct": null,
-            "eps_now": null,
-            "eps_30d": null,
-            "eps_90d": null
-          },
+          "type": "미국 대형",
+          "sig": "GROWTH",
           "price": {
-            "price": 167.52,
-            "change_1d": -12.08,
-            "mom_3m": -11.0
+            "price": 165.17,
+            "change_1d": -9.17,
+            "mom_3m": -12.2,
+            "rsi": 34.0
           },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
           "earnings": [
             {
               "period": "2026-03-31",
@@ -68,33 +68,36 @@
               "estimate": 0.9521,
               "surprise_pct": 0.83
             }
-          ],
-          "institutions": []
+          ]
         },
         {
           "ticker": "AMD",
           "name": "AMD",
           "market": "US",
-          "financials": {
-            "per": 0,
-            "forward_per": 0,
-            "eps": 0,
-            "market_cap": null,
-            "revenue_growth": 0,
-            "operating_margins": 0,
-            "target_price": 0,
-            "inst_pct": 0,
-            "eps_revision_dir": null,
-            "eps_revision_pct": null,
-            "eps_now": null,
-            "eps_30d": null,
-            "eps_90d": null
-          },
+          "type": "미국 대형",
+          "sig": "GROWTH",
           "price": {
-            "price": 201.99,
-            "change_1d": -6.05,
-            "mom_3m": -6.3
+            "price": 196.04,
+            "change_1d": 21.49,
+            "mom_3m": -9.1,
+            "rsi": 44.7
           },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
           "earnings": [
             {
               "period": "2025-12-31",
@@ -120,412 +123,322 @@
               "estimate": 0.9523,
               "surprise_pct": 0.81
             }
-          ],
-          "institutions": []
+          ]
         },
         {
-          "ticker": "ANET",
-          "name": "Arista",
+          "ticker": "AVGO",
+          "name": "Broadcom",
           "market": "US",
-          "financials": {
-            "per": 0,
-            "forward_per": 0,
-            "eps": 0,
-            "market_cap": null,
-            "revenue_growth": 0,
-            "operating_margins": 0,
-            "target_price": 0,
-            "inst_pct": 0,
-            "eps_revision_dir": null,
-            "eps_revision_pct": null,
-            "eps_now": null,
-            "eps_30d": null,
-            "eps_90d": null
-          },
+          "type": "미국 대형",
+          "sig": "GROWTH",
           "price": {
-            "price": 120.77,
-            "change_1d": -8.4,
-            "mom_3m": -10.0
+            "price": 293.41,
+            "change_1d": -10.52,
+            "mom_3m": -16.0,
+            "rsi": 33.4
           },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
           "earnings": [
             {
+              "period": "2026-03-31",
+              "actual": 2.05,
+              "estimate": 2.068,
+              "surprise_pct": -0.87
+            },
+            {
               "period": "2025-12-31",
-              "actual": 0.82,
-              "estimate": 0.7719,
-              "surprise_pct": 6.23
+              "actual": 1.95,
+              "estimate": 1.8996,
+              "surprise_pct": 2.65
             },
             {
               "period": "2025-09-30",
-              "actual": 0.75,
-              "estimate": 0.7282,
-              "surprise_pct": 2.99
+              "actual": 1.69,
+              "estimate": 1.6816,
+              "surprise_pct": 0.5
             },
             {
               "period": "2025-06-30",
-              "actual": 0.73,
-              "estimate": 0.6623,
-              "surprise_pct": 10.22
-            },
-            {
-              "period": "2025-03-31",
-              "actual": 0.65,
-              "estimate": 0.6033,
-              "surprise_pct": 7.74
+              "actual": 1.58,
+              "estimate": 1.5948,
+              "surprise_pct": -0.93
             }
-          ],
-          "institutions": []
-        }
-      ]
-    },
-    {
-      "id": "quantum",
-      "name": "양자컴퓨팅",
-      "icon": "◈",
-      "signal": {
-        "earnings_score": 90,
-        "institutional_score": 50,
-        "momentum_score": 20,
-        "revision_score": 50,
-        "composite": 56,
-        "bernstein_stage": 7,
-        "bernstein_label": "긍정적 어닝 서프라이즈",
-        "avg_eps_revision": null,
-        "avg_inst_pct": null,
-        "avg_mom_3m": -34.03,
-        "avg_eps_surprise": 68.27
-      },
-      "stocks": [
-        {
-          "ticker": "IONQ",
-          "name": "IonQ",
-          "market": "US",
-          "financials": {
-            "per": 0,
-            "forward_per": 0,
-            "eps": 0,
-            "market_cap": null,
-            "revenue_growth": 0,
-            "operating_margins": 0,
-            "target_price": 0,
-            "inst_pct": 0,
-            "eps_revision_dir": null,
-            "eps_revision_pct": null,
-            "eps_now": null,
-            "eps_30d": null,
-            "eps_90d": null
-          },
-          "price": {
-            "price": 27.51,
-            "change_1d": -40.2,
-            "mom_3m": -39.2
-          },
-          "earnings": [
-            {
-              "period": "2025-12-31",
-              "actual": 1.93,
-              "estimate": -0.333,
-              "surprise_pct": 679.58
-            },
-            {
-              "period": "2025-09-30",
-              "actual": -0.17,
-              "estimate": -0.3353,
-              "surprise_pct": 49.3
-            },
-            {
-              "period": "2025-06-30",
-              "actual": -0.7,
-              "estimate": -0.2774,
-              "surprise_pct": -152.34
-            },
-            {
-              "period": "2025-03-31",
-              "actual": -0.14,
-              "estimate": -0.2091,
-              "surprise_pct": 33.05
-            }
-          ],
-          "institutions": []
+          ]
         },
         {
-          "ticker": "RGTI",
-          "name": "Rigetti",
+          "ticker": "TSM",
+          "name": "TSMC",
           "market": "US",
-          "financials": {
-            "per": 0,
-            "forward_per": 0,
-            "eps": 0,
-            "market_cap": null,
-            "revenue_growth": 0,
-            "operating_margins": 0,
-            "target_price": 0,
-            "inst_pct": 0,
-            "eps_revision_dir": null,
-            "eps_revision_pct": null,
-            "eps_now": null,
-            "eps_30d": null,
-            "eps_90d": null
-          },
+          "type": "미국 대형",
+          "sig": "GROWTH",
           "price": {
-            "price": 13.32,
-            "change_1d": -40.48,
-            "mom_3m": -40.2
+            "price": 316.5,
+            "change_1d": 15.84,
+            "mom_3m": 5.2,
+            "rsi": 36.4
           },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
           "earnings": [
             {
               "period": "2025-12-31",
-              "actual": -0.03,
-              "estimate": -0.0332,
-              "surprise_pct": 9.64
+              "actual": 19.51,
+              "estimate": 18.5437,
+              "surprise_pct": 5.21
             },
             {
               "period": "2025-09-30",
-              "actual": -0.03,
-              "estimate": -0.0437,
-              "surprise_pct": 31.35
+              "actual": 17.44,
+              "estimate": 16.1535,
+              "surprise_pct": 7.96
             },
             {
               "period": "2025-06-30",
-              "actual": -0.056,
-              "estimate": -0.0471,
-              "surprise_pct": -18.9
+              "actual": 15.36,
+              "estimate": 14.8178,
+              "surprise_pct": 3.66
             },
             {
               "period": "2025-03-31",
-              "actual": -0.08,
-              "estimate": -0.0388,
-              "surprise_pct": -106.19
+              "actual": 13.94,
+              "estimate": 13.8561,
+              "surprise_pct": 0.61
             }
-          ],
-          "institutions": []
+          ]
         },
         {
-          "ticker": "IBM",
-          "name": "IBM",
+          "ticker": "MRVL",
+          "name": "Marvell Tech",
           "market": "US",
-          "financials": {
-            "per": 0,
-            "forward_per": 0,
-            "eps": 0,
-            "market_cap": null,
-            "revenue_growth": 0,
-            "operating_margins": 0,
-            "target_price": 0,
-            "inst_pct": 0,
-            "eps_revision_dir": null,
-            "eps_revision_pct": null,
-            "eps_now": null,
-            "eps_30d": null,
-            "eps_90d": null
-          },
+          "type": "미국 중소형",
+          "sig": "GROWTH",
           "price": {
-            "price": 236.34,
-            "change_1d": -22.53,
-            "mom_3m": -22.7
+            "price": 87.81,
+            "change_1d": 6.58,
+            "mom_3m": 2.4,
+            "rsi": 49.4
           },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
           "earnings": [
             {
+              "period": "2026-01-31",
+              "actual": 0.8,
+              "estimate": null,
+              "surprise_pct": 0
+            },
+            {
+              "period": "2026-03-31",
+              "actual": 0.8,
+              "estimate": 0.8033,
+              "surprise_pct": -0.41
+            },
+            {
               "period": "2025-12-31",
-              "actual": 4.52,
-              "estimate": 4.3628,
-              "surprise_pct": 3.6
+              "actual": 0.76,
+              "estimate": 0.7495,
+              "surprise_pct": 1.4
             },
             {
               "period": "2025-09-30",
-              "actual": 2.65,
-              "estimate": 2.4701,
-              "surprise_pct": 7.28
-            },
-            {
-              "period": "2025-06-30",
-              "actual": 2.8,
-              "estimate": 2.6695,
-              "surprise_pct": 4.89
-            },
-            {
-              "period": "2025-03-31",
-              "actual": 1.6,
-              "estimate": 1.4163,
-              "surprise_pct": 12.97
+              "actual": 0.67,
+              "estimate": 0.6682,
+              "surprise_pct": 0.27
             }
-          ],
-          "institutions": []
-        }
-      ]
-    },
-    {
-      "id": "space",
-      "name": "Space Tech / 위성",
-      "icon": "◎",
-      "signal": {
-        "earnings_score": 20,
-        "institutional_score": 50,
-        "momentum_score": 50,
-        "revision_score": 50,
-        "composite": 45,
-        "bernstein_stage": 6,
-        "bernstein_label": "역발상 투자",
-        "avg_eps_revision": null,
-        "avg_inst_pct": null,
-        "avg_mom_3m": 2.87,
-        "avg_eps_surprise": -2086.44
-      },
-      "stocks": [
-        {
-          "ticker": "RKLB",
-          "name": "Rocket Lab",
-          "market": "US",
-          "financials": {
-            "per": 0,
-            "forward_per": 0,
-            "eps": 0,
-            "market_cap": null,
-            "revenue_growth": 0,
-            "operating_margins": 0,
-            "target_price": 0,
-            "inst_pct": 0,
-            "eps_revision_dir": null,
-            "eps_revision_pct": null,
-            "eps_now": null,
-            "eps_30d": null,
-            "eps_90d": null
-          },
-          "price": {
-            "price": 60.93,
-            "change_1d": -13.76,
-            "mom_3m": -13.1
-          },
-          "earnings": [
-            {
-              "period": "2025-12-31",
-              "actual": -0.09,
-              "estimate": -0.0942,
-              "surprise_pct": 4.46
-            },
-            {
-              "period": "2025-09-30",
-              "actual": -0.03,
-              "estimate": -0.1064,
-              "surprise_pct": 71.8
-            },
-            {
-              "period": "2025-06-30",
-              "actual": -0.13,
-              "estimate": -0.1167,
-              "surprise_pct": -11.4
-            },
-            {
-              "period": "2025-03-31",
-              "actual": -0.12,
-              "estimate": -0.1306,
-              "surprise_pct": 8.12
-            }
-          ],
-          "institutions": []
+          ]
         },
         {
-          "ticker": "ASTS",
-          "name": "AST SpaceMobile",
-          "market": "US",
-          "financials": {
-            "per": 0,
-            "forward_per": 0,
-            "eps": 0,
-            "market_cap": null,
-            "revenue_growth": 0,
-            "operating_margins": 0,
-            "target_price": 0,
-            "inst_pct": 0,
-            "eps_revision_dir": null,
-            "eps_revision_pct": null,
-            "eps_now": null,
-            "eps_30d": null,
-            "eps_90d": null
-          },
+          "ticker": "005930",
+          "name": "삼성전자",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "WATCH",
           "price": {
-            "price": 78.67,
-            "change_1d": 9.34,
-            "mom_3m": 10.1
+            "price": 176300.0,
+            "change_1d": 110.13,
+            "mom_3m": 58.1,
+            "rsi": 44.9
           },
-          "earnings": [
-            {
-              "period": "2025-12-31",
-              "actual": -0.26,
-              "estimate": -0.1632,
-              "surprise_pct": -59.31
-            },
-            {
-              "period": "2025-09-30",
-              "actual": -0.45,
-              "estimate": -0.2273,
-              "surprise_pct": -97.98
-            },
-            {
-              "period": "2025-06-30",
-              "actual": -0.41,
-              "estimate": -0.2122,
-              "surprise_pct": -93.21
-            },
-            {
-              "period": "2025-03-31",
-              "actual": -0.2,
-              "estimate": -0.1964,
-              "surprise_pct": -1.83
-            }
-          ],
-          "institutions": []
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
         },
         {
-          "ticker": "LUNR",
-          "name": "Intuitive Machines",
-          "market": "US",
-          "financials": {
-            "per": 0,
-            "forward_per": 0,
-            "eps": 0,
-            "market_cap": null,
-            "revenue_growth": 0,
-            "operating_margins": 0,
-            "target_price": 0,
-            "inst_pct": 0,
-            "eps_revision_dir": null,
-            "eps_revision_pct": null,
-            "eps_now": null,
-            "eps_30d": null,
-            "eps_90d": null
-          },
+          "ticker": "000660",
+          "name": "SK하이닉스",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "GROWTH",
           "price": {
-            "price": 17.52,
-            "change_1d": 14.89,
-            "mom_3m": 11.6
+            "price": 873000.0,
+            "change_1d": 151.22,
+            "mom_3m": 49.5,
+            "rsi": 44.4
           },
-          "earnings": [
-            {
-              "period": "2025-12-31",
-              "actual": -0.32,
-              "estimate": -0.0731,
-              "surprise_pct": -337.76
-            },
-            {
-              "period": "2025-09-30",
-              "actual": -0.06,
-              "estimate": -0.0495,
-              "surprise_pct": -21.21
-            },
-            {
-              "period": "2025-06-30",
-              "actual": -0.22,
-              "estimate": -0.0012,
-              "surprise_pct": -18233.33
-            },
-            {
-              "period": "2025-03-31",
-              "actual": -0.11,
-              "estimate": -0.0867,
-              "surprise_pct": -26.87
-            }
-          ],
-          "institutions": []
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        },
+        {
+          "ticker": "042700",
+          "name": "한미반도체",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "GROWTH",
+          "price": {
+            "price": 260500.0,
+            "change_1d": 169.95,
+            "mom_3m": 105.1,
+            "rsi": 45.1
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        },
+        {
+          "ticker": "058470",
+          "name": "리노공업",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "GROWTH",
+          "price": {
+            "price": 219500.0,
+            "change_1d": 326.21,
+            "mom_3m": 60.3,
+            "rsi": 42.5
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        },
+        {
+          "ticker": "007660",
+          "name": "이수페타시스",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "GROWTH",
+          "price": {
+            "price": 104500.0,
+            "change_1d": 46.56,
+            "mom_3m": -13.8,
+            "rsi": 42.9
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
         }
       ]
     },
@@ -534,43 +447,43 @@
       "name": "AI Datacenter / 전력",
       "icon": "▣",
       "signal": {
-        "earnings_score": 20,
-        "institutional_score": 50,
-        "momentum_score": 75,
-        "revision_score": 50,
-        "composite": 48,
-        "bernstein_stage": 6,
-        "bernstein_label": "역발상 투자",
+        "composite": 81,
+        "bernstein_stage": 8,
+        "bernstein_label": "긍정적 어닝 서프라이즈 모델",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": 25.77,
-        "avg_eps_surprise": -23.86
+        "avg_mom_3m": 27.35,
+        "avg_eps_surprise": 32.48
       },
       "stocks": [
         {
           "ticker": "EQIX",
           "name": "Equinix",
           "market": "US",
-          "financials": {
-            "per": 0,
-            "forward_per": 0,
-            "eps": 0,
-            "market_cap": null,
-            "revenue_growth": 0,
-            "operating_margins": 0,
-            "target_price": 0,
-            "inst_pct": 0,
-            "eps_revision_dir": null,
-            "eps_revision_pct": null,
-            "eps_now": null,
-            "eps_30d": null,
-            "eps_90d": null
-          },
+          "type": "미국 대형",
+          "sig": "GROWTH",
           "price": {
-            "price": 963.0,
-            "change_1d": 26.16,
-            "mom_3m": 25.9
+            "price": 964.05,
+            "change_1d": 23.32,
+            "mom_3m": 26.0,
+            "rsi": 57.6
           },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
           "earnings": [
             {
               "period": "2025-12-31",
@@ -596,33 +509,36 @@
               "estimate": 3.0237,
               "surprise_pct": 19.39
             }
-          ],
-          "institutions": []
+          ]
         },
         {
           "ticker": "VST",
           "name": "Vistra",
           "market": "US",
-          "financials": {
-            "per": 0,
-            "forward_per": 0,
-            "eps": 0,
-            "market_cap": null,
-            "revenue_growth": 0,
-            "operating_margins": 0,
-            "target_price": 0,
-            "inst_pct": 0,
-            "eps_revision_dir": null,
-            "eps_revision_pct": null,
-            "eps_now": null,
-            "eps_30d": null,
-            "eps_90d": null
-          },
+          "type": "미국 대형",
+          "sig": "GROWTH",
           "price": {
-            "price": 155.48,
-            "change_1d": -3.83,
-            "mom_3m": -3.9
+            "price": 147.54,
+            "change_1d": -25.46,
+            "mom_3m": -8.8,
+            "rsi": 39.7
           },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
           "earnings": [
             {
               "period": "2025-12-31",
@@ -648,62 +564,1204 @@
               "estimate": 0.6525,
               "surprise_pct": -242.53
             }
-          ],
-          "institutions": []
+          ]
         },
         {
-          "ticker": "005930",
-          "name": "삼성전자",
-          "market": "KR",
-          "financials": {
-            "per": 0,
-            "forward_per": 0,
-            "eps": 0,
-            "market_cap": null,
-            "revenue_growth": 0,
-            "operating_margins": 0,
-            "target_price": 0,
-            "inst_pct": 0,
-            "eps_revision_dir": null,
-            "eps_revision_pct": null,
-            "eps_now": null,
-            "eps_30d": null,
-            "eps_90d": null
-          },
+          "ticker": "GEV",
+          "name": "GE Vernova",
+          "market": "US",
+          "type": "미국 대형",
+          "sig": "GROWTH",
           "price": {
-            "price": 176300.0,
-            "change_1d": 47.04,
-            "mom_3m": 47.0
+            "price": 817.35,
+            "change_1d": 35.68,
+            "mom_3m": 23.2,
+            "rsi": 45.8
           },
-          "earnings": [],
-          "institutions": []
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": [
+            {
+              "period": "2025-12-31",
+              "actual": 2.78,
+              "estimate": 3.0007,
+              "surprise_pct": -7.36
+            },
+            {
+              "period": "2025-09-30",
+              "actual": 1.67,
+              "estimate": 1.6694,
+              "surprise_pct": 0.04
+            },
+            {
+              "period": "2025-06-30",
+              "actual": 1.77,
+              "estimate": 1.5206,
+              "surprise_pct": 16.4
+            },
+            {
+              "period": "2025-03-31",
+              "actual": 0.85,
+              "estimate": 0.4081,
+              "surprise_pct": 108.28
+            }
+          ]
+        },
+        {
+          "ticker": "DLR",
+          "name": "Digital Realty",
+          "market": "US",
+          "type": "미국 대형",
+          "sig": "GROWTH",
+          "price": {
+            "price": 175.18,
+            "change_1d": 2.98,
+            "mom_3m": 12.5,
+            "rsi": 47.6
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": [
+            {
+              "period": "2025-12-31",
+              "actual": 0.24,
+              "estimate": 0.32,
+              "surprise_pct": -25
+            },
+            {
+              "period": "2025-09-30",
+              "actual": 0.15,
+              "estimate": 0.334,
+              "surprise_pct": -55.09
+            },
+            {
+              "period": "2025-06-30",
+              "actual": 2.94,
+              "estimate": 0.3876,
+              "surprise_pct": 658.51
+            },
+            {
+              "period": "2025-03-31",
+              "actual": 0.27,
+              "estimate": 0.2915,
+              "surprise_pct": -7.38
+            }
+          ]
+        },
+        {
+          "ticker": "NRG",
+          "name": "NRG Energy",
+          "market": "US",
+          "type": "미국 대형",
+          "sig": "WATCH",
+          "price": {
+            "price": 141.23,
+            "change_1d": -14.58,
+            "mom_3m": -12.3,
+            "rsi": 36.0
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": [
+            {
+              "period": "2025-12-31",
+              "actual": 1.03,
+              "estimate": 0.9667,
+              "surprise_pct": 6.55
+            },
+            {
+              "period": "2025-09-30",
+              "actual": 2.75,
+              "estimate": 2.1197,
+              "surprise_pct": 29.74
+            },
+            {
+              "period": "2025-06-30",
+              "actual": 1.68,
+              "estimate": 1.5759,
+              "surprise_pct": 6.61
+            },
+            {
+              "period": "2025-03-31",
+              "actual": 2.68,
+              "estimate": 1.5074,
+              "surprise_pct": 77.79
+            }
+          ]
         },
         {
           "ticker": "000660",
           "name": "SK하이닉스",
           "market": "KR",
-          "financials": {
-            "per": 0,
-            "forward_per": 0,
-            "eps": 0,
-            "market_cap": null,
-            "revenue_growth": 0,
-            "operating_margins": 0,
-            "target_price": 0,
-            "inst_pct": 0,
-            "eps_revision_dir": null,
-            "eps_revision_pct": null,
-            "eps_now": null,
-            "eps_30d": null,
-            "eps_90d": null
-          },
+          "type": "한국 상장",
+          "sig": "GROWTH",
           "price": {
             "price": 873000.0,
-            "change_1d": 34.1,
-            "mom_3m": 34.1
+            "change_1d": 151.22,
+            "mom_3m": 49.5,
+            "rsi": 44.4
           },
-          "earnings": [],
-          "institutions": []
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        },
+        {
+          "ticker": "005930",
+          "name": "삼성전자",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "WATCH",
+          "price": {
+            "price": 176300.0,
+            "change_1d": 110.13,
+            "mom_3m": 58.1,
+            "rsi": 44.9
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        },
+        {
+          "ticker": "010120",
+          "name": "LS일렉트릭",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "GROWTH",
+          "price": {
+            "price": 775000.0,
+            "change_1d": 172.41,
+            "mom_3m": 67.0,
+            "rsi": 52.7
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        },
+        {
+          "ticker": "298040",
+          "name": "효성중공업",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "GROWTH",
+          "price": {
+            "price": 2503000.0,
+            "change_1d": 86.79,
+            "mom_3m": 36.9,
+            "rsi": 46.7
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        },
+        {
+          "ticker": "034020",
+          "name": "두산에너빌리티",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "WATCH",
+          "price": {
+            "price": 94200.0,
+            "change_1d": 50.24,
+            "mom_3m": 21.4,
+            "rsi": 43.4
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        }
+      ]
+    },
+    {
+      "id": "space",
+      "name": "Space Tech / 위성",
+      "icon": "◎",
+      "signal": {
+        "composite": 67,
+        "bernstein_stage": 7,
+        "bernstein_label": "역발상 → 긍정적 서프라이즈",
+        "avg_eps_revision": null,
+        "avg_inst_pct": null,
+        "avg_mom_3m": 19.06,
+        "avg_eps_surprise": -1245.31
+      },
+      "stocks": [
+        {
+          "ticker": "RKLB",
+          "name": "Rocket Lab",
+          "market": "US",
+          "type": "미국 중소형",
+          "sig": "GROWTH",
+          "price": {
+            "price": 57.38,
+            "change_1d": 22.06,
+            "mom_3m": -18.2,
+            "rsi": 37.6
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": [
+            {
+              "period": "2025-12-31",
+              "actual": -0.09,
+              "estimate": -0.0942,
+              "surprise_pct": 4.46
+            },
+            {
+              "period": "2025-09-30",
+              "actual": -0.03,
+              "estimate": -0.1064,
+              "surprise_pct": 71.8
+            },
+            {
+              "period": "2025-06-30",
+              "actual": -0.13,
+              "estimate": -0.1167,
+              "surprise_pct": -11.4
+            },
+            {
+              "period": "2025-03-31",
+              "actual": -0.12,
+              "estimate": -0.1306,
+              "surprise_pct": 8.12
+            }
+          ]
+        },
+        {
+          "ticker": "ASTS",
+          "name": "AST SpaceMobile",
+          "market": "US",
+          "type": "미국 중소형",
+          "sig": "GROWTH",
+          "price": {
+            "price": 73.82,
+            "change_1d": 51.15,
+            "mom_3m": 3.3,
+            "rsi": 38.6
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": [
+            {
+              "period": "2025-12-31",
+              "actual": -0.26,
+              "estimate": -0.1632,
+              "surprise_pct": -59.31
+            },
+            {
+              "period": "2025-09-30",
+              "actual": -0.45,
+              "estimate": -0.2273,
+              "surprise_pct": -97.98
+            },
+            {
+              "period": "2025-06-30",
+              "actual": -0.41,
+              "estimate": -0.2122,
+              "surprise_pct": -93.21
+            },
+            {
+              "period": "2025-03-31",
+              "actual": -0.2,
+              "estimate": -0.1964,
+              "surprise_pct": -1.83
+            }
+          ]
+        },
+        {
+          "ticker": "LUNR",
+          "name": "Intuitive Machines",
+          "market": "US",
+          "type": "미국 중소형",
+          "sig": "WATCH",
+          "price": {
+            "price": 16.35,
+            "change_1d": 59.36,
+            "mom_3m": 4.1,
+            "rsi": 44.5
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": [
+            {
+              "period": "2025-12-31",
+              "actual": -0.32,
+              "estimate": -0.0731,
+              "surprise_pct": -337.76
+            },
+            {
+              "period": "2025-09-30",
+              "actual": -0.06,
+              "estimate": -0.0495,
+              "surprise_pct": -21.21
+            },
+            {
+              "period": "2025-06-30",
+              "actual": -0.22,
+              "estimate": -0.0012,
+              "surprise_pct": -18233.33
+            },
+            {
+              "period": "2025-03-31",
+              "actual": -0.11,
+              "estimate": -0.0867,
+              "surprise_pct": -26.87
+            }
+          ]
+        },
+        {
+          "ticker": "BWXT",
+          "name": "BWX Technologies",
+          "market": "US",
+          "type": "미국 중소형",
+          "sig": "WATCH",
+          "price": {
+            "price": 191.59,
+            "change_1d": 5.29,
+            "mom_3m": 9.2,
+            "rsi": 42.8
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": [
+            {
+              "period": "2025-12-31",
+              "actual": 1.08,
+              "estimate": 0.9016,
+              "surprise_pct": 19.79
+            },
+            {
+              "period": "2025-09-30",
+              "actual": 1,
+              "estimate": 0.8747,
+              "surprise_pct": 14.32
+            },
+            {
+              "period": "2025-06-30",
+              "actual": 1.02,
+              "estimate": 0.8089,
+              "surprise_pct": 26.1
+            },
+            {
+              "period": "2025-03-31",
+              "actual": 0.91,
+              "estimate": 0.7613,
+              "surprise_pct": 19.53
+            }
+          ]
+        },
+        {
+          "ticker": "KTOS",
+          "name": "Kratos Defense",
+          "market": "US",
+          "type": "미국 중소형",
+          "sig": "WATCH",
+          "price": {
+            "price": 65.28,
+            "change_1d": -25.89,
+            "mom_3m": -15.7,
+            "rsi": 29.3
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": [
+            {
+              "period": "2025-12-31",
+              "actual": 0.18,
+              "estimate": 0.1607,
+              "surprise_pct": 12.01
+            },
+            {
+              "period": "2025-09-30",
+              "actual": 0.14,
+              "estimate": 0.1271,
+              "surprise_pct": 10.15
+            },
+            {
+              "period": "2025-06-30",
+              "actual": 0.11,
+              "estimate": 0.0949,
+              "surprise_pct": 15.91
+            },
+            {
+              "period": "2025-03-31",
+              "actual": 0.12,
+              "estimate": 0.0946,
+              "surprise_pct": 26.85
+            }
+          ]
+        },
+        {
+          "ticker": "012450",
+          "name": "한화에어로스페이스",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "GROWTH",
+          "price": {
+            "price": 1308000.0,
+            "change_1d": 18.16,
+            "mom_3m": 45.3,
+            "rsi": 47.3
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        },
+        {
+          "ticker": "099440",
+          "name": "쎄트렉아이",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "GROWTH",
+          "price": {
+            "price": 3470.0,
+            "change_1d": -17.28,
+            "mom_3m": -30.1,
+            "rsi": 37.0
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        },
+        {
+          "ticker": "227950",
+          "name": "컨텍",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "WATCH",
+          "price": {
+            "price": 592.0,
+            "change_1d": 36.41,
+            "mom_3m": 33.1,
+            "rsi": 46.5
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        },
+        {
+          "ticker": "211270",
+          "name": "AP위성",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "WATCH",
+          "price": {
+            "price": 14790.0,
+            "change_1d": 21.93,
+            "mom_3m": 43.6,
+            "rsi": 48.2
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        },
+        {
+          "ticker": "189300",
+          "name": "인텔리안테크",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "GROWTH",
+          "price": {
+            "price": 57100.0,
+            "change_1d": 21.1,
+            "mom_3m": 116.0,
+            "rsi": 48.4
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        }
+      ]
+    },
+    {
+      "id": "quantum",
+      "name": "양자컴퓨팅",
+      "icon": "◈",
+      "signal": {
+        "composite": 60,
+        "bernstein_stage": 6,
+        "bernstein_label": "역발상 투자 단계",
+        "avg_eps_revision": null,
+        "avg_inst_pct": null,
+        "avg_mom_3m": -12.7,
+        "avg_eps_surprise": 24.6
+      },
+      "stocks": [
+        {
+          "ticker": "IONQ",
+          "name": "IonQ",
+          "market": "US",
+          "type": "미국 중소형",
+          "sig": "VALUE",
+          "price": {
+            "price": 26.59,
+            "change_1d": -58.62,
+            "mom_3m": -41.2,
+            "rsi": 28.4
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": [
+            {
+              "period": "2025-12-31",
+              "actual": 1.93,
+              "estimate": -0.333,
+              "surprise_pct": 679.58
+            },
+            {
+              "period": "2025-09-30",
+              "actual": -0.17,
+              "estimate": -0.3353,
+              "surprise_pct": 49.3
+            },
+            {
+              "period": "2025-06-30",
+              "actual": -0.7,
+              "estimate": -0.2774,
+              "surprise_pct": -152.34
+            },
+            {
+              "period": "2025-03-31",
+              "actual": -0.14,
+              "estimate": -0.2091,
+              "surprise_pct": 33.05
+            }
+          ]
+        },
+        {
+          "ticker": "RGTI",
+          "name": "Rigetti",
+          "market": "US",
+          "type": "미국 중소형",
+          "sig": "VALUE",
+          "price": {
+            "price": 12.9,
+            "change_1d": -56.49,
+            "mom_3m": -42.1,
+            "rsi": 29.7
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": [
+            {
+              "period": "2025-12-31",
+              "actual": -0.03,
+              "estimate": -0.0332,
+              "surprise_pct": 9.64
+            },
+            {
+              "period": "2025-09-30",
+              "actual": -0.03,
+              "estimate": -0.0437,
+              "surprise_pct": 31.35
+            },
+            {
+              "period": "2025-06-30",
+              "actual": -0.056,
+              "estimate": -0.0471,
+              "surprise_pct": -18.9
+            },
+            {
+              "period": "2025-03-31",
+              "actual": -0.08,
+              "estimate": -0.0388,
+              "surprise_pct": -106.19
+            }
+          ]
+        },
+        {
+          "ticker": "IBM",
+          "name": "IBM",
+          "market": "US",
+          "type": "미국 대형",
+          "sig": "WATCH",
+          "price": {
+            "price": 237.25,
+            "change_1d": -15.21,
+            "mom_3m": -22.4,
+            "rsi": 38.6
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": [
+            {
+              "period": "2025-12-31",
+              "actual": 4.52,
+              "estimate": 4.3628,
+              "surprise_pct": 3.6
+            },
+            {
+              "period": "2025-09-30",
+              "actual": 2.65,
+              "estimate": 2.4701,
+              "surprise_pct": 7.28
+            },
+            {
+              "period": "2025-06-30",
+              "actual": 2.8,
+              "estimate": 2.6695,
+              "surprise_pct": 4.89
+            },
+            {
+              "period": "2025-03-31",
+              "actual": 1.6,
+              "estimate": 1.4163,
+              "surprise_pct": 12.97
+            }
+          ]
+        },
+        {
+          "ticker": "QBTS",
+          "name": "D-Wave Quantum",
+          "market": "US",
+          "type": "미국 중소형",
+          "sig": "VALUE",
+          "price": {
+            "price": 12.98,
+            "change_1d": -48.72,
+            "mom_3m": -50.4,
+            "rsi": 24.7
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": [
+            {
+              "period": "2025-12-31",
+              "actual": -0.09,
+              "estimate": -0.0676,
+              "surprise_pct": -33.14
+            },
+            {
+              "period": "2025-09-30",
+              "actual": -0.05,
+              "estimate": -0.0687,
+              "surprise_pct": 27.22
+            },
+            {
+              "period": "2025-06-30",
+              "actual": -0.08,
+              "estimate": -0.049,
+              "surprise_pct": -63.27
+            },
+            {
+              "period": "2025-03-31",
+              "actual": -0.023,
+              "estimate": -0.0343,
+              "surprise_pct": 32.94
+            }
+          ]
+        },
+        {
+          "ticker": "QUBT",
+          "name": "Quantum Computing",
+          "market": "US",
+          "type": "미국 중소형",
+          "sig": "VALUE",
+          "price": {
+            "price": 6.31,
+            "change_1d": -66.53,
+            "mom_3m": -40.3,
+            "rsi": 30.9
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": [
+            {
+              "period": "2025-12-31",
+              "actual": -0.01,
+              "estimate": -0.0332,
+              "surprise_pct": 69.88
+            },
+            {
+              "period": "2025-09-30",
+              "actual": 0.01,
+              "estimate": -0.0578,
+              "surprise_pct": 117.3
+            },
+            {
+              "period": "2025-06-30",
+              "actual": -0.26,
+              "estimate": -0.0561,
+              "surprise_pct": -363.46
+            },
+            {
+              "period": "2025-03-31",
+              "actual": 0.11,
+              "estimate": -0.0714,
+              "surprise_pct": 254.06
+            }
+          ]
+        },
+        {
+          "ticker": "017670",
+          "name": "SK텔레콤",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "WATCH",
+          "price": {
+            "price": 78300.0,
+            "change_1d": 44.2,
+            "mom_3m": 46.6,
+            "rsi": 52.7
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        },
+        {
+          "ticker": "030200",
+          "name": "KT",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "WATCH",
+          "price": {
+            "price": 60800.0,
+            "change_1d": 20.4,
+            "mom_3m": 14.5,
+            "rsi": 52.5
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        },
+        {
+          "ticker": "032640",
+          "name": "LG유플러스",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "WATCH",
+          "price": {
+            "price": 15400.0,
+            "change_1d": 0.33,
+            "mom_3m": -0.1,
+            "rsi": 47.1
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        },
+        {
+          "ticker": "054920",
+          "name": "아이에이치큐",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "VALUE",
+          "price": {
+            "price": 2595.0,
+            "change_1d": -42.97,
+            "mom_3m": 14.7,
+            "rsi": 50.9
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
+        },
+        {
+          "ticker": "035600",
+          "name": "KG이니시스",
+          "market": "KR",
+          "type": "한국 상장",
+          "sig": "WATCH",
+          "price": {
+            "price": 10860.0,
+            "change_1d": 2.45,
+            "mom_3m": -6.3,
+            "rsi": 40.9
+          },
+          "financials": {
+            "per": null,
+            "forward_per": null,
+            "eps": null,
+            "market_cap": null,
+            "target_price": null,
+            "revenue_growth": null,
+            "op_margin": null,
+            "inst_pct": 0,
+            "eps_revision_pct": null,
+            "eps_revision_dir": null,
+            "eps_now": null,
+            "eps_30d": null
+          },
+          "dart": {},
+          "institutions": [],
+          "earnings": []
         }
       ]
     }
