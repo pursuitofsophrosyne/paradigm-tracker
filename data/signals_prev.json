@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-30T00:04:35.393559",
+  "updated_at": "2026-03-30T12:05:09.442909",
   "themes": [
     {
       "id": "ai_infra",
@@ -543,7 +543,7 @@
         "bernstein_label": "역발상 투자",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": 28.88,
+        "avg_mom_3m": 25.77,
         "avg_eps_surprise": -23.86
       },
       "stocks": [
@@ -671,9 +671,9 @@
             "eps_90d": null
           },
           "price": {
-            "price": 179700.0,
-            "change_1d": 49.87,
-            "mom_3m": 50.2
+            "price": 176300.0,
+            "change_1d": 47.04,
+            "mom_3m": 47.0
           },
           "earnings": [],
           "institutions": []
@@ -698,9 +698,9 @@
             "eps_90d": null
           },
           "price": {
-            "price": 922000.0,
-            "change_1d": 41.63,
-            "mom_3m": 43.3
+            "price": 873000.0,
+            "change_1d": 34.1,
+            "mom_3m": 34.1
           },
           "earnings": [],
           "institutions": []
