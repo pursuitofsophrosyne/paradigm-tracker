@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-11T00:05:10.306972",
+  "updated_at": "2026-04-11T10:58:48.802193",
   "themes": [
     {
       "id": "ai_infra",
@@ -801,7 +801,7 @@
             "price": 788000.0,
             "change_1d": 160.93,
             "mom_3m": -67.3,
-            "rsi": 18.8
+            "rsi": 22.7
           },
           "financials": {
             "per": null,
