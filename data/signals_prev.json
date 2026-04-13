@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-12T00:04:07.162115",
+  "updated_at": "2026-04-12T11:06:59.207891",
   "themes": [
     {
       "id": "ai_infra",
@@ -447,12 +447,12 @@
       "name": "AI Datacenter / 전력",
       "icon": "▣",
       "signal": {
-        "composite": 81,
+        "composite": 82,
         "bernstein_stage": 8,
         "bernstein_label": "긍정적 어닝 서프라이즈 모델",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": 20.64,
+        "avg_mom_3m": 33.7,
         "avg_eps_surprise": 32.48
       },
       "stocks": [
@@ -799,9 +799,9 @@
           "sig": "GROWTH",
           "price": {
             "price": 788000.0,
-            "change_1d": 160.93,
-            "mom_3m": -67.3,
-            "rsi": 22.7
+            "change_1d": 1204.64,
+            "mom_3m": 63.3,
+            "rsi": 53.3
           },
           "financials": {
             "per": null,
