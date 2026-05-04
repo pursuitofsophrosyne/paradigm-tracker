@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-03T10:02:42.886003",
+  "updated_at": "2026-05-03T23:51:44.598138",
   "themes": [
     {
       "id": "ai_infra",
@@ -447,13 +447,13 @@
       "name": "AI Datacenter / 전력",
       "icon": "▣",
       "signal": {
-        "composite": 79,
+        "composite": 78,
         "bernstein_stage": 8,
         "bernstein_label": "긍정적 어닝 서프라이즈 모델",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
         "avg_mom_3m": 42.52,
-        "avg_eps_surprise": -2.63
+        "avg_eps_surprise": -12.09
       },
       "stocks": [
         {
@@ -463,8 +463,8 @@
           "type": "미국 대형",
           "sig": "GROWTH",
           "price": {
-            "price": 1085.03,
-            "change_1d": 28.25,
+            "price": 1085.7,
+            "change_1d": 28.33,
             "mom_3m": 33.9,
             "rsi": 62.8
           },
@@ -487,9 +487,9 @@
           "earnings": [
             {
               "period": "2026-03-31",
-              "actual": 10.79,
-              "estimate": 4.4493,
-              "surprise_pct": 142.51
+              "actual": 4.41,
+              "estimate": 4.4503,
+              "surprise_pct": -0.91
             },
             {
               "period": "2025-12-31",
@@ -598,8 +598,8 @@
             {
               "period": "2026-03-31",
               "actual": 2.08,
-              "estimate": 1.8635,
-              "surprise_pct": 11.62
+              "estimate": 1.8385,
+              "surprise_pct": 13.14
             },
             {
               "period": "2025-12-31",
@@ -1400,8 +1400,8 @@
           "type": "미국 중소형",
           "sig": "VALUE",
           "price": {
-            "price": 17.5,
-            "change_1d": -60.47,
+            "price": 17.52,
+            "change_1d": -60.42,
             "mom_3m": -1.2,
             "rsi": 54.5
           },
