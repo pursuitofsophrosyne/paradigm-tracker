@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-16T10:13:03.457218",
+  "updated_at": "2026-05-16T23:56:02.851966",
   "themes": [
     {
       "id": "ai_infra",
@@ -447,13 +447,13 @@
       "name": "AI Datacenter / 전력",
       "icon": "▣",
       "signal": {
-        "composite": 78,
+        "composite": 79,
         "bernstein_stage": 8,
         "bernstein_label": "긍정적 어닝 서프라이즈 모델",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
         "avg_mom_3m": 34.96,
-        "avg_eps_surprise": -13.71
+        "avg_eps_surprise": -3.4
       },
       "stocks": [
         {
@@ -541,6 +541,12 @@
           "institutions": [],
           "earnings": [
             {
+              "period": "2026-03-31",
+              "actual": 2.87,
+              "estimate": 1.3526,
+              "surprise_pct": 112.18
+            },
+            {
               "period": "2025-12-31",
               "actual": 0.54,
               "estimate": 2.3689,
@@ -557,12 +563,6 @@
               "actual": 0.71,
               "estimate": 1.2342,
               "surprise_pct": -42.47
-            },
-            {
-              "period": "2025-03-31",
-              "actual": -0.93,
-              "estimate": 0.6525,
-              "surprise_pct": -242.53
             }
           ]
         },
@@ -894,7 +894,7 @@
         "avg_eps_revision": null,
         "avg_inst_pct": null,
         "avg_mom_3m": 15.8,
-        "avg_eps_surprise": -44.33
+        "avg_eps_surprise": -42.4
       },
       "stocks": [
         {
@@ -1038,15 +1038,15 @@
           "earnings": [
             {
               "period": "2026-03-31",
-              "actual": -0.18,
+              "actual": -0.25,
               "estimate": -0.0743,
-              "surprise_pct": -142.26
+              "surprise_pct": -236.47
             },
             {
               "period": "2025-12-31",
-              "actual": -0.32,
+              "actual": -0.23,
               "estimate": -0.0731,
-              "surprise_pct": -337.76
+              "surprise_pct": -214.64
             },
             {
               "period": "2025-09-30",
@@ -1335,7 +1335,7 @@
         "avg_eps_revision": null,
         "avg_inst_pct": null,
         "avg_mom_3m": 13.92,
-        "avg_eps_surprise": 71.27
+        "avg_eps_surprise": 74.87
       },
       "stocks": [
         {
@@ -1534,9 +1534,9 @@
           "earnings": [
             {
               "period": "2026-03-31",
-              "actual": -0.05,
-              "estimate": -0.075,
-              "surprise_pct": 33.33
+              "actual": -0.01,
+              "estimate": -0.0781,
+              "surprise_pct": 87.2
             },
             {
               "period": "2025-12-31",
