@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-14T11:29:15.353022",
+  "updated_at": "2026-06-15T00:14:38.572960",
   "themes": [
     {
       "id": "ai_infra",
@@ -298,7 +298,7 @@
           "sig": "WATCH",
           "price": {
             "price": 322500.0,
-            "change_1d": 196.14,
+            "change_1d": 207.73,
             "mom_3m": 71.6,
             "rsi": 57.4
           },
@@ -328,7 +328,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 2150000.0,
-            "change_1d": 276.53,
+            "change_1d": 288.09,
             "mom_3m": 131.2,
             "rsi": 58.4
           },
@@ -358,7 +358,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 361000.0,
-            "change_1d": 200.33,
+            "change_1d": 204.64,
             "mom_3m": 13.9,
             "rsi": 59.0
           },
@@ -388,7 +388,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 219500.0,
-            "change_1d": 245.13,
+            "change_1d": 256.33,
             "mom_3m": -11.3,
             "rsi": 51.8
           },
@@ -418,7 +418,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 122400.0,
-            "change_1d": -9.4,
+            "change_1d": -6.42,
             "mom_3m": 12.5,
             "rsi": 47.1
           },
@@ -739,7 +739,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 2150000.0,
-            "change_1d": 276.53,
+            "change_1d": 288.09,
             "mom_3m": 131.2,
             "rsi": 58.4
           },
@@ -769,7 +769,7 @@
           "sig": "WATCH",
           "price": {
             "price": 322500.0,
-            "change_1d": 196.14,
+            "change_1d": 207.73,
             "mom_3m": 71.6,
             "rsi": 57.4
           },
@@ -799,7 +799,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 222500.0,
-            "change_1d": 119.86,
+            "change_1d": 130.33,
             "mom_3m": 50.3,
             "rsi": 44.0
           },
@@ -829,7 +829,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 3376000.0,
-            "change_1d": 72.07,
+            "change_1d": 77.59,
             "mom_3m": 31.8,
             "rsi": 44.6
           },
@@ -859,7 +859,7 @@
           "sig": "WATCH",
           "price": {
             "price": 93100.0,
-            "change_1d": 16.81,
+            "change_1d": 20.75,
             "mom_3m": -10.0,
             "rsi": 39.1
           },
@@ -1180,7 +1180,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 1078000.0,
-            "change_1d": 12.17,
+            "change_1d": 18.72,
             "mom_3m": -26.4,
             "rsi": 37.0
           },
@@ -1210,7 +1210,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 3470.0,
-            "change_1d": -50.14,
+            "change_1d": -50.78,
             "mom_3m": -40.8,
             "rsi": 35.8
           },
@@ -1240,7 +1240,7 @@
           "sig": "WATCH",
           "price": {
             "price": 592.0,
-            "change_1d": -65.68,
+            "change_1d": -65.58,
             "mom_3m": -51.3,
             "rsi": 22.3
           },
@@ -1270,7 +1270,7 @@
           "sig": "WATCH",
           "price": {
             "price": 14790.0,
-            "change_1d": 30.31,
+            "change_1d": 26.63,
             "mom_3m": -30.7,
             "rsi": 37.2
           },
@@ -1300,7 +1300,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 57100.0,
-            "change_1d": 18.22,
+            "change_1d": 15.01,
             "mom_3m": -26.4,
             "rsi": 35.7
           },
@@ -1621,7 +1621,7 @@
           "sig": "WATCH",
           "price": {
             "price": 103000.0,
-            "change_1d": 90.74,
+            "change_1d": 92.16,
             "mom_3m": 35.2,
             "rsi": 50.5
           },
@@ -1651,7 +1651,7 @@
           "sig": "WATCH",
           "price": {
             "price": 54800.0,
-            "change_1d": 4.18,
+            "change_1d": 3.79,
             "mom_3m": -10.9,
             "rsi": 45.6
           },
@@ -1681,7 +1681,7 @@
           "sig": "WATCH",
           "price": {
             "price": 15950.0,
-            "change_1d": 5.7,
+            "change_1d": 5.84,
             "mom_3m": 4.5,
             "rsi": 52.6
           },
@@ -1711,7 +1711,7 @@
           "sig": "VALUE",
           "price": {
             "price": 2595.0,
-            "change_1d": -34.22,
+            "change_1d": -33.2,
             "mom_3m": -6.8,
             "rsi": 33.3
           },
@@ -1741,7 +1741,7 @@
           "sig": "WATCH",
           "price": {
             "price": 10860.0,
-            "change_1d": 0.56,
+            "change_1d": 0.93,
             "mom_3m": -2.8,
             "rsi": 48.7
           },
