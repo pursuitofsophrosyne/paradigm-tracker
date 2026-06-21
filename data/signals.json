@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-20T11:16:35.133107",
+  "updated_at": "2026-06-21T00:10:38.165291",
   "themes": [
     {
       "id": "ai_infra",
@@ -452,7 +452,7 @@
         "bernstein_label": "긍정적 어닝 서프라이즈 모델",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": 37.31,
+        "avg_mom_3m": 39.06,
         "avg_eps_surprise": -3.4
       },
       "stocks": [
@@ -465,8 +465,8 @@
           "price": {
             "price": 1092.19,
             "change_1d": 46.78,
-            "mom_3m": 11.7,
-            "rsi": 57.2
+            "mom_3m": 13.9,
+            "rsi": 58.3
           },
           "financials": {
             "per": null,
@@ -630,8 +630,8 @@
           "price": {
             "price": 188.15,
             "change_1d": 27.19,
-            "mom_3m": 4.0,
-            "rsi": 48.6
+            "mom_3m": 8.6,
+            "rsi": 50.1
           },
           "financials": {
             "per": null,
@@ -685,8 +685,8 @@
           "price": {
             "price": 135.06,
             "change_1d": -12.66,
-            "mom_3m": -18.1,
-            "rsi": 47.9
+            "mom_3m": -7.4,
+            "rsi": 51.4
           },
           "financials": {
             "per": null,
