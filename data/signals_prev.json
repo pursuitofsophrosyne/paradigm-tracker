@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-28T00:04:57.993301",
+  "updated_at": "2026-06-28T11:05:42.897854",
   "themes": [
     {
       "id": "ai_infra",
@@ -11,7 +11,7 @@
         "bernstein_label": "긍정적 어닝 서프라이즈 모델",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": 66.25,
+        "avg_mom_3m": 65.1,
         "avg_eps_surprise": 3.39
       },
       "stocks": [
@@ -24,8 +24,8 @@
           "price": {
             "price": 192.53,
             "change_1d": 1.05,
-            "mom_3m": 14.3,
-            "rsi": 39.6
+            "mom_3m": 14.9,
+            "rsi": 37.5
           },
           "financials": {
             "per": null,
@@ -79,8 +79,8 @@
           "price": {
             "price": 521.58,
             "change_1d": 142.61,
-            "mom_3m": 161.4,
-            "rsi": 58.5
+            "mom_3m": 158.2,
+            "rsi": 56.1
           },
           "financials": {
             "per": null,
@@ -134,8 +134,8 @@
           "price": {
             "price": 365.02,
             "change_1d": 3.66,
-            "mom_3m": 22.5,
-            "rsi": 43.3
+            "mom_3m": 21.4,
+            "rsi": 39.8
           },
           "financials": {
             "per": null,
@@ -189,8 +189,8 @@
           "price": {
             "price": 432.35,
             "change_1d": 42.77,
-            "mom_3m": 33.4,
-            "rsi": 52.6
+            "mom_3m": 32.3,
+            "rsi": 51.7
           },
           "financials": {
             "per": null,
@@ -244,8 +244,8 @@
           "price": {
             "price": 266.77,
             "change_1d": 208.98,
-            "mom_3m": 187.9,
-            "rsi": 56.5
+            "mom_3m": 181.2,
+            "rsi": 52.6
           },
           "financials": {
             "per": null,
@@ -452,7 +452,7 @@
         "bernstein_label": "긍정적 어닝 서프라이즈 모델",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": 34.38,
+        "avg_mom_3m": 33.77,
         "avg_eps_surprise": -3.4
       },
       "stocks": [
@@ -465,8 +465,8 @@
           "price": {
             "price": 1091.3,
             "change_1d": 42.97,
-            "mom_3m": 12.9,
-            "rsi": 53.3
+            "mom_3m": 13.3,
+            "rsi": 54.5
           },
           "financials": {
             "per": null,
@@ -520,8 +520,8 @@
           "price": {
             "price": 163.49,
             "change_1d": 1.13,
-            "mom_3m": 10.2,
-            "rsi": 62.0
+            "mom_3m": 5.2,
+            "rsi": 57.0
           },
           "financials": {
             "per": null,
@@ -575,8 +575,8 @@
           "price": {
             "price": 1045.17,
             "change_1d": 57.53,
-            "mom_3m": 24.3,
-            "rsi": 58.7
+            "mom_3m": 22.5,
+            "rsi": 53.5
           },
           "financials": {
             "per": null,
@@ -630,8 +630,8 @@
           "price": {
             "price": 193.0,
             "change_1d": 24.51,
-            "mom_3m": 10.1,
-            "rsi": 54.3
+            "mom_3m": 10.0,
+            "rsi": 55.1
           },
           "financials": {
             "per": null,
@@ -685,8 +685,8 @@
           "price": {
             "price": 149.36,
             "change_1d": -7.16,
-            "mom_3m": 0.7,
-            "rsi": 63.3
+            "mom_3m": 1.1,
+            "rsi": 65.1
           },
           "financials": {
             "per": null,
@@ -893,7 +893,7 @@
         "bernstein_label": "역발상 투자 단계",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": -27.46,
+        "avg_mom_3m": -22.4,
         "avg_eps_surprise": -42.13
       },
       "stocks": [
@@ -906,8 +906,8 @@
           "price": {
             "price": 84.54,
             "change_1d": 19.66,
-            "mom_3m": 22.4,
-            "rsi": 34.2
+            "mom_3m": 38.7,
+            "rsi": 37.2
           },
           "financials": {
             "per": null,
@@ -961,8 +961,8 @@
           "price": {
             "price": 71.45,
             "change_1d": -0.69,
-            "mom_3m": -25.3,
-            "rsi": 36.2
+            "mom_3m": -9.2,
+            "rsi": 40.8
           },
           "financials": {
             "per": null,
@@ -1016,8 +1016,8 @@
           "price": {
             "price": 19.79,
             "change_1d": 29.77,
-            "mom_3m": -2.8,
-            "rsi": 32.4
+            "mom_3m": 13.0,
+            "rsi": 35.3
           },
           "financials": {
             "per": null,
@@ -1071,8 +1071,8 @@
           "price": {
             "price": 197.91,
             "change_1d": 12.53,
-            "mom_3m": -0.2,
-            "rsi": 54.6
+            "mom_3m": -2.3,
+            "rsi": 47.5
           },
           "financials": {
             "per": null,
@@ -1126,8 +1126,8 @@
           "price": {
             "price": 47.21,
             "change_1d": -39.24,
-            "mom_3m": -38.9,
-            "rsi": 30.7
+            "mom_3m": -34.4,
+            "rsi": 33.0
           },
           "financials": {
             "per": null,
@@ -1334,7 +1334,7 @@
         "bernstein_label": "역발상 투자 단계",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": 12.51,
+        "avg_mom_3m": 17.71,
         "avg_eps_surprise": 74.87
       },
       "stocks": [
@@ -1347,8 +1347,8 @@
           "price": {
             "price": 49.31,
             "change_1d": 7.2,
-            "mom_3m": 69.4,
-            "rsi": 41.3
+            "mom_3m": 79.2,
+            "rsi": 39.9
           },
           "financials": {
             "per": null,
@@ -1402,8 +1402,8 @@
           "price": {
             "price": 18.36,
             "change_1d": -17.96,
-            "mom_3m": 27.8,
-            "rsi": 41.9
+            "mom_3m": 37.8,
+            "rsi": 41.8
           },
           "financials": {
             "per": null,
@@ -1457,8 +1457,8 @@
           "price": {
             "price": 271.63,
             "change_1d": -10.97,
-            "mom_3m": 6.9,
-            "rsi": 47.0
+            "mom_3m": 14.9,
+            "rsi": 53.7
           },
           "financials": {
             "per": null,
@@ -1512,8 +1512,8 @@
           "price": {
             "price": 22.76,
             "change_1d": -10.0,
-            "mom_3m": 49.6,
-            "rsi": 44.0
+            "mom_3m": 63.7,
+            "rsi": 46.5
           },
           "financials": {
             "per": null,
@@ -1567,8 +1567,8 @@
           "price": {
             "price": 9.18,
             "change_1d": -13.88,
-            "mom_3m": 27.7,
-            "rsi": 42.0
+            "mom_3m": 37.8,
+            "rsi": 42.7
           },
           "financials": {
             "per": null,
