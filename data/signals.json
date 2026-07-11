@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-11T00:00:27.805661",
+  "updated_at": "2026-07-11T10:12:46.284240",
   "themes": [
     {
       "id": "ai_infra",
@@ -388,7 +388,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 219500.0,
-            "change_1d": 216.74,
+            "change_1d": -3.3,
             "mom_3m": null,
             "rsi": null
           },
@@ -1210,7 +1210,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 3470.0,
-            "change_1d": 27.81,
+            "change_1d": -0.86,
             "mom_3m": null,
             "rsi": null
           },
@@ -1711,7 +1711,7 @@
           "sig": "VALUE",
           "price": {
             "price": 2595.0,
-            "change_1d": -12.92,
+            "change_1d": -2.99,
             "mom_3m": null,
             "rsi": null
           },
@@ -1741,7 +1741,7 @@
           "sig": "WATCH",
           "price": {
             "price": 10860.0,
-            "change_1d": 16.03,
+            "change_1d": -1.45,
             "mom_3m": null,
             "rsi": null
           },
