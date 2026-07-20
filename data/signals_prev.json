@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-19T10:25:30.436364",
+  "updated_at": "2026-07-20T00:00:06.489139",
   "themes": [
     {
       "id": "ai_infra",
@@ -298,7 +298,7 @@
           "sig": "WATCH",
           "price": {
             "price": 255000.0,
-            "change_1d": 71.26,
+            "change_1d": 75.62,
             "mom_3m": 20.9,
             "rsi": 40.1
           },
@@ -328,7 +328,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 1842000.0,
-            "change_1d": 143.65,
+            "change_1d": 147.91,
             "mom_3m": 62.1,
             "rsi": 40.4
           },
@@ -358,7 +358,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 242500.0,
-            "change_1d": 35.85,
+            "change_1d": 40.91,
             "mom_3m": -17.8,
             "rsi": 47.6
           },
@@ -388,7 +388,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 219500.0,
-            "change_1d": -3.3,
+            "change_1d": 187.68,
             "mom_3m": null,
             "rsi": null
           },
@@ -418,7 +418,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 92000.0,
-            "change_1d": -23.84,
+            "change_1d": -18.22,
             "mom_3m": -25.3,
             "rsi": 40.0
           },
@@ -739,7 +739,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 1842000.0,
-            "change_1d": 143.65,
+            "change_1d": 147.91,
             "mom_3m": 62.1,
             "rsi": 40.4
           },
@@ -769,7 +769,7 @@
           "sig": "WATCH",
           "price": {
             "price": 255000.0,
-            "change_1d": 71.26,
+            "change_1d": 75.62,
             "mom_3m": 20.9,
             "rsi": 40.1
           },
@@ -799,7 +799,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 190000.0,
-            "change_1d": 78.24,
+            "change_1d": 80.95,
             "mom_3m": 1.7,
             "rsi": 42.0
           },
@@ -829,7 +829,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 2789000.0,
-            "change_1d": 19.55,
+            "change_1d": 18.98,
             "mom_3m": -5.9,
             "rsi": 40.5
           },
@@ -1180,7 +1180,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 943000.0,
-            "change_1d": -27.41,
+            "change_1d": -27.96,
             "mom_3m": -37.5,
             "rsi": 39.7
           },
@@ -1210,7 +1210,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 3470.0,
-            "change_1d": -0.86,
+            "change_1d": 26.41,
             "mom_3m": null,
             "rsi": null
           },
@@ -1240,7 +1240,7 @@
           "sig": "WATCH",
           "price": {
             "price": 592.0,
-            "change_1d": -64.01,
+            "change_1d": -64.55,
             "mom_3m": -62.0,
             "rsi": 40.5
           },
@@ -1270,7 +1270,7 @@
           "sig": "WATCH",
           "price": {
             "price": 14790.0,
-            "change_1d": 1.51,
+            "change_1d": -15.24,
             "mom_3m": -55.2,
             "rsi": 35.1
           },
@@ -1300,7 +1300,7 @@
           "sig": "GROWTH",
           "price": {
             "price": 57100.0,
-            "change_1d": -17.13,
+            "change_1d": -22.84,
             "mom_3m": -54.1,
             "rsi": 32.2
           },
@@ -1335,7 +1335,7 @@
         "avg_eps_revision": null,
         "avg_inst_pct": null,
         "avg_mom_3m": -19.24,
-        "avg_eps_surprise": 74.11
+        "avg_eps_surprise": 74.87
       },
       "stocks": [
         {
@@ -1478,12 +1478,6 @@
           "institutions": [],
           "earnings": [
             {
-              "period": "2026-06-30",
-              "actual": 2.93,
-              "estimate": 3.0522,
-              "surprise_pct": -4.0
-            },
-            {
               "period": "2026-03-31",
               "actual": 1.91,
               "estimate": 1.8238,
@@ -1500,6 +1494,12 @@
               "actual": 2.65,
               "estimate": 2.4701,
               "surprise_pct": 7.28
+            },
+            {
+              "period": "2025-06-30",
+              "actual": 2.8,
+              "estimate": 2.6695,
+              "surprise_pct": 4.89
             }
           ]
         },
@@ -1621,7 +1621,7 @@
           "sig": "WATCH",
           "price": {
             "price": 89700.0,
-            "change_1d": 62.21,
+            "change_1d": 44.21,
             "mom_3m": -8.6,
             "rsi": 48.1
           },
@@ -1651,7 +1651,7 @@
           "sig": "WATCH",
           "price": {
             "price": 52400.0,
-            "change_1d": -2.78,
+            "change_1d": -5.07,
             "mom_3m": -18.6,
             "rsi": 44.0
           },
@@ -1681,7 +1681,7 @@
           "sig": "WATCH",
           "price": {
             "price": 14620.0,
-            "change_1d": -2.08,
+            "change_1d": -5.25,
             "mom_3m": -15.9,
             "rsi": 48.4
           },
@@ -1711,7 +1711,7 @@
           "sig": "VALUE",
           "price": {
             "price": 2595.0,
-            "change_1d": -2.99,
+            "change_1d": -15.33,
             "mom_3m": null,
             "rsi": null
           },
@@ -1741,7 +1741,7 @@
           "sig": "WATCH",
           "price": {
             "price": 10860.0,
-            "change_1d": -1.45,
+            "change_1d": 13.84,
             "mom_3m": null,
             "rsi": null
           },
