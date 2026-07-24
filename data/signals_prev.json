@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-23T00:01:34.906104",
+  "updated_at": "2026-07-23T11:06:43.601650",
   "themes": [
     {
       "id": "ai_infra",
@@ -11,7 +11,7 @@
         "bernstein_label": "긍정적 어닝 서프라이즈 모델",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": 16.14,
+        "avg_mom_3m": 16.31,
         "avg_eps_surprise": 33.88
       },
       "stocks": [
@@ -297,10 +297,10 @@
           "type": "한국 상장",
           "sig": "WATCH",
           "price": {
-            "price": 260500.0,
-            "change_1d": 71.27,
-            "mom_3m": 21.4,
-            "rsi": 42.7
+            "price": 270000.0,
+            "change_1d": 77.51,
+            "mom_3m": 23.3,
+            "rsi": 45.4
           },
           "financials": {
             "per": null,
@@ -327,10 +327,10 @@
           "type": "한국 상장",
           "sig": "GROWTH",
           "price": {
-            "price": 1830000.0,
-            "change_1d": 138.59,
-            "mom_3m": 56.9,
-            "rsi": 41.0
+            "price": 1919000.0,
+            "change_1d": 150.2,
+            "mom_3m": 56.8,
+            "rsi": 44.0
           },
           "financials": {
             "per": null,
@@ -357,10 +357,10 @@
           "type": "한국 상장",
           "sig": "GROWTH",
           "price": {
-            "price": 215000.0,
-            "change_1d": 25.66,
-            "mom_3m": -25.1,
-            "rsi": 42.5
+            "price": 216000.0,
+            "change_1d": 26.24,
+            "mom_3m": -26.8,
+            "rsi": 42.7
           },
           "financials": {
             "per": null,
@@ -417,10 +417,10 @@
           "type": "한국 상장",
           "sig": "GROWTH",
           "price": {
-            "price": 91600.0,
-            "change_1d": -23.6,
-            "mom_3m": -31.3,
-            "rsi": 41.8
+            "price": 93400.0,
+            "change_1d": -22.1,
+            "mom_3m": -29.9,
+            "rsi": 43.1
           },
           "financials": {
             "per": null,
@@ -452,7 +452,7 @@
         "bernstein_label": "긍정적 어닝 서프라이즈 모델",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": 0.32,
+        "avg_mom_3m": 3.0,
         "avg_eps_surprise": -4.65
       },
       "stocks": [
@@ -738,10 +738,10 @@
           "type": "한국 상장",
           "sig": "GROWTH",
           "price": {
-            "price": 1830000.0,
-            "change_1d": 138.59,
-            "mom_3m": 56.9,
-            "rsi": 41.0
+            "price": 1919000.0,
+            "change_1d": 150.2,
+            "mom_3m": 56.8,
+            "rsi": 44.0
           },
           "financials": {
             "per": null,
@@ -768,10 +768,10 @@
           "type": "한국 상장",
           "sig": "WATCH",
           "price": {
-            "price": 260500.0,
-            "change_1d": 71.27,
-            "mom_3m": 21.4,
-            "rsi": 42.7
+            "price": 270000.0,
+            "change_1d": 77.51,
+            "mom_3m": 23.3,
+            "rsi": 45.4
           },
           "financials": {
             "per": null,
@@ -798,10 +798,10 @@
           "type": "한국 상장",
           "sig": "GROWTH",
           "price": {
-            "price": 190600.0,
-            "change_1d": 87.23,
-            "mom_3m": 3.5,
-            "rsi": 43.4
+            "price": 223500.0,
+            "change_1d": 119.55,
+            "mom_3m": 21.0,
+            "rsi": 53.3
           },
           "financials": {
             "per": null,
@@ -828,10 +828,10 @@
           "type": "한국 상장",
           "sig": "GROWTH",
           "price": {
-            "price": 2679000.0,
-            "change_1d": 14.15,
-            "mom_3m": -11.0,
-            "rsi": 40.2
+            "price": 2866000.0,
+            "change_1d": 22.11,
+            "mom_3m": -4.5,
+            "rsi": 45.4
           },
           "financials": {
             "per": null,
@@ -858,10 +858,10 @@
           "type": "한국 상장",
           "sig": "WATCH",
           "price": {
-            "price": 69200.0,
-            "change_1d": -25.83,
-            "mom_3m": -37.7,
-            "rsi": 35.5
+            "price": 73200.0,
+            "change_1d": -21.54,
+            "mom_3m": -36.7,
+            "rsi": 41.1
           },
           "financials": {
             "per": null,
@@ -893,7 +893,7 @@
         "bernstein_label": "역발상 투자 단계",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": -40.14,
+        "avg_mom_3m": -39.43,
         "avg_eps_surprise": -42.13
       },
       "stocks": [
@@ -1179,10 +1179,10 @@
           "type": "한국 상장",
           "sig": "GROWTH",
           "price": {
-            "price": 891000.0,
-            "change_1d": -29.0,
-            "mom_3m": -37.5,
-            "rsi": 37.3
+            "price": 958000.0,
+            "change_1d": -23.67,
+            "mom_3m": -31.1,
+            "rsi": 44.6
           },
           "financials": {
             "per": null,
@@ -1334,7 +1334,7 @@
         "bernstein_label": "역발상 투자 단계",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": -16.93,
+        "avg_mom_3m": -16.52,
         "avg_eps_surprise": 74.2
       },
       "stocks": [
@@ -1620,10 +1620,10 @@
           "type": "한국 상장",
           "sig": "WATCH",
           "price": {
-            "price": 94100.0,
-            "change_1d": 50.08,
-            "mom_3m": -2.5,
-            "rsi": 55.4
+            "price": 99500.0,
+            "change_1d": 58.69,
+            "mom_3m": -1.0,
+            "rsi": 61.3
           },
           "financials": {
             "per": null,
@@ -1650,10 +1650,10 @@
           "type": "한국 상장",
           "sig": "WATCH",
           "price": {
-            "price": 52300.0,
-            "change_1d": -3.51,
-            "mom_3m": -16.7,
-            "rsi": 44.2
+            "price": 52700.0,
+            "change_1d": -2.77,
+            "mom_3m": -15.9,
+            "rsi": 45.9
           },
           "financials": {
             "per": null,
@@ -1680,10 +1680,10 @@
           "type": "한국 상장",
           "sig": "WATCH",
           "price": {
-            "price": 14640.0,
-            "change_1d": -4.56,
-            "mom_3m": -15.9,
-            "rsi": 49.1
+            "price": 14790.0,
+            "change_1d": -3.59,
+            "mom_3m": -15.0,
+            "rsi": 51.1
           },
           "financials": {
             "per": null,
