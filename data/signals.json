@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-14T23:23:50.862284",
+  "updated_at": "2026-08-15T09:22:44.570720",
   "themes": [
     {
       "id": "ai_infra",
@@ -1510,8 +1510,8 @@
           "type": "미국 중소형",
           "sig": "VALUE",
           "price": {
-            "price": 21.17,
-            "change_1d": 7.63,
+            "price": 16.21,
+            "change_1d": -17.59,
             "mom_3m": 4.0,
             "rsi": 54.7
           },
