@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-16T09:24:22.642987",
+  "updated_at": "2026-08-16T23:21:40.108921",
   "themes": [
     {
       "id": "ai_infra",
@@ -893,7 +893,7 @@
         "bernstein_label": "역발상 투자 단계",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": -16.79,
+        "avg_mom_3m": -16.54,
         "avg_eps_surprise": -41.18
       },
       "stocks": [
@@ -1071,8 +1071,8 @@
           "price": {
             "price": 173.22,
             "change_1d": -13.56,
-            "mom_3m": -17.9,
-            "rsi": 48.1
+            "mom_3m": -15.4,
+            "rsi": 48.4
           },
           "financials": {
             "per": null,
@@ -1510,8 +1510,8 @@
           "type": "미국 중소형",
           "sig": "VALUE",
           "price": {
-            "price": 16.21,
-            "change_1d": -17.59,
+            "price": 21.17,
+            "change_1d": 7.63,
             "mom_3m": 4.0,
             "rsi": 54.7
           },

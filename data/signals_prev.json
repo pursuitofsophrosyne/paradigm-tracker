@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-15T23:22:20.884064",
+  "updated_at": "2026-08-16T09:24:22.642987",
   "themes": [
     {
       "id": "ai_infra",
@@ -452,7 +452,7 @@
         "bernstein_label": "긍정적 어닝 서프라이즈 모델",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": -6.06,
+        "avg_mom_3m": -5.87,
         "avg_eps_surprise": -1.29
       },
       "stocks": [
@@ -465,7 +465,7 @@
           "price": {
             "price": 1102.1,
             "change_1d": 15.26,
-            "mom_3m": 2.1,
+            "mom_3m": 4.0,
             "rsi": 62.6
           },
           "financials": {
@@ -1510,8 +1510,8 @@
           "type": "미국 중소형",
           "sig": "VALUE",
           "price": {
-            "price": 21.17,
-            "change_1d": 7.63,
+            "price": 16.21,
+            "change_1d": -17.59,
             "mom_3m": 4.0,
             "rsi": 54.7
           },
