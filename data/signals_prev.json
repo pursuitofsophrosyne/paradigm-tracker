@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-20T23:27:18.645582",
+  "updated_at": "2026-08-21T09:33:30.372310",
   "themes": [
     {
       "id": "ai_infra",
@@ -11,7 +11,7 @@
         "bernstein_label": "긍정적 어닝 서프라이즈 모델",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": -1.93,
+        "avg_mom_3m": -5.4,
         "avg_eps_surprise": 3.57
       },
       "stocks": [
@@ -297,10 +297,10 @@
           "type": "한국 상장",
           "sig": "WATCH",
           "price": {
-            "price": 271000.0,
-            "change_1d": 42.56,
-            "mom_3m": -1.8,
-            "rsi": 53.5
+            "price": 281500.0,
+            "change_1d": 48.08,
+            "mom_3m": -6.0,
+            "rsi": 56.1
           },
           "financials": {
             "per": null,
@@ -327,10 +327,10 @@
           "type": "한국 상장",
           "sig": "GROWTH",
           "price": {
-            "price": 1691000.0,
-            "change_1d": 78.19,
-            "mom_3m": -3.1,
-            "rsi": 49.7
+            "price": 1730000.0,
+            "change_1d": 82.3,
+            "mom_3m": -10.8,
+            "rsi": 51.0
           },
           "financials": {
             "per": null,
@@ -357,10 +357,10 @@
           "type": "한국 상장",
           "sig": "GROWTH",
           "price": {
-            "price": 225500.0,
-            "change_1d": 12.47,
-            "mom_3m": -21.6,
-            "rsi": 52.4
+            "price": 213500.0,
+            "change_1d": 6.48,
+            "mom_3m": -35.8,
+            "rsi": 48.0
           },
           "financials": {
             "per": null,
@@ -417,10 +417,10 @@
           "type": "한국 상장",
           "sig": "GROWTH",
           "price": {
-            "price": 105000.0,
-            "change_1d": 4.48,
-            "mom_3m": -13.7,
-            "rsi": 59.5
+            "price": 99300.0,
+            "change_1d": -1.19,
+            "mom_3m": -22.3,
+            "rsi": 54.6
           },
           "financials": {
             "per": null,
@@ -447,12 +447,12 @@
       "name": "AI Datacenter / 전력",
       "icon": "▣",
       "signal": {
-        "composite": 77,
+        "composite": 75,
         "bernstein_stage": 8,
         "bernstein_label": "긍정적 어닝 서프라이즈 모델",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": -9.6,
+        "avg_mom_3m": -14.06,
         "avg_eps_surprise": -1.29
       },
       "stocks": [
@@ -738,10 +738,10 @@
           "type": "한국 상장",
           "sig": "GROWTH",
           "price": {
-            "price": 1691000.0,
-            "change_1d": 78.19,
-            "mom_3m": -3.1,
-            "rsi": 49.7
+            "price": 1730000.0,
+            "change_1d": 82.3,
+            "mom_3m": -10.8,
+            "rsi": 51.0
           },
           "financials": {
             "per": null,
@@ -768,10 +768,10 @@
           "type": "한국 상장",
           "sig": "WATCH",
           "price": {
-            "price": 271000.0,
-            "change_1d": 42.56,
-            "mom_3m": -1.8,
-            "rsi": 53.5
+            "price": 281500.0,
+            "change_1d": 48.08,
+            "mom_3m": -6.0,
+            "rsi": 56.1
           },
           "financials": {
             "per": null,
@@ -798,10 +798,10 @@
           "type": "한국 상장",
           "sig": "GROWTH",
           "price": {
-            "price": 199200.0,
-            "change_1d": 44.14,
-            "mom_3m": -16.5,
-            "rsi": 48.6
+            "price": 187000.0,
+            "change_1d": 35.31,
+            "mom_3m": -31.1,
+            "rsi": 44.2
           },
           "financials": {
             "per": null,
@@ -828,10 +828,10 @@
           "type": "한국 상장",
           "sig": "GROWTH",
           "price": {
-            "price": 2857000.0,
-            "change_1d": 8.51,
-            "mom_3m": -19.9,
-            "rsi": 50.5
+            "price": 2721000.0,
+            "change_1d": 3.34,
+            "mom_3m": -30.7,
+            "rsi": 47.0
           },
           "financials": {
             "per": null,
@@ -858,10 +858,10 @@
           "type": "한국 상장",
           "sig": "WATCH",
           "price": {
-            "price": 75900.0,
-            "change_1d": -26.67,
-            "mom_3m": -25.1,
-            "rsi": 48.7
+            "price": 73300.0,
+            "change_1d": -29.18,
+            "mom_3m": -32.4,
+            "rsi": 45.2
           },
           "financials": {
             "per": null,
@@ -893,7 +893,7 @@
         "bernstein_label": "역발상 투자 단계",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": -21.51,
+        "avg_mom_3m": -22.16,
         "avg_eps_surprise": -41.18
       },
       "stocks": [
@@ -1179,10 +1179,10 @@
           "type": "한국 상장",
           "sig": "GROWTH",
           "price": {
-            "price": 1167000.0,
-            "change_1d": -6.04,
-            "mom_3m": -6.6,
-            "rsi": 60.7
+            "price": 1085000.0,
+            "change_1d": -12.64,
+            "mom_3m": -13.1,
+            "rsi": 52.0
           },
           "financials": {
             "per": null,
@@ -1334,7 +1334,7 @@
         "bernstein_label": "역발상 투자 단계",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": -10.6,
+        "avg_mom_3m": -10.54,
         "avg_eps_surprise": 55.39
       },
       "stocks": [
@@ -1620,10 +1620,10 @@
           "type": "한국 상장",
           "sig": "WATCH",
           "price": {
-            "price": 96600.0,
-            "change_1d": 19.55,
-            "mom_3m": -1.5,
-            "rsi": 56.7
+            "price": 102200.0,
+            "change_1d": 26.49,
+            "mom_3m": -0.6,
+            "rsi": 62.0
           },
           "financials": {
             "per": null,
@@ -1650,10 +1650,10 @@
           "type": "한국 상장",
           "sig": "WATCH",
           "price": {
-            "price": 52100.0,
-            "change_1d": -24.38,
-            "mom_3m": -6.6,
-            "rsi": 44.5
+            "price": 52400.0,
+            "change_1d": -23.95,
+            "mom_3m": -5.9,
+            "rsi": 46.2
           },
           "financials": {
             "per": null,
@@ -1680,10 +1680,10 @@
           "type": "한국 상장",
           "sig": "WATCH",
           "price": {
-            "price": 14660.0,
-            "change_1d": -16.23,
-            "mom_3m": -3.9,
-            "rsi": 47.0
+            "price": 14870.0,
+            "change_1d": -15.03,
+            "mom_3m": -4.9,
+            "rsi": 50.3
           },
           "financials": {
             "per": null,
