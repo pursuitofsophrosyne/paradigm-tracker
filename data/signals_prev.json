@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-26T01:16:43.598181",
+  "updated_at": "2026-09-26T13:36:38.427379",
   "themes": [
     {
       "id": "ai_infra",
@@ -11,7 +11,7 @@
         "bernstein_label": "긍정적 어닝 서프라이즈 모델",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": -2.7,
+        "avg_mom_3m": -4.29,
         "avg_eps_surprise": 3.44
       },
       "stocks": [
@@ -24,8 +24,8 @@
           "price": {
             "price": 225.07,
             "change_1d": 25.96,
-            "mom_3m": 16.6,
-            "rsi": 54.7
+            "mom_3m": 15.4,
+            "rsi": 55.2
           },
           "financials": {
             "per": null,
@@ -79,8 +79,8 @@
           "price": {
             "price": 630.63,
             "change_1d": 186.3,
-            "mom_3m": 20.6,
-            "rsi": 72.8
+            "mom_3m": 16.9,
+            "rsi": 73.0
           },
           "financials": {
             "per": null,
@@ -134,8 +134,8 @@
           "price": {
             "price": 352.81,
             "change_1d": 10.66,
-            "mom_3m": -4.0,
-            "rsi": 42.0
+            "mom_3m": -5.3,
+            "rsi": 43.7
           },
           "financials": {
             "per": null,
@@ -189,8 +189,8 @@
           "price": {
             "price": 450.61,
             "change_1d": 29.58,
-            "mom_3m": 4.3,
-            "rsi": 62.6
+            "mom_3m": -1.0,
+            "rsi": 62.2
           },
           "financials": {
             "per": null,
@@ -244,8 +244,8 @@
           "price": {
             "price": 261.94,
             "change_1d": 166.06,
-            "mom_3m": -2.9,
-            "rsi": 62.0
+            "mom_3m": -5.7,
+            "rsi": 63.1
           },
           "financials": {
             "per": null,
@@ -447,7 +447,7 @@
         "bernstein_label": "긍정적 어닝 서프라이즈 모델",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": -15.15,
+        "avg_mom_3m": -15.53,
         "avg_eps_surprise": -3.94
       },
       "stocks": [
@@ -460,8 +460,8 @@
           "price": {
             "price": 1008.08,
             "change_1d": 4.36,
-            "mom_3m": -5.2,
-            "rsi": 48.4
+            "mom_3m": -7.1,
+            "rsi": 42.0
           },
           "financials": {
             "per": null,
@@ -515,8 +515,8 @@
           "price": {
             "price": 138.46,
             "change_1d": -8.61,
-            "mom_3m": -15.6,
-            "rsi": 41.4
+            "mom_3m": -14.7,
+            "rsi": 42.4
           },
           "financials": {
             "per": null,
@@ -570,8 +570,8 @@
           "price": {
             "price": 957.63,
             "change_1d": 3.67,
-            "mom_3m": -8.6,
-            "rsi": 51.3
+            "mom_3m": -13.1,
+            "rsi": 51.8
           },
           "financials": {
             "per": null,
@@ -625,8 +625,8 @@
           "price": {
             "price": 178.61,
             "change_1d": 1.24,
-            "mom_3m": -6.2,
-            "rsi": 42.8
+            "mom_3m": -6.3,
+            "rsi": 40.0
           },
           "financials": {
             "per": null,
@@ -680,8 +680,8 @@
           "price": {
             "price": 100.37,
             "change_1d": -33.55,
-            "mom_3m": -34.5,
-            "rsi": 30.0
+            "mom_3m": -32.7,
+            "rsi": 35.1
           },
           "financials": {
             "per": null,
@@ -883,12 +883,12 @@
       "name": "Space Tech / 위성",
       "icon": "◎",
       "signal": {
-        "composite": 65,
-        "bernstein_stage": 7,
-        "bernstein_label": "역발상 → 긍정적 서프라이즈",
+        "composite": 64,
+        "bernstein_stage": 6,
+        "bernstein_label": "역발상 투자 단계",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": -7.54,
+        "avg_mom_3m": -10.89,
         "avg_eps_surprise": -51.26
       },
       "stocks": [
@@ -901,8 +901,8 @@
           "price": {
             "price": 73.95,
             "change_1d": 1.47,
-            "mom_3m": -12.9,
-            "rsi": 58.9
+            "mom_3m": -24.5,
+            "rsi": 59.4
           },
           "financials": {
             "per": null,
@@ -956,8 +956,8 @@
           "price": {
             "price": 61.81,
             "change_1d": -35.65,
-            "mom_3m": -14.5,
-            "rsi": 48.1
+            "mom_3m": -28.8,
+            "rsi": 49.3
           },
           "financials": {
             "per": null,
@@ -1011,8 +1011,8 @@
           "price": {
             "price": 15.61,
             "change_1d": -24.04,
-            "mom_3m": -20.7,
-            "rsi": 51.8
+            "mom_3m": -25.6,
+            "rsi": 51.2
           },
           "financials": {
             "per": null,
@@ -1066,8 +1066,8 @@
           "price": {
             "price": 138.47,
             "change_1d": -37.66,
-            "mom_3m": -29.9,
-            "rsi": 29.8
+            "mom_3m": -26.8,
+            "rsi": 29.7
           },
           "financials": {
             "per": null,
@@ -1121,8 +1121,8 @@
           "price": {
             "price": 45.62,
             "change_1d": -42.96,
-            "mom_3m": -0.4,
-            "rsi": 39.8
+            "mom_3m": -2.8,
+            "rsi": 35.8
           },
           "financials": {
             "per": null,
@@ -1319,12 +1319,12 @@
       "name": "양자컴퓨팅",
       "icon": "◈",
       "signal": {
-        "composite": 61,
+        "composite": 60,
         "bernstein_stage": 6,
         "bernstein_label": "역발상 투자 단계",
         "avg_eps_revision": null,
         "avg_inst_pct": null,
-        "avg_mom_3m": -7.2,
+        "avg_mom_3m": -10.54,
         "avg_eps_surprise": 55.39
       },
       "stocks": [
@@ -1337,8 +1337,8 @@
           "price": {
             "price": 45.48,
             "change_1d": 42.3,
-            "mom_3m": -8.8,
-            "rsi": 62.3
+            "mom_3m": -15.6,
+            "rsi": 63.3
           },
           "financials": {
             "per": null,
@@ -1392,8 +1392,8 @@
           "price": {
             "price": 16.66,
             "change_1d": 10.04,
-            "mom_3m": -10.1,
-            "rsi": 53.9
+            "mom_3m": -14.3,
+            "rsi": 55.0
           },
           "financials": {
             "per": null,
@@ -1447,8 +1447,8 @@
           "price": {
             "price": 225.51,
             "change_1d": -6.58,
-            "mom_3m": -16.4,
-            "rsi": 42.4
+            "mom_3m": -18.9,
+            "rsi": 41.2
           },
           "financials": {
             "per": null,
@@ -1502,8 +1502,8 @@
           "price": {
             "price": 17.41,
             "change_1d": 7.54,
-            "mom_3m": -23.2,
-            "rsi": 48.9
+            "mom_3m": -26.9,
+            "rsi": 48.5
           },
           "financials": {
             "per": null,
@@ -1557,8 +1557,8 @@
           "price": {
             "price": 8.96,
             "change_1d": 22.4,
-            "mom_3m": -0.2,
-            "rsi": 62.8
+            "mom_3m": -9.7,
+            "rsi": 58.4
           },
           "financials": {
             "per": null,
