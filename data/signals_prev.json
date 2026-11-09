@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-08T02:06:16.764889",
+  "updated_at": "2026-11-08T15:47:00.823654",
   "themes": [
     {
       "id": "ai_infra",
@@ -12,7 +12,7 @@
         "avg_eps_revision": null,
         "avg_inst_pct": null,
         "avg_mom_3m": -22.03,
-        "avg_eps_surprise": 29.81
+        "avg_eps_surprise": 29.8
       },
       "stocks": [
         {
@@ -102,8 +102,8 @@
             {
               "period": "2026-09-30",
               "actual": 2.09,
-              "estimate": 1.969,
-              "surprise_pct": 6.15
+              "estimate": 1.9704,
+              "surprise_pct": 6.07
             },
             {
               "period": "2026-06-30",
@@ -889,7 +889,7 @@
         "avg_eps_revision": null,
         "avg_inst_pct": null,
         "avg_mom_3m": -31.88,
-        "avg_eps_surprise": -52.21
+        "avg_eps_surprise": -52.11
       },
       "stocks": [
         {
@@ -1144,8 +1144,8 @@
             {
               "period": "2026-09-30",
               "actual": 0.24,
-              "estimate": 0.2115,
-              "surprise_pct": 13.48
+              "estimate": 0.2087,
+              "surprise_pct": 15.0
             },
             {
               "period": "2026-06-30",
@@ -1325,7 +1325,7 @@
         "avg_eps_revision": null,
         "avg_inst_pct": null,
         "avg_mom_3m": -17.04,
-        "avg_eps_surprise": 11.62
+        "avg_eps_surprise": 11.68
       },
       "stocks": [
         {
@@ -1360,8 +1360,8 @@
             {
               "period": "2026-09-30",
               "actual": -0.29,
-              "estimate": -0.3835,
-              "surprise_pct": 24.38
+              "estimate": -0.3882,
+              "surprise_pct": 25.3
             },
             {
               "period": "2026-06-30",
